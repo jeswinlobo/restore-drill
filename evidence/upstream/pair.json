@@ -1,0 +1,64 @@
+{
+  "upstream": "Linkwarden v2.7.1",
+  "transport": "Two Linkwarden HTTP origins and three fresh test accounts",
+  "recorded": "2026-11-25T09:15:43.224Z",
+  "source": "http://127.0.0.1:45571",
+  "target": "http://127.0.0.1:45572",
+  "archiveHash": "ed3dab8b2a710d44ef59465d3f18dd7e40ea80c32cca7cd2f681230369d2d48d",
+  "baselineHash": "fd5291b5190eb180f862a145f0ab1b1ed94efb30622a1b180e2f835650932008",
+  "original": {
+    "folders": 3,
+    "bookmarks": [
+      {
+        "title": "Signed contract 2cc646",
+        "url": "http://127.0.0.1:45571/robots.txt?record=2cc646",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 2cc646",
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "nativeMigration": {
+    "method": "GET and POST /api/v1/migration",
+    "folders": 3,
+    "bookmarks": [
+      {
+        "title": "Signed contract 2cc646",
+        "url": "http://127.0.0.1:45571/robots.txt?record=2cc646",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "Agreements"
+        ]
+      }
+    ],
+    "comparison": "different"
+  },
+  "portableRecovery": {
+    "method": "Restore Drill capture and owner-mapped writes through the collections and links APIs",
+    "folders": 3,
+    "bookmarks": [
+      {
+        "title": "Signed contract 2cc646",
+        "url": "http://127.0.0.1:45571/robots.txt?record=2cc646",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 2cc646",
+          "Agreements"
+        ]
+      }
+    ],
+    "comparison": "matched",
+    "acknowledgedWrites": 4
+  }
+}

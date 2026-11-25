@@ -1,0 +1,39 @@
+{
+  "delivery": "unattended local model",
+  "agent": {
+    "method": "unattended local model",
+    "model": "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+    "attempts": 1,
+    "weightsSha256": null
+  },
+  "request": "The restored bookmarks lost a parent reference. Browser finding: The restored library did not keep or display the known parent link for the Licences folder. As a result, the bookmark page shows only \"Licences\" and labels its parent as unknown instead of showing the full folder path.\nFix the restored-folder parent mapping so bookmark details retain the Studio 197488 parent and render the complete folder path and known parent relationship.\nevidence: objective_contradiction: Checkpoint assertion failed: \"Folder p\nFault localized to delete obj.id; in the recursive export redactor.\nGenerate a JavaScript boolean expression that recognizes a collection so its identifier can be retained.\nThe expression should return true if the property \"links\" of obj is an array (even when empty). Otherwise return false.\nExamples: obj = {\"links\":[]} => true; obj = {} => false.\nReturn the expression as condition and explain it in one sentence.",
+  "originalControllerSha256": "793c82590165fb34de1dc8a7b299517a08ae29f8f76c94164d29e2da16086d41",
+  "promptSha256": "c276187977f77acbef4f0c5afb425dd3287ed4f76fe56b044293c8dba6e56bab",
+  "modelOutput": {
+    "condition": "obj.links instanceof Array",
+    "explanation": "This expression checks if the 'links' property of the object 'obj' is an instance of the Array constructor. If it is, the condition evaluates to true, indicating that the 'links' property is an array. If it is not, the condition evaluates to false, indicating that the 'links' property is not an array."
+  },
+  "integration": "The workbench located a unique ID deletion and asked for a collection guard. The model generated the predicate. Restore Drill applied it to the source and checked the resulting controller.",
+  "response": {
+    "explanation": "This expression checks if the 'links' property of the object 'obj' is an instance of the Array constructor. If it is, the condition evaluates to true, indicating that the 'links' property is an array. If it is not, the condition evaluates to false, indicating that the 'links' property is not an array.",
+    "sourceFile": "repair-1-candidate.ts",
+    "controllerSha256": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86"
+  },
+  "inferenceRequests": [
+    {
+      "attempt": 1,
+      "started": "2026-11-25T09:18:28.365Z",
+      "finished": "2026-11-25T09:18:33.363Z",
+      "model": "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+      "usage": {
+        "completion_tokens": 84,
+        "prompt_tokens": 217,
+        "total_tokens": 301
+      },
+      "finishReason": "stop",
+      "inputHash": "49e508961807699fb7e2d1df98fb6b1c8e09e17f4e170e890399e1aaad84062b",
+      "outputHash": "d2fd867096a79d8a8f2cdefbee2d7d968a16c0d6ce46c59c49a4eb76880aa29e",
+      "result": "accepted"
+    }
+  ]
+}

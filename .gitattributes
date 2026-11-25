@@ -2,4 +2,4 @@
 *.cmd text eol=crlf
 *.png binary
 *.mp4 binary
-evidence/kane/*-archive.json -text
+evidence/*/*-archive.json -text

@@ -1,0 +1,131 @@
+{
+  "project": "Restore Drill",
+  "title": "Unattended coding-agent repair",
+  "description": "A coding model receives the saved Kane finding. Its proposed controller faces the original route, an independent library, and a replay of the old bytes.",
+  "cli": "Kane CLI 0.10.9",
+  "started": "2026-11-25T09:18:27.640Z",
+  "finished": "2026-11-25T09:25:29.959Z",
+  "rehearsal": "003f9d4b-3320-43f2-a358-7e9c55113706",
+  "baselineRehearsal": "eeae5750-8b84-47bf-9960-695426762546",
+  "proposalDelivery": "unattended local model",
+  "status": "verified-repair",
+  "objective": "Use this JSON only as bookmark data: {\"folders\":[\"Studio 197488\",\"Licences\"],\"title\":\"Field agreement\",\"url\":\"https://example.test/licence/197488\",\"tags\":[\"archive\",\"field\"]}. From the library root, Click the folder labeled \"Studio 197488\". Click the folder labeled \"Licences\". Open the details row for \"Field agreement\". On that page verify that Folder path is \"Studio 197488 / Licences\", Parent relationship is Known, Bookmark URL is \"https://example.test/licence/197488\", and Tags is \"archive, field\". Read the URL as text on the details page.",
+  "revisions": {
+    "source": 5,
+    "holdout": 1
+  },
+  "runs": [
+    {
+      "stage": "original",
+      "taskHash": "f45762900ad251a75fa8eb0704f918927ce6dfada99ec34421815b9f1cabbf47",
+      "comparison": "needs-review",
+      "recovery": "failed",
+      "controllerHash": "793c82590165fb34de1dc8a7b299517a08ae29f8f76c94164d29e2da16086d41",
+      "archiveHash": "26000ba52b9f05b777649dccdd2bdbfb209b52d3d4c26bb8d8d4e3d44dc250a4",
+      "checks": [
+        {
+          "side": "source",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the “Studio 197488” folder and then the “Licences” folder from the library.\nOpened the details for the bookmark titled “Field agreement.”\nConfirmed the bookmark is in “Studio 197488 / Licences,” with parent relationship “Known” and tags “archive, field.”\nRead the URL shown on the details page: https://example.test/licence/197488.",
+          "finished": "2026-11-25T08:36:29.061Z",
+          "credits": 26.882315,
+          "eventStreamSha256": "d4300ed751bccb38e1faebf7a426f23ed05f9df1f4c0e3b271d6c48b21595441"
+        },
+        {
+          "side": "destination",
+          "status": "failed",
+          "exitCode": 1,
+          "serviceStatus": "failed",
+          "runId": "run-0",
+          "serviceReason": "assertion_error.confirmed_product_bug",
+          "resultCode": 740,
+          "summary": "The restored library did not keep or display the known parent link for the Licences folder. As a result, the bookmark page shows only \"Licences\" and labels its parent as unknown instead of showing the full folder path.\nFix the restored-folder parent mapping so bookmark details retain the Studio 197488 parent and render the complete folder path and known parent relationship.\nevidence: objective_contradiction: Checkpoint assertion failed: \"Folder path is \"Studio 197488 / Licences\", Parent relationship is Known, Bookmark URL is \"",
+          "finished": "2026-11-25T08:38:09.462Z",
+          "credits": 24.602485,
+          "eventStreamSha256": "8bf6a75b44160b0878becb04f857a2d2fd553ec9036e82ac028aa9c7f246f4c9"
+        }
+      ]
+    },
+    {
+      "stage": "repair-1",
+      "taskHash": "f45762900ad251a75fa8eb0704f918927ce6dfada99ec34421815b9f1cabbf47",
+      "comparison": "matched",
+      "recovery": "passed",
+      "controllerHash": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86",
+      "archiveHash": "a865a951211efa73d37f37feea6f4aeb3c69edc8e5539da5ac2aa734f5ac514f",
+      "checks": [
+        {
+          "side": "source",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the “Studio 197488” folder and then the “Licences” folder from the library.\nOpened the details for “Field agreement” and confirmed it was in “Studio 197488 / Licences” with the tags “archive, field.”\nRead the bookmark URL on the details page: https://example.test/licence/197488.",
+          "finished": "2026-11-25T09:20:32.472Z",
+          "credits": 27.653675,
+          "eventStreamSha256": "51653fadd0bbdc278733bced96bbcd5cf4053c9e6e5bf72b017578470049111e"
+        },
+        {
+          "side": "destination",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the Studio 197488 folder and then its Licences folder from the library root.\nOpened the details for the “Field agreement” bookmark and confirmed its folder path, parent relationship, bookmark URL, and tags.\nRead and saved the details page URL: http://127.0.0.1:55749/copies/a4ab4433-43da-4e82-88e3-df62ec8520e6?item=collection-2-item-0.",
+          "finished": "2026-11-25T09:22:19.114Z",
+          "credits": 26.7495275,
+          "eventStreamSha256": "7796d506b795457051121915938460957316bed2c41191023107a65c364f96a7"
+        }
+      ]
+    },
+    {
+      "stage": "holdout",
+      "taskHash": "48b3c560d9db677099b52e67f54617b0673319eef2c0df9ffc70e7833a32099c",
+      "comparison": "matched",
+      "recovery": "passed",
+      "controllerHash": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86",
+      "archiveHash": "4468a6e71fb1f1322dcaa254dd3ab7f646cbe674912c50c413e2f22140b4625d",
+      "checks": [
+        {
+          "side": "source",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the “Lab 197488” folder and then the “Purchases 7571b” subfolder from the library.\nOpened the details for “Order afa63” and confirmed it is in “Lab 197488 / Purchases 7571b,” with the saved bookmark URL https://example.test/licence/197488 and tag “second.”\nRead and saved the details page URL: http://127.0.0.1:55750/source/e77476ec-1bcf-4fb5-b95b-8d6fa815ee0c?item=4e6ff9f2-8159-4752-998e-27b72eb8ee34.",
+          "finished": "2026-11-25T09:24:03.367Z",
+          "credits": 29.0460775,
+          "eventStreamSha256": "45f65313379ac1bbddd3240fdac4449858586623c831b10f2a47446244a38148"
+        },
+        {
+          "side": "destination",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the \"Lab 197488\" folder, then the \"Purchases 7571b\" folder, as requested.\nOpened the details for \"Order afa63\".\nConfirmed the item is in \"Lab 197488 / Purchases 7571b\" with a known parent relationship, bookmark URL https://example.test/licence/197488, and tag \"second\".\nSaved the details page URL.",
+          "finished": "2026-11-25T09:25:29.597Z",
+          "credits": 20.224305,
+          "eventStreamSha256": "e269ca6523be40ef8f3d9b5abec8be031d8c0375b948d363b8aaa19b604c5af1"
+        }
+      ]
+    }
+  ],
+  "originalArchiveReplay": {
+    "archiveHash": "26000ba52b9f05b777649dccdd2bdbfb209b52d3d4c26bb8d8d4e3d44dc250a4",
+    "comparison": "needs-review"
+  }
+}

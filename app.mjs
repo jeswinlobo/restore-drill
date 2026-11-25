@@ -11,6 +11,13 @@ import { collectionPage } from './lib/view.mjs';
 import { bookmarkTask, verifyBookmark } from './lib/kane.mjs';
 import { officialExporter, executeExporter } from './lib/exporter.mjs';
 import { rehearse } from './lib/rehearsal.mjs';
+import {
+  recordedEvidence,
+  evidenceFile,
+  optionalRecord,
+  replayRecordedRepair
+} from './lib/recordings.mjs';
+import { proveAmbiguity } from './lib/ambiguity.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const arg = (name, fallback) => {
@@ -62,6 +69,7 @@ function archiveDownload(res, value, name) {
 }
 let base;
 const activeRehearsals = new Set();
+const activeReplays = new Set();
 async function rehearsals() {
   const folder = join(dir, 'rehearsals');
   let ids;
@@ -122,6 +130,41 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { 'content-type': type + '; charset=utf-8' });
       return res.end(asset);
     }
+    if (m === 'GET' && p === '/api/evidence') {
+      const challenge = JSON.parse(await readFile(join(root, 'evidence/challenge/result.json'), 'utf8'));
+      const [packs, ambiguity, upstream, nativeBrowser, nativeRepair] = await Promise.all([
+        recordedEvidence(),
+        optionalRecord('ambiguity', 'original-workspace.json'),
+        optionalRecord('upstream', 'pair.json'),
+        optionalRecord('upstream', 'native-kane.json'),
+        optionalRecord('upstream', 'native-repair.json')
+      ]);
+      return json(res, { packs, challenge, ambiguity, upstream, nativeBrowser, nativeRepair });
+    }
+    const receipt = /^\/api\/evidence\/([a-z][a-z0-9-]*)\/([a-z0-9.-]+)$/.exec(p);
+    if (receipt) {
+      const [, bundle, action] = receipt;
+      if (m === 'POST' && action === 'replay') {
+        await body(req);
+        if (activeReplays.has(bundle))
+          throw Object.assign(Error('This replay is already running'), { status: 409 });
+        activeReplays.add(bundle);
+        try {
+          return json(res, await replayRecordedRepair(bundle));
+        } finally {
+          activeReplays.delete(bundle);
+        }
+      }
+      if (m === 'GET') {
+        const data = await evidenceFile(bundle, action);
+        res.writeHead(200, {
+          'content-type': action.endsWith('.ts')
+            ? 'text/plain; charset=utf-8'
+            : 'application/json; charset=utf-8'
+        });
+        return res.end(data);
+      }
+    }
     if (m === 'GET' && p === '/api/state')
       return json(res, {
         workspaces: store.workspaces(),
@@ -171,6 +214,14 @@ const server = http.createServer(async (req, res) => {
         return archiveDownload(res, w.archive, 'portable-workspace.json');
       if (m === 'POST') {
         const b = await body(req);
+        if (action === 'ambiguity') {
+          if (b.revision !== w.revision)
+            throw Object.assign(Error('Workspace changed. Reload it before checking the archive.'), {
+              status: 409
+            });
+          const proof = await proveAmbiguity(w.archive, dir);
+          return json(res, { ...proof, workspace: w.name, revision: w.revision });
+        }
         if (action === 'rehearse') {
           bookmarkTask(w.archive, b.item);
           if (activeRehearsals.size)

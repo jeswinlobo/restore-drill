@@ -1,0 +1,43 @@
+{
+  "status": "proved",
+  "bookmark": {
+    "title": "Field agreement",
+    "url": "https://example.test/licence/197488",
+    "tags": [
+      "archive",
+      "field"
+    ]
+  },
+  "pathA": [
+    "Studio 197488",
+    "Licences"
+  ],
+  "pathB": [
+    "Lab 197488",
+    "Licences"
+  ],
+  "legacy": {
+    "identical": true,
+    "bytes": 539,
+    "sha256": "26000ba52b9f05b777649dccdd2bdbfb209b52d3d4c26bb8d8d4e3d44dc250a4",
+    "controller": "https://raw.githubusercontent.com/linkwarden/linkwarden/v2.7.1/lib/api/controllers/migration/exportData.ts"
+  },
+  "portable": {
+    "hashA": "e7a9961fca8358617c9ec3f446ae492931d57cfa5993ec07963598cb3404c2c9",
+    "hashB": "56bf5062941ac9378a7c7e768c1cf74a04977f04c2190c2ce87af2d3d813136f",
+    "comparisons": [
+      "matched",
+      "matched"
+    ]
+  },
+  "inputs": {
+    "hashA": "80cc3c66c916326b6669882a9f88b612c0da9b08b28f3a4aa10ca3c409403ce2",
+    "hashB": "91a7682d3aa6575f0c7a579c3b30dde8adce392bd64a8d67166b503b0d1263ea"
+  },
+  "scope": "Two modeled database states derived from the supplied bookmark workspace, with an empty collectionOrder. The pinned Linkwarden v2.7.1 export controller reads each through the same Prisma adapter.",
+  "rehearsal": {
+    "workspace": "../kane/original-workspace.json",
+    "archive": "../kane/original-archive.json",
+    "matchesArchivedBytes": true
+  }
+}

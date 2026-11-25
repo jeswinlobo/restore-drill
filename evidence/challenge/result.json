@@ -1,0 +1,341 @@
+{
+  "format": "restore-drill/exporter-challenge/v1",
+  "seed": 475867053,
+  "engine": "Local exporter execution, archive import and structural comparison",
+  "candidate": {
+    "controllerHash": "b7627ce97a8d2644c062023d36c8c644661cc049888c8637ec84feb2030c567d",
+    "matched": 7,
+    "total": 7,
+    "accepted": true,
+    "outcomes": [
+      {
+        "name": "Original workspace",
+        "origin": "recorded",
+        "inputHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+        "archiveHash": "56e6cf66c197bfe34579d2b2eaf717080e4a5b848a743782c9963b6feca6e391",
+        "status": "matched",
+        "folders": [
+          3,
+          3
+        ],
+        "bookmarks": [
+          1,
+          1
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Independent workspace",
+        "origin": "recorded",
+        "inputHash": "0126360b3826bb7ba92bbc708746440c6006099c1d03e089a64bf3db5e1ecb72",
+        "archiveHash": "ad569745cc6ddcaa16f1a8bf97e9bb93c6d2b3394e9fb86baa90a15a81279cda",
+        "status": "matched",
+        "folders": [
+          3,
+          3
+        ],
+        "bookmarks": [
+          1,
+          1
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Single root",
+        "origin": "generated",
+        "inputHash": "072419341f27999b519c46eb3db93d8d75c105c2426f6db32a7031a6bb20b020",
+        "archiveHash": "2bb0980f77e2aedb00796400cf537aec75bf29c4f162199db71df4ebb1326f90",
+        "status": "matched",
+        "folders": [
+          3,
+          3
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Children before two empty parents",
+        "origin": "generated",
+        "inputHash": "0dc91a8b4580b2b1ec1a6873812577054f75ea4249d0050a9e960b8f8ab7b53a",
+        "archiveHash": "222ff7c6cf4359d7b62fe64a5aab06ed4808203460409ddc4b610b27bef75797",
+        "status": "matched",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Parents identifiable through their bookmarks",
+        "origin": "generated",
+        "inputHash": "42e46681a07c629fddcf3c4fb5f2ee171e98db60f0ff8865b82bce8e4b818c6a",
+        "archiveHash": "c447ff7547b85074af83deccf233bdcef9e8c66647b38da36fb6127d20bd6ca8",
+        "status": "matched",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          4,
+          4
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Nested empty ancestors",
+        "origin": "generated",
+        "inputHash": "de061cf8b1e591a5c8c30700ebe83aa4bd1fb7a86c01f5f1f8bd2b668588e770",
+        "archiveHash": "b764503bf1f1043884ac4a93e4c61c8072df76faa9f202d4da65fc583192be1b",
+        "status": "matched",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Identically named branches",
+        "origin": "generated",
+        "inputHash": "54476441b2014804f9fc8dbd779a7f66d953ec84c5a3ea8c037a14dece155d52",
+        "archiveHash": "196669dc462eee40d07781109ccbe5747a8f102d16e9a118d84e4ebd12e78e0c",
+        "status": "matched",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      }
+    ]
+  },
+  "negativeControl": {
+    "controllerHash": "dfcc77811f578d8a24269b22ed19cf6d556283150b4306efc3449db715f41364",
+    "matched": 3,
+    "total": 7,
+    "accepted": false,
+    "outcomes": [
+      {
+        "name": "Original workspace",
+        "origin": "recorded",
+        "inputHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+        "archiveHash": "e7a9961fca8358617c9ec3f446ae492931d57cfa5993ec07963598cb3404c2c9",
+        "status": "matched",
+        "folders": [
+          3,
+          3
+        ],
+        "bookmarks": [
+          1,
+          1
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Independent workspace",
+        "origin": "recorded",
+        "inputHash": "0126360b3826bb7ba92bbc708746440c6006099c1d03e089a64bf3db5e1ecb72",
+        "archiveHash": "d9f8ebbac8a012f5886e37e8cfff59f04fcc2633198a4a4e80a78d5365c9fe51",
+        "status": "different",
+        "folders": [
+          3,
+          3
+        ],
+        "bookmarks": [
+          1,
+          1
+        ],
+        "differences": 4,
+        "differenceKinds": [
+          "folder",
+          "bookmark"
+        ],
+        "changedPaths": [
+          {
+            "title": "Order afa63",
+            "url": "https://example.test/licence/197488",
+            "source": [
+              "Lab 197488",
+              "Purchases 7571b"
+            ],
+            "restored": [
+              "Studio 197488",
+              "Purchases 7571b"
+            ],
+            "unresolved": null
+          }
+        ]
+      },
+      {
+        "name": "Single root",
+        "origin": "generated",
+        "inputHash": "072419341f27999b519c46eb3db93d8d75c105c2426f6db32a7031a6bb20b020",
+        "archiveHash": "ac4c6b185b62b647e8e5dd9d159dc0deb5c342d50f3b3ecf62bb1f77e91b78ec",
+        "status": "matched",
+        "folders": [
+          3,
+          3
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Children before two empty parents",
+        "origin": "generated",
+        "inputHash": "0dc91a8b4580b2b1ec1a6873812577054f75ea4249d0050a9e960b8f8ab7b53a",
+        "archiveHash": "236732325b9c77890f1f62f3aac7b3135b213799b7421183d6e7613c624a0694",
+        "status": "different",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 4,
+        "differenceKinds": [
+          "folder",
+          "bookmark"
+        ],
+        "changedPaths": [
+          {
+            "title": "Reference 28330494",
+            "url": "https://example.test/doc/d556211c1557",
+            "source": [
+              "East a960",
+              "Notes 9d3b"
+            ],
+            "restored": [
+              "West c904",
+              "Notes 9d3b"
+            ],
+            "unresolved": null
+          }
+        ]
+      },
+      {
+        "name": "Parents identifiable through their bookmarks",
+        "origin": "generated",
+        "inputHash": "42e46681a07c629fddcf3c4fb5f2ee171e98db60f0ff8865b82bce8e4b818c6a",
+        "archiveHash": "e33c56e07aaeb17fda531a4b4a68c1eb849704b56e5b6d184e6fb576297c847c",
+        "status": "matched",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          4,
+          4
+        ],
+        "differences": 0,
+        "differenceKinds": [],
+        "changedPaths": []
+      },
+      {
+        "name": "Nested empty ancestors",
+        "origin": "generated",
+        "inputHash": "de061cf8b1e591a5c8c30700ebe83aa4bd1fb7a86c01f5f1f8bd2b668588e770",
+        "archiveHash": "8a8f8004b1b502c3c768d5b4e18e996383a8e07ae549041a847abe0f68a23adb",
+        "status": "different",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 8,
+        "differenceKinds": [
+          "folder",
+          "bookmark"
+        ],
+        "changedPaths": [
+          {
+            "title": "Reference d44491cb",
+            "url": "https://example.test/doc/5e9d1c769209",
+            "source": [
+              "Company c9bc",
+              "Client 1774",
+              "Case 7d1c"
+            ],
+            "restored": [
+              "Company c9bc",
+              "Case 7d1c"
+            ],
+            "unresolved": null
+          },
+          {
+            "title": "Reference 60b6c7dc",
+            "url": "https://example.test/doc/3d4b3f803119",
+            "source": [
+              "Company c9bc",
+              "Client 1774",
+              "Notes c989"
+            ],
+            "restored": [
+              "Company c9bc",
+              "Notes c989"
+            ],
+            "unresolved": null
+          }
+        ]
+      },
+      {
+        "name": "Identically named branches",
+        "origin": "generated",
+        "inputHash": "54476441b2014804f9fc8dbd779a7f66d953ec84c5a3ea8c037a14dece155d52",
+        "archiveHash": "bfe32dac9f0e4eb314af802ecccaf91d0e460ecc8390ffaa64644224f4b9ab25",
+        "status": "different",
+        "folders": [
+          4,
+          4
+        ],
+        "bookmarks": [
+          2,
+          2
+        ],
+        "differences": 4,
+        "differenceKinds": [
+          "folder subtree"
+        ],
+        "changedPaths": []
+      }
+    ]
+  }
+}

@@ -10,6 +10,8 @@
   "scripts": {
     "start": "node app.mjs",
     "test": "node --test test/*.test.mjs",
-    "doctor": "node cli.mjs doctor"
+    "doctor": "node cli.mjs doctor",
+    "proof": "node evidence/replay.mjs",
+    "challenge": "node evidence/challenge.mjs --replay evidence/challenge/result.json"
   }
 }

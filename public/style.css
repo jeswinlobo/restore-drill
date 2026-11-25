@@ -476,6 +476,47 @@ pre {
 #form-error:empty {
   display: none;
 }
+.receipt-step {
+  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 13px 20px;
+}
+.receipt-step .entry {
+  padding: 12px 0 2px;
+}
+.result-head {
+  margin: 22px 0 6px;
+}
+.proof-paths strong,
+.pad code {
+  overflow-wrap: anywhere;
+}
+.scroll-table {
+  overflow-x: auto;
+}
+.scroll-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.scroll-table th,
+.scroll-table td {
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  padding: 10px 8px;
+}
+.scroll-table th {
+  color: var(--muted);
+  font-weight: 600;
+}
+@media (max-width: 390px) {
+  aside {
+    flex-wrap: wrap;
+  }
+  nav {
+    flex-wrap: wrap;
+  }
+}
 @media (max-width: 900px) {
   .shell {
     grid-template-columns: 175px minmax(0, 1fr);

@@ -1,8 +1,17 @@
 # Restore Drill
 
-Rehearse a bookmark recovery before trusting the backup. Restore Drill compares a known source with a fresh restore, opens both libraries in a browser, and records where each bookmark ended up. A missing folder reference stays visible for human review.
+Can someone still find the signed contract after restoring a backup? Restore Drill follows a bookmark from its owner's folder to its saved URL, then repeats that journey on a fresh restore. When a parent is lost, Kane checks the failure in Chrome and a coding agent can repair the exporter.
 
-The project grew out of a real Linkwarden migration report. The v2.7.1 exporter removes collection IDs while retaining parent references. In a reproducible case, moving a bookmark's ancestor from one owner folder to another produced two identical 840-byte exports. Some archives retain usable collection IDs on their links. Restore Drill uses those identifiers when they agree and flags the references it cannot resolve. [Migration report](https://github.com/linkwarden/linkwarden/issues/812) · [Published exporter](https://github.com/linkwarden/linkwarden/blob/v2.7.1/lib/api/controllers/migration/exportData.ts) · [Reproduction script](evidence/check-linkwarden-export.mjs)
+[Watch the 4:48 walkthrough](submission/restore-drill-evidence-walkthrough.mp4) · [Read the captions](submission/restore-drill-evidence-captions.vtt) · [Run locally](#run-locally)
+
+In two independent Linkwarden v2.7.1 installations, a stock migration preserved all three folders, the bookmark and both tags. It moved the agreement out of its owner's folder. Kane spotted the extra top-level collection on Linkwarden's own screen. Restore Drill recovered the expected path through the public API and Kane passed the same check. [Migration report](https://github.com/linkwarden/linkwarden/issues/812) · [Upstream API measurements](evidence/upstream/pair.json) · [Native browser verdicts](evidence/upstream/native-kane.json)
+
+| Stock migration | Restore Drill recovery |
+| --- | --- |
+| ![Linkwarden shows Agreements as a third top-level collection](evidence/upstream/native-legacy-grid.png) | ![Linkwarden shows the two owners as root collections after recovery](evidence/upstream/native-recovered-grid.png) |
+| The owner and Agreements appear side by side. | Agreements is back inside South 2cc646. |
+
+The original exporter removes collection IDs that its parent references need. In the recorded library, two different owners produced exactly the same 539 archive bytes. The workbench can test this on your own known source. Some archives retain usable identifiers on their links, and Restore Drill uses those when they agree. [Published exporter](https://github.com/linkwarden/linkwarden/blob/v2.7.1/lib/api/controllers/migration/exportData.ts) · [Identical-archive proof](evidence/ambiguity/original-workspace.json)
 
 ## Run locally
 
@@ -14,7 +23,7 @@ node app.mjs
 
 Open **http://127.0.0.1:4317**. Windows users can also open **Start Restore Drill.cmd**. On the original workstation, the local launcher uses the existing Codex-bundled Node runtime. On another computer install Node 24+. No external account is needed for archive inspection or local comparison.
 
-To reproduce the recorded repair offline, run `node evidence/replay.mjs`. It executes the saved coding-agent candidate on two archived source libraries, checks the output fingerprints against the live rehearsal, then checks the original lossy archive. [Kane results](evidence/kane/verification.json) · [Narrated walkthrough](submission/restore-drill-walkthrough.mp4)
+Open **Evidence** to inspect the browser verdicts. Choose **Reproduce archive comparison** to execute a recorded repair on two libraries and compare the new archive fingerprints with the old ones. **Open a copy of this workspace** creates an editable local copy of the source used for the ambiguity check. These actions work without a TestMu account. From a terminal, `node evidence/replay.mjs` reproduces the reviewed repair. [Recorded materials](submission/README.md)
 
 ### Your first drill
 
@@ -23,10 +32,11 @@ To reproduce the recorded repair offline, run `node evidence/replay.mjs`. It exe
 3. Open the source and restored libraries. Compare the actual paths, counts, titles, URLs and tag sets. The two pages run on different local ports. **Download report** saves the comparison and observed browser verdicts.
 4. Choose **Reference-preserving bookmark controller** for a new export that assigns portable folder identifiers. Recheck the old bytes with **Upload a candidate archive**. Historic archives stay unchanged. If you independently know a missing parent, import the archive as a working workspace and use **Confirm parent** there.
 5. Change the parent, title or tags using **Edit**. New drills use the edited revision. Earlier drill reports retain the original snapshot.
+6. Choose **Test archive ambiguity** to compare two valid source layouts. On a suitable library the app runs both exporters twice and shows the bookmark's two possible paths, whether the historical bytes match, and whether both portable restores succeed. It explains when a library lacks a suitable pair of roots. The CLI equivalent is `node cli.mjs ambiguity source.json`.
 
 ## Kane and the coding-agent loop
 
-Install Chrome, Kane CLI and Codex CLI, then authenticate in their own terminals:
+Install Chrome and Kane CLI, and sign in to Kane. For automated repair, choose Codex CLI or the local model described below.
 
 ```sh
 npm install -g @testmuai/kane-cli
@@ -36,16 +46,16 @@ node cli.mjs doctor
 
 On the original Windows workstation, Kane is already installed in local tooling. Use `Start Restore Drill.cmd login` to sign in. `Start Restore Drill.cmd doctor` prints availability without exposing account tokens. Kane checks use your TestMu account and credits. Use data appropriate to send to TestMu. An optional Codex repair sends the controller source and failed observation to the coding agent.
 
-From a workspace, choose **Start rehearsal** and select a real bookmark. The options are local comparison, Kane verification, or **Verify, send failure to Codex and rerun**. Optionally choose a second workspace and bookmark as an independent check. Leave the workbench running.
+From a workspace, choose **Start rehearsal** and select a real bookmark. Choose **Verify, send the failure to the coding agent and rerun** to enable repair. Select a second workspace and bookmark for an independent check, then leave the workbench running. The default agent is Codex CLI. An optional local coding model can also produce a repair.
 
 - Restore Drill freezes the source revision and the bookmark objective, executes the exporter, and imports the resulting archive into its own read-only destination service.
 - Kane opens the source, follows the folder sequence and inspects the bookmark details. If that succeeds, its source URL returns HTTP 410 while Kane repeats the task on the destination. The verifier never opens the saved external URL.
-- A confirmed Kane product failure and a matching archive discrepancy trigger repair. If Kane disputes the navigation task for a unique bookmark with an unresolved parent, it can perform a separate details-page check. Only a passing check of the wrong path and unknown parent counts as **parent loss confirmed**. The original route verdict stays in the report. Timeouts, authentication errors and failed source checks remain inconclusive.
-- Codex proposes a complete TypeScript replacement for the export controller. Its session is read-only. Restore Drill saves the candidate separately and executes it in a child Node process with file access restricted to the generated controller, a minimal environment and a time limit. The primary project files are never overwritten by this loop.
+- A confirmed Kane product failure and a matching archive discrepancy trigger repair. When Kane disputes a navigation task, a uniquely identifiable bookmark can receive a separate positive check of its actual details. The verifier records whether it saw an unknown parent or a different known path. The original route verdict remains in the report. Timeouts, authentication errors and failed source checks remain inconclusive.
+- Codex can propose a complete TypeScript replacement in a read-only session. The optional local agent generates an edit under constraints derived from the failed archive. For the recorded ID-redaction failure, the workbench localized the deletion and the model generated its guard. The workbench executes proposed controllers in a separate Node process with restricted file access, a minimal environment and a time limit. Candidates stay in the rehearsal directory. [Local agent setup](integrations/local-agent/README.md)
 - Up to two agent attempts are permitted. Each attempt creates a new export and destination using the same frozen task. A changed source revision stops the run. A selected holdout must also pass. Finally, the original archive bytes are restored again and their fingerprint checked.
 - Open **Drill history → Exporter rehearsals** for the stages, associated drills and downloadable candidate. Raw Kane NDJSON, stderr, prompts, source versions and reports stay in the private data directory.
 
-The historical controller runs with an adapter for its Prisma database read. The workbench's browser views belong to Restore Drill. A separate API connector supports independently running Linkwarden installations. The controller rehearsal specifically checks bookmark metadata and folder ownership. It does not run Linkwarden's full UI or back up attachments, permission settings, archived page content or account credentials.
+The fast workbench rehearsal runs the historical controller against a Prisma read adapter and checks Restore Drill's browser views. The upstream integration separately executes the candidate against real Prisma and PostgreSQL and tests native Linkwarden accounts. Both flows cover bookmark metadata and folder ownership. Attachments, permissions and archived pages are outside the recovery scope.
 
 ### Resume a repair from saved evidence
 
@@ -78,7 +88,7 @@ To restore a portable archive through Linkwarden's collection and link APIs, pre
 node cli.mjs restore-into source.json --target http://localhost:3001 --write-to-empty-target
 ```
 
-The second command creates parents before children, maps new target IDs, writes a journal of acknowledged creations, and captures the target again for comparison. Unknown parentage stops it before the first write. Both commands refuse a populated account. If a remote service fails partway, the partial target can be inspected; use another empty target for the next run. These adapters target the v2.7.1 REST response shapes. The included tests exercise the connector protocol. An external two-instance deployment has not been verified on the development machine.
+The second command creates parents before children, maps new target IDs, journals acknowledged creations and captures the target again. Unknown parentage stops it before the first write. Both commands require an empty account. If a remote service fails partway, inspect the journal and use a fresh account for the next attempt. The v2.7.1 stock importer also drops parentage when given the repaired export. The mapped restore is what preserves the hierarchy in the target application. [Two-instance runner](integrations/upstream/run-pair.mjs) · [Real Prisma and importer results](evidence/upstream/candidate.json)
 
 ## CLI and data
 
@@ -105,6 +115,18 @@ The workspace and destination writes for a comparison share one SQLite transacti
 
 ## Evidence and submission
 
+**Fresh end-to-end run.** One command started with the historical exporter, two newly named libraries and the locally installed model. Kane caught the lost path to the supplier agreement. The model started on demand and generated a guard. Kane passed the repaired source and destination, then the inspection record in a different owner's library. All six browser observations came from this run. Replaying the original bytes still required review. Try `node evidence/replay.mjs unattended-fresh` without an account. [Fresh Kane verdicts](evidence/unattended-fresh/verification.json) · [Model fingerprint and response](evidence/unattended-fresh/agent-handoff.json)
+
+**Unattended repair.** After a confirmed Kane browser failure, Qwen2.5-Coder generated a collection check for the export controller. The program applied the edit. Kane passed the restored bookmark path on the source fixture and on an independent library. The original archive still required review. This run resumed the frozen original failure and used four new authenticated browser checks. To reproduce its archive results offline, run `node evidence/replay.mjs unattended`. The generated patch preserves collection database IDs. The bookmark-only controller supplied in the workbench uses archive-local IDs. [Kane checks](evidence/unattended/verification.json) · [Exact model request and response](evidence/unattended/agent-handoff.json) · [Earlier rejected edits](evidence/unattended/rejected-edits.json) · [Real database test](evidence/upstream/unattended-candidate.json)
+
+**Upstream production check.** Two production builds of Linkwarden v2.7.1 used separate PostgreSQL databases. Six folders included a three-level path, an empty folder and two identically named folders. Two bookmarks shared a title. The stock migration flattened both paths. Restore Drill verified all eight writes and recovered both routes. [Results](evidence/upstream/production-branching.json) · [Repeat the upstream checks](integrations/upstream/README.md) · [Repeat the native Kane checks](integrations/upstream/native-browser.md)
+
+**Follow the same repair into the real application.** We supplied the exact 563 bytes from the unattended repair to two fresh production accounts. Linkwarden's stock importer flattened the hierarchy. Restore Drill's mapped restore preserved it. Kane inspected the same Collections grid objective on the source and both targets and returned pass, confirmed product bug, pass. Each account's contents were unchanged after inspection. You can export a completed rehearsal and run this check on your own recovery evidence. [Native checks and archive fingerprints](evidence/upstream/native-repair.json) · [Export a rehearsal](evidence/README.md)
+
 On 25 November 2026, signed-in Kane CLI 0.10.9 passed the source path and classified the historical restore as a confirmed product bug. The Codex desktop session received that finding and supplied a changed exporter. Kane passed both the original and restored paths for the repaired workspace, then passed both paths on an independent workspace. Replaying the original bytes still produced an unresolved parent. The machine's nested CLI process encountered a Windows permission error, so the recorded run used the reviewed-agent response option. [Six browser verdicts](evidence/kane/verification.json) · [Agent handoff](evidence/kane/agent-handoff.json) · [Candidate controller](evidence/kane/repair-1-candidate.ts)
 
-The repository also includes an independent Chrome navigation check and screenshots. The automated test suite uses protocol doubles for the paid services. The six live verdicts above were recorded separately from those tests. [Chrome checks](evidence/chromium) · [Walkthrough, captions and submission notes](submission/README.md) · [Event brief](https://www.kaneclihack.sh/) · [Kane agent interface](https://www.testmuai.com/kane-cli/agents/)
+One deliberately wrong exporter guesses the first root. It passed both original browser checks. On the second workspace, Kane confirmed a product bug after the owner could no longer reach the purchase order. Run `npm run challenge` to reproduce seven local archive comparisons. The recorded reviewed repair passed seven. The guess passed three. Use `node evidence/challenge.mjs --candidate controller.ts` to try another controller on the two recorded and five generated cases. [Four live control verdicts](evidence/negative-control/verification.json) · [Seven-case comparison](evidence/challenge/result.json)
+
+The automated tests use protocol doubles for paid services. The recorded Kane runs used a signed-in account. [Independent Chrome checks](evidence/chromium) · [Walkthrough, captions and submission notes](submission/README.md) · [Event brief](https://www.kaneclihack.sh/) · [Kane agent interface](https://www.testmuai.com/kane-cli/agents/)
+
+Kane labels the first flow within each invocation `run-0`. In the public receipts, the timestamp and SHA-256 of the raw event stream distinguish invocations. An original failure reused by a resumed rehearsal retains the same stream fingerprint. Private data directories retain service output for the account holder.

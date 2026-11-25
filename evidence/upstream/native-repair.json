@@ -1,0 +1,95 @@
+{
+  "status": "verified",
+  "recorded": "2026-11-25T09:36:44.472Z",
+  "upstream": "Linkwarden v2.7.1",
+  "archiveHash": "a865a951211efa73d37f37feea6f4aeb3c69edc8e5539da5ac2aa734f5ac514f",
+  "repairEvidence": {
+    "rehearsal": "003f9d4b-3320-43f2-a358-7e9c55113706",
+    "stage": "repair-1",
+    "verificationSha256": "aa1caba17a6c964dc46b0fb43e4970256c234ef13ecf0c38a8ccde06db56f512",
+    "candidateArchiveSha256": "a865a951211efa73d37f37feea6f4aeb3c69edc8e5539da5ac2aa734f5ac514f",
+    "candidateBytes": 563,
+    "candidateControllerSha256": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86",
+    "sourceHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+    "frozenObjectiveSha256": "f45762900ad251a75fa8eb0704f918927ce6dfada99ec34421815b9f1cabbf47",
+    "sourceHashInReceipt": false
+  },
+  "witness": {
+    "title": "Field agreement",
+    "url": "https://example.test/licence/197488",
+    "tags": [
+      "archive",
+      "field"
+    ],
+    "path": [
+      "Studio 197488",
+      "Licences"
+    ]
+  },
+  "nativeMigration": "different",
+  "portableRecovery": "matched",
+  "objective": "Inspect the collection cards in the main Collections grid, the area that includes the New Collection card. Ignore the navigation sidebar. Verify there is an owner collection card named \"Studio 197488\" and verify the child collection \"Licences\" does not appear as its own top-level card in that grid. Make the check on this page without opening a collection or changing data.",
+  "checks": [
+    {
+      "role": "original",
+      "status": "passed",
+      "taskSha256": "4ecae8569375ef709407a694241d92399d050da773b3949c6d6524996fceb9ab",
+      "stage": "Finished",
+      "bookmarkVisible": "Field agreement",
+      "visibleRootCards": [
+        "Lab 197488",
+        "Studio 197488"
+      ],
+      "rootGridMatchesExpectation": true,
+      "gridScreenshot": "native-repair-grids/original-grid.png",
+      "gridScreenshotSha256": "6835621927ccb28913fc5eb02ef34baf739f8bff114c6a4e8592d44b62e2ea90",
+      "runId": "run-0",
+      "reason": "success.complete",
+      "credits": 12.151599999999998,
+      "finished": "2026-11-25T09:34:36.840Z",
+      "eventStreamSha256": "ee383ff8f93749d51442ea3b08e27745e6e3377f1cfc4545d951a6dd0fc65688",
+      "accountUnchanged": true
+    },
+    {
+      "role": "legacy",
+      "status": "failed",
+      "taskSha256": "4ecae8569375ef709407a694241d92399d050da773b3949c6d6524996fceb9ab",
+      "stage": "Finished",
+      "bookmarkVisible": "Field agreement",
+      "visibleRootCards": [
+        "Licences",
+        "Lab 197488",
+        "Studio 197488"
+      ],
+      "rootGridMatchesExpectation": true,
+      "gridScreenshot": "native-repair-grids/legacy-grid.png",
+      "gridScreenshotSha256": "ecbc2036f5d6e416391fbf34af9c0c77a1d6d64b699068a9e88fd3a73a95fbdd",
+      "runId": "run-0",
+      "reason": "assertion_error.confirmed_product_bug",
+      "credits": 10.62121,
+      "finished": "2026-11-25T09:35:34.780Z",
+      "eventStreamSha256": "d3b6ce3ff286283f45550b55d11a67e2cc5c7d2ad7adaf61a35dea06e27f015f",
+      "accountUnchanged": true
+    },
+    {
+      "role": "recovered",
+      "status": "passed",
+      "taskSha256": "4ecae8569375ef709407a694241d92399d050da773b3949c6d6524996fceb9ab",
+      "stage": "Finished",
+      "bookmarkVisible": "Field agreement",
+      "visibleRootCards": [
+        "Lab 197488",
+        "Studio 197488"
+      ],
+      "rootGridMatchesExpectation": true,
+      "gridScreenshot": "native-repair-grids/recovered-grid.png",
+      "gridScreenshotSha256": "6835621927ccb28913fc5eb02ef34baf739f8bff114c6a4e8592d44b62e2ea90",
+      "runId": "run-0",
+      "reason": "success.complete",
+      "credits": 13.8722975,
+      "finished": "2026-11-25T09:36:44.169Z",
+      "eventStreamSha256": "f2c8393a59784508450d40d14b798398d2631c88178dfa7909132324686b5cf3",
+      "accountUnchanged": true
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+    "rehearsal":  "7b6e0f64-3e4f-46ad-8253-6e84d7955dd6",
+    "baselineRehearsal":  "eeae5750-8b84-47bf-9960-695426762546",
+    "status":  "inconclusive",
+    "finished":  "2026-11-25T09:13:41.600Z",
+    "experiment":  "Earlier implementation asked the model to provide a complete text edit. The gate rejected all three responses before any candidate browser check. The later run used a narrower, schema-guided predicate prompt.",
+    "model":  "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+    "attempts":  [
+                     {
+                         "attempt":  1,
+                         "started":  "2026-11-25T09:12:53.689Z",
+                         "finished":  "2026-11-25T09:13:11.977Z",
+                         "model":  "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+                         "usage":  {
+                                       "completion_tokens":  88,
+                                       "prompt_tokens":  772,
+                                       "total_tokens":  860
+                                   },
+                         "finishReason":  "stop",
+                         "inputHash":  "39b4bce5b276943eba6dd5daa09e470d606ce4b36807623be6154e9d10eee6e3",
+                         "outputHash":  "bf4f0c3b832650066c0bf5d5387f557f36da341447ad74c65de0817ea5654948",
+                         "result":  "rejected",
+                         "diagnostic":  "The visible source workspace still differs after restoring the new export: [{\"title\":\"Field agreement\",\"url\":\"https://example.test/licence/197488\",\"source\":[\"Studio 197488\",\"Licences\"],\"restored\":[\"Licences\"],\"unresolved\":\"19\"}]"
+                     },
+                     {
+                         "attempt":  2,
+                         "started":  "2026-11-25T09:13:12.157Z",
+                         "finished":  "2026-11-25T09:13:27.644Z",
+                         "model":  "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+                         "usage":  {
+                                       "completion_tokens":  89,
+                                       "prompt_tokens":  947,
+                                       "total_tokens":  1036
+                                   },
+                         "finishReason":  "stop",
+                         "inputHash":  "2cc5b4fd539b3267b539945eae52477be541994b633c5c2f45b5f0394a5e7250",
+                         "outputHash":  "3acbcf5c4b1705dadf5fbe5173dc20adf4d3cbed295d9982ba9aead7fe5e3b23",
+                         "result":  "rejected",
+                         "diagnostic":  "Expected a nonempty exact edit and a repair explanation."
+                     },
+                     {
+                         "attempt":  3,
+                         "started":  "2026-11-25T09:13:27.650Z",
+                         "finished":  "2026-11-25T09:13:41.598Z",
+                         "model":  "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+                         "usage":  {
+                                       "completion_tokens":  89,
+                                       "prompt_tokens":  898,
+                                       "total_tokens":  987
+                                   },
+                         "finishReason":  "stop",
+                         "inputHash":  "fcecb829934b26410966909b8b706332b2fe87be819b8178aa0fb36725486fc0",
+                         "outputHash":  "3acbcf5c4b1705dadf5fbe5173dc20adf4d3cbed295d9982ba9aead7fe5e3b23",
+                         "result":  "rejected",
+                         "diagnostic":  "Expected a nonempty exact edit and a repair explanation."
+                     }
+                 ],
+    "problem":  "Local agent exhausted three edits: Expected a nonempty exact edit and a repair explanation."
+}

@@ -1,0 +1,98 @@
+{
+  "upstream": "Linkwarden v2.7.1",
+  "transport": "Two Linkwarden HTTP origins and three fresh test accounts",
+  "recorded": "2026-11-25T09:22:49.253Z",
+  "source": "http://127.0.0.1:45581",
+  "target": "http://127.0.0.1:45582",
+  "archiveHash": "b8f13d0f65066ed1fa271b9c7d5e9d9738c92ac508955a8e8906004c58eae50d",
+  "baselineHash": "621f545d9d917cd8c0eb76985f7068dc1b81bc77b55f770b874aefad0a355b3a",
+  "original": {
+    "folders": 6,
+    "bookmarks": [
+      {
+        "title": "Signed contract",
+        "url": "http://127.0.0.1:45581/robots.txt?record=south-8503bb",
+        "tags": [
+          "renewal",
+          "signed"
+        ],
+        "path": [
+          "South 8503bb",
+          "Agreements",
+          "Renewals"
+        ]
+      },
+      {
+        "title": "Signed contract",
+        "url": "http://127.0.0.1:45581/robots.txt?record=north-8503bb",
+        "tags": [
+          "signed"
+        ],
+        "path": [
+          "North 8503bb",
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "nativeMigration": {
+    "method": "GET and POST /api/v1/migration",
+    "folders": 6,
+    "bookmarks": [
+      {
+        "title": "Signed contract",
+        "url": "http://127.0.0.1:45581/robots.txt?record=north-8503bb",
+        "tags": [
+          "signed"
+        ],
+        "path": [
+          "Agreements"
+        ]
+      },
+      {
+        "title": "Signed contract",
+        "url": "http://127.0.0.1:45581/robots.txt?record=south-8503bb",
+        "tags": [
+          "renewal",
+          "signed"
+        ],
+        "path": [
+          "Renewals"
+        ]
+      }
+    ],
+    "comparison": "different"
+  },
+  "portableRecovery": {
+    "method": "Restore Drill capture and owner-mapped writes through the collections and links APIs",
+    "folders": 6,
+    "bookmarks": [
+      {
+        "title": "Signed contract",
+        "url": "http://127.0.0.1:45581/robots.txt?record=north-8503bb",
+        "tags": [
+          "signed"
+        ],
+        "path": [
+          "North 8503bb",
+          "Agreements"
+        ]
+      },
+      {
+        "title": "Signed contract",
+        "url": "http://127.0.0.1:45581/robots.txt?record=south-8503bb",
+        "tags": [
+          "renewal",
+          "signed"
+        ],
+        "path": [
+          "South 8503bb",
+          "Agreements",
+          "Renewals"
+        ]
+      }
+    ],
+    "comparison": "matched",
+    "acknowledgedWrites": 8
+  }
+}

@@ -1,0 +1,286 @@
+WEBVTT
+
+00:00:00.250 --> 00:00:05.088
+Here is a client's field agreement. The
+team finds it by opening Studio, then
+
+00:00:05.088 --> 00:00:05.654
+Licences.
+
+00:00:05.804 --> 00:00:10.546
+After restoring a backup, the title,
+address and tags can all survive while the
+
+00:00:10.546 --> 00:00:12.587
+route to the agreement disappears.
+
+00:00:12.737 --> 00:00:17.051
+Restore Drill tests that route in a
+browser before anyone relies on the
+
+00:00:17.051 --> 00:00:17.476
+backup.
+
+00:00:18.490 --> 00:00:23.286
+For this run we used an editable workspace
+and the published Linkwarden version two
+
+00:00:23.286 --> 00:00:25.598
+point seven point one export controller.
+
+00:00:25.748 --> 00:00:30.679
+The controller ran against the workspace
+records. A separate database received the
+
+00:00:30.679 --> 00:00:31.581
+exported bytes.
+
+00:00:31.731 --> 00:00:37.188
+The restored copy still has three folders
+and one bookmark. Look at Licences. Its
+
+00:00:37.188 --> 00:00:38.670
+parent is now unknown.
+
+00:00:39.690 --> 00:00:44.896
+Kane CLI gets one plain language task.
+Starting at the root, open the client
+
+00:00:44.896 --> 00:00:50.307
+folder, open Licences, then verify the
+agreement's full path, address, tags and
+
+00:00:50.307 --> 00:00:51.677
+parent relationship.
+
+00:00:51.827 --> 00:00:56.281
+The saved browser run passes on the
+source. On the restored copy, Kane
+
+00:00:56.281 --> 00:01:00.481
+identifies the missing parent and returns
+a confirmed product bug.
+
+00:01:01.490 --> 00:01:06.234
+Could a smarter importer recover the
+owner? Open the source workspace and run
+
+00:01:06.234 --> 00:01:07.405
+its ambiguity test.
+
+00:01:07.555 --> 00:01:12.625
+The tool builds two valid sets of
+collection records. In one, the agreement
+
+00:01:12.625 --> 00:01:16.073
+belongs to Studio. In the other, it
+belongs to Lab.
+
+00:01:16.223 --> 00:01:20.690
+The historical exporter produces exactly
+the same five hundred and thirty nine
+
+00:01:20.690 --> 00:01:24.929
+bytes for both. The portable exporter
+distinguishes them and restores both
+
+00:01:24.929 --> 00:01:25.272
+paths.
+
+00:01:26.290 --> 00:01:31.446
+Kane's finding and its frozen browser task
+went to Codex. Here is the candidate from
+
+00:01:31.446 --> 00:01:32.797
+the reviewed response.
+
+00:01:32.947 --> 00:01:37.852
+The highlighted line builds its map from
+every collection, including folders with
+
+00:01:37.852 --> 00:01:39.184
+zero direct bookmarks.
+
+00:01:39.334 --> 00:01:43.915
+The next lines resolve the child's parent
+from that same map. A child can even
+
+00:01:43.915 --> 00:01:46.851
+appear before its parent in the database
+response.
+
+00:01:47.890 --> 00:01:52.618
+We ran that candidate, imported its bytes
+into a fresh database, and asked Kane to
+
+00:01:52.618 --> 00:01:54.406
+repeat the frozen browser task.
+
+00:01:54.556 --> 00:01:59.410
+On a fresh restore, Kane can now open the
+agreement under Studio. On a second
+
+00:01:59.410 --> 00:02:02.688
+workspace, it retrieves a different order
+under Lab.
+
+00:02:02.838 --> 00:02:05.987
+The independent archive comparisons also
+match.
+
+00:02:07.010 --> 00:02:11.328
+What if the exporter simply picks the
+first root when it cannot identify the
+
+00:02:11.328 --> 00:02:14.794
+parent? That patch happens to recover the
+original agreement.
+
+00:02:14.944 --> 00:02:20.242
+Here are seven actual archive comparisons,
+including reordered folders, empty
+
+00:02:20.242 --> 00:02:23.132
+ancestors, and identically named branches.
+
+00:02:23.282 --> 00:02:28.263
+The reviewed repair passes all seven. The
+shortcut matches three and puts the second
+
+00:02:28.263 --> 00:02:31.228
+workspace's purchase order under the wrong
+client.
+
+00:02:32.250 --> 00:02:37.491
+We also handed that wrong repair to Kane.
+Both browser checks pass on the original
+
+00:02:37.491 --> 00:02:38.130
+workspace.
+
+00:02:38.280 --> 00:02:43.813
+On the independent source, Kane opens Lab,
+then Purchases, then the order. On the
+
+00:02:43.813 --> 00:02:47.980
+independent restore, it opens Lab and
+finds the folder empty.
+
+00:02:48.130 --> 00:02:52.972
+Kane returns a confirmed product bug. The
+first green result would have certified
+
+00:02:52.972 --> 00:02:53.928
+the wrong owner.
+
+00:02:54.930 --> 00:02:59.551
+We also ran two installations of
+Linkwarden itself. The original contract
+
+00:02:59.551 --> 00:03:01.576
+is under South, then Agreements.
+
+00:03:01.726 --> 00:03:06.799
+After the stock migration, Agreements
+appears at the root. Both tags and all
+
+00:03:06.799 --> 00:03:08.268
+three folders survive.
+
+00:03:08.418 --> 00:03:12.820
+We captured the known source and wrote its
+folder relationships into a separate empty
+
+00:03:12.820 --> 00:03:17.223
+account through Linkwarden's own APIs. The
+recovered contract is back under South and
+
+00:03:17.223 --> 00:03:17.792
+Agreements.
+
+00:03:17.942 --> 00:03:22.734
+Kane checked the same native collections
+grid in all three accounts. Source passed,
+
+00:03:22.734 --> 00:03:25.274
+stock migration failed, and recovery
+passed.
+
+00:03:26.290 --> 00:03:30.118
+We ran the same reviewed candidate
+directly against a real Linkwarden
+
+00:03:30.118 --> 00:03:32.504
+database using its generated Prisma
+client.
+
+00:03:32.654 --> 00:03:37.663
+The candidate archive preserves the path.
+But the stock importer still flattens it.
+
+00:03:37.813 --> 00:03:41.975
+Restoring those same candidate bytes
+through the mapped writer preserves the
+
+00:03:41.975 --> 00:03:45.260
+path. Export and import both have to carry
+the relationship.
+
+00:03:46.290 --> 00:03:50.954
+In another production run, two clients had
+identically titled contracts, and six
+
+00:03:50.954 --> 00:03:52.179
+folders between them.
+
+00:03:52.329 --> 00:03:57.441
+After stock migration, only Agreements or
+Renewals remained in the paths. The mapped
+
+00:03:57.441 --> 00:04:02.250
+restore recovered both complete paths,
+including the extra parent level for the
+
+00:04:02.250 --> 00:04:02.737
+renewal.
+
+00:04:03.770 --> 00:04:08.934
+A separate unattended run resumed Kane's
+saved failure. A local coding model called
+
+00:04:08.934 --> 00:04:13.725
+Qwen generated the condition that keeps
+collection identifiers in the export.
+
+00:04:13.875 --> 00:04:18.254
+Kane verified the repair on the original
+agreement and the independent purchase
+
+00:04:18.254 --> 00:04:19.973
+order, each in a fresh restore.
+
+00:04:20.123 --> 00:04:22.691
+The original archive still needs review.
+
+00:04:23.730 --> 00:04:28.835
+From the Evidence page, rerun the reviewed
+repair against both saved workspaces. The
+
+00:04:28.835 --> 00:04:31.630
+new exports match their recorded
+fingerprints.
+
+00:04:31.780 --> 00:04:36.180
+Replay the old file and its parent is
+still unknown. That archive needs
+
+00:04:36.180 --> 00:04:38.287
+independent evidence of ownership.
+
+00:04:38.437 --> 00:04:43.194
+The repository includes the controller,
+both workspaces, and the browser verdicts.
+
+00:04:43.194 --> 00:04:47.660
+You can repeat the archive comparisons
+locally without spending Kane credits.

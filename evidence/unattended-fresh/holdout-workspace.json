@@ -1,0 +1,40 @@
+{
+  "format": "restore-drill/bookmarks",
+  "version": 1,
+  "folders": [
+    {
+      "id": "d53ac0f7-676d-4c63-a5c9-8fad9e7f29d7",
+      "name": "Estuary 5111",
+      "parent": null
+    },
+    {
+      "id": "ae7671db-ed76-4716-8fef-ff9d59813c44",
+      "name": "Harbor 5111",
+      "parent": null
+    },
+    {
+      "id": "03f21b60-7cc6-41d6-a72d-41458a0a80a5",
+      "name": "Permits",
+      "parent": "ae7671db-ed76-4716-8fef-ff9d59813c44"
+    }
+  ],
+  "bookmarks": [
+    {
+      "id": "ccc7328f-01a6-4d1d-bc0b-fac4a4ed88ec",
+      "folder": "03f21b60-7cc6-41d6-a72d-41458a0a80a5",
+      "title": "Inspection record",
+      "url": "https://example.org/records/5111",
+      "tags": [
+        "approved",
+        "audit"
+      ]
+    },
+    {
+      "id": "84985d2e-3184-472d-93c3-a67ad1a4cccf",
+      "folder": "d53ac0f7-676d-4c63-a5c9-8fad9e7f29d7",
+      "title": "Meeting notes",
+      "url": "https://example.org/notes/5111",
+      "tags": []
+    }
+  ]
+}

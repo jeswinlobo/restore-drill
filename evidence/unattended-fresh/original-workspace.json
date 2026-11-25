@@ -1,0 +1,40 @@
+{
+  "format": "restore-drill/bookmarks",
+  "version": 1,
+  "folders": [
+    {
+      "id": "fe626118-3864-459b-a02a-07fdc4f71f0a",
+      "name": "Cedar ffda",
+      "parent": null
+    },
+    {
+      "id": "4eee339d-ea45-443a-9fbf-02d4ddd9b9a6",
+      "name": "Birch ffda",
+      "parent": null
+    },
+    {
+      "id": "330defca-023b-4e77-8411-16fef208a2d3",
+      "name": "Renewals",
+      "parent": "fe626118-3864-459b-a02a-07fdc4f71f0a"
+    }
+  ],
+  "bookmarks": [
+    {
+      "id": "32de7fbb-be04-484a-a063-47f2043cfa63",
+      "folder": "330defca-023b-4e77-8411-16fef208a2d3",
+      "title": "Supplier agreement",
+      "url": "https://example.org/records/ffda",
+      "tags": [
+        "approved",
+        "legal"
+      ]
+    },
+    {
+      "id": "b3feb88a-45bf-4daa-8083-b550e4b8056c",
+      "folder": "4eee339d-ea45-443a-9fbf-02d4ddd9b9a6",
+      "title": "Meeting notes",
+      "url": "https://example.org/notes/ffda",
+      "tags": []
+    }
+  ]
+}

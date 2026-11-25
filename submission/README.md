@@ -4,26 +4,30 @@
 
 When a customer folder disappears in a migration, a count of imported bookmarks can still look perfect. Restore Drill answers a question for the person responsible for the backup. Can the owner open the same document by following the same folders?
 
-I built Restore Drill with Codex. It runs the published Linkwarden v2.7.1 export controller against an editable bookmark workspace and restores the resulting JSON into a separate local database. Kane CLI uses a real browser to follow the owner's route. A confirmed failure can go back to Codex, which proposes a change to the exporter. Restore Drill checks the proposed change with the same bookmark objective and a second workspace. Earlier archive files stay available for comparison.
+I built Restore Drill with Codex to answer that question before someone relies on a backup. It accepts bookmark archives and captures live Linkwarden libraries. Kane opens a real browser, follows the owner's route, and checks the bookmark details. In one source library, two different owners produced the same 539-byte historical archive. Recovering the owner from that file alone is impossible.
 
-In the recorded run Kane reached the agreement on the source, caught the missing parent after restore, and passed the Codex repair on two different libraries. Retesting the old archive preserved the original failure. The coding agent received the confirmed finding through a reviewed handoff in Codex desktop.
+Kane caught a lost parent. A local Qwen coding model received the finding and generated a guard for a deletion in the exporter. Restore Drill applied the edit and sent fresh restores back to Kane. The repaired path passed on two libraries. A plausible repair that guessed the first owner passed the original library and failed the independent one. On two real Linkwarden installations, Kane also caught the stock importer's flattened hierarchy and passed Restore Drill's mapped recovery on the native Collections page.
 
 ## Materials
 
-- [Narrated walkthrough](restore-drill-walkthrough.mp4) and [English captions](restore-drill-captions.vtt)
-- [Six authenticated Kane verdicts](../evidence/kane/verification.json), [agent handoff](../evidence/kane/agent-handoff.json) and [offline reproduction](../evidence/replay.mjs)
+- [Submission walkthrough](restore-drill-evidence-walkthrough.mp4) and [English captions](restore-drill-evidence-captions.vtt)
+- [Unattended repair](../evidence/unattended/verification.json), [model request and output](../evidence/unattended/agent-handoff.json) and [offline reproduction](../evidence/replay.mjs)
+- [Six fresh Kane checks from a single run with two new libraries](../evidence/unattended-fresh/verification.json)
+- [Native Linkwarden browser verdicts](../evidence/upstream/native-kane.json), [wrong-repair rejection](../evidence/negative-control/verification.json) and [production restore with duplicate names](../evidence/upstream/production-branching.json)
+- [The exact 563 model-repaired bytes imported by two production accounts and checked by Kane](../evidence/upstream/native-repair.json)
+- [Original reviewed Codex walkthrough](restore-drill-walkthrough.mp4) and [its six authenticated verdicts](../evidence/kane/verification.json)
 - [Local Chrome comparisons](../evidence/chromium/observed.json) and [repair and independent-workspace results](../evidence/chromium/repair-check.json)
-- [Reproduce the two identical archives](../evidence/check-linkwarden-export.mjs)
+- Run `node cli.mjs ambiguity evidence/kane/original-workspace.json` for the two 539-byte archives in the walkthrough. [Recorded result](../evidence/ambiguity/original-workspace.json)
 - [Run the application and connect Kane](../README.md)
 
 ## What judges can check
 
 | Judging dimension | Evidence |
 | --- | --- |
-| Ships | Import a bookmark archive, restore it into a separate database and open both libraries. |
-| Verified | Kane reached the bookmark on the source and classified the lost parent on the restored copy as a product bug. |
-| Closed loop | The saved Kane finding reached Codex desktop. The returned controller was executed and Kane passed its fresh restore using the original objective. |
-| Craft | The owner can inspect the missing parent, compare archive fingerprints and explicitly confirm a relationship when independent evidence is available. |
+| Ships | A real API restore creates parents before children and reads the target back. A two-instance production run recovered six folders and two bookmarks. |
+| Verified | Kane flagged the extra top-level folder on Linkwarden's own screen. It also caught a wrong repair that preserved item counts. |
+| Closed loop | The local coding model received Kane's observation and generated an edit. The original bookmark task and a held-out library passed fresh browser checks. |
+| Craft | Open Evidence and reproduce a repair offline. Work with your own data to test ambiguity, inspect missing parents or confirm a relationship from independent evidence. |
 
 ## Draft for LinkedIn
 
@@ -31,7 +35,7 @@ Our test backup imported all three folders and its bookmark. It still failed the
 
 I built Restore Drill for the KaneCLI Online Hackathon to catch this kind of loss. You can bring your own archive, rehearse a restore, and compare the route with the source. A new exporter preserves the relationship. For older files that lack the evidence, the app shows which parent needs human confirmation.
 
-Kane CLI caught the missing parent in Chrome. I gave that finding to Codex, and Kane passed the resulting repair twice, including on a different customer's folder tree.
+Kane CLI caught the missing parent in Chrome. A local coding model used its finding to repair the exporter, and Kane checked the result on two libraries. Then I ran the test on two Linkwarden installations. Even a corrected archive lost the parent in the stock importer. Writing parents before children and reading back the destination finally restored the owner's path.
 
 ## Draft for X
 

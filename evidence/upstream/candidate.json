@@ -1,0 +1,79 @@
+{
+  "upstream": "Linkwarden v2.7.1",
+  "recorded": "2026-11-25T09:18:13.931Z",
+  "controller": "evidence/kane/repair-1-candidate.ts",
+  "candidateSha256": "b7627ce97a8d2644c062023d36c8c644661cc049888c8637ec84feb2030c567d",
+  "sourceExporterGitBlob": "73141fd0f3e2f25f360c39bb90de4afe665bc89c",
+  "execution": "Unmodified candidate TypeScript, upstream database module and generated Prisma client, real PostgreSQL source",
+  "original": {
+    "folders": 3,
+    "bookmarks": [
+      {
+        "title": "Signed contract 5b0376",
+        "url": "http://127.0.0.1:45571/robots.txt?record=5b0376",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 5b0376",
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "candidateArchive": {
+    "hash": "cd7fa22340d0be9a953ea16a2d3d9bb7643d11757d69d0cc6b61aac8f6fe94df",
+    "comparison": "matched",
+    "bookmarks": [
+      {
+        "title": "Signed contract 5b0376",
+        "url": "http://127.0.0.1:45571/robots.txt?record=5b0376",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 5b0376",
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "stockImporterWithCandidateArchive": {
+    "method": "POST /api/v1/migration",
+    "comparison": "different",
+    "bookmarks": [
+      {
+        "title": "Signed contract 5b0376",
+        "url": "http://127.0.0.1:45571/robots.txt?record=5b0376",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "mappedRestoreWithCandidateArchive": {
+    "method": "Restore Drill writes through the target collections and links APIs",
+    "comparison": "matched",
+    "acknowledgedWrites": 4,
+    "bookmarks": [
+      {
+        "title": "Signed contract 5b0376",
+        "url": "http://127.0.0.1:45571/robots.txt?record=5b0376",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 5b0376",
+          "Agreements"
+        ]
+      }
+    ]
+  }
+}

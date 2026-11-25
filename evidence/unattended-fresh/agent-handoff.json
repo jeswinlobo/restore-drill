@@ -1,0 +1,39 @@
+{
+  "delivery": "unattended local model",
+  "agent": {
+    "method": "unattended local model",
+    "model": "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+    "attempts": 1,
+    "weightsSha256": "cc324af070c2ecbfd324a30884d2f951a7ff756aba85cb811a6ec436933bb046"
+  },
+  "request": "The restored bookmarks lost a parent reference. Browser finding: The restored library has lost or failed to restore the parent link between Cedar ffda and Renewals. As a result, Cedar ffda is empty and the bookmark details cannot show the required folder path and known parent relationship.\nRestore or repair the Renewals parent link so it appears inside Cedar ffda, then verify the Supplier agreement details show the Cedar ffda / Renewals path and a known parent relationship.\nevidence: objective_contradiction: E\nFault localized to delete obj.id; in the recursive export redactor.\nGenerate a JavaScript boolean expression that recognizes a collection so its identifier can be retained.\nThe expression should return true if the property \"links\" of obj is an array (even when empty). Otherwise return false.\nExamples: obj = {\"links\":[]} => true; obj = {} => false.\nReturn the expression as condition and explain it in one sentence.",
+  "originalControllerSha256": "793c82590165fb34de1dc8a7b299517a08ae29f8f76c94164d29e2da16086d41",
+  "promptSha256": "ebc05d9cc92761605374d69fce6cdccdb280c1774718a25e17cda591db2c1e3c",
+  "modelOutput": {
+    "condition": "obj.links instanceof Array",
+    "explanation": "The condition checks if the 'links' property of the object is an instance of Array. If it is, the expression evaluates to true; otherwise, it evaluates to false."
+  },
+  "integration": "The workbench located a unique ID deletion and asked for a collection guard. The model generated the predicate. Restore Drill applied it to the source and checked the resulting controller.",
+  "response": {
+    "explanation": "The condition checks if the 'links' property of the object is an instance of Array. If it is, the expression evaluates to true; otherwise, it evaluates to false.",
+    "sourceFile": "repair-1-candidate.ts",
+    "controllerSha256": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86"
+  },
+  "inferenceRequests": [
+    {
+      "attempt": 1,
+      "started": "2026-11-25T09:27:03.596Z",
+      "finished": "2026-11-25T09:27:07.995Z",
+      "model": "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+      "usage": {
+        "completion_tokens": 52,
+        "prompt_tokens": 215,
+        "total_tokens": 267
+      },
+      "finishReason": "stop",
+      "inputHash": "61ee16d42fc8e7dd8ae1ed01a365ac1cbfc0a6deddc8da43f3cdec54f3155a5d",
+      "outputHash": "a04686902ef6dc3692420dba460fb8dec2683bfc28cd7d65d4393ebe5cf70fb4",
+      "result": "accepted"
+    }
+  ]
+}

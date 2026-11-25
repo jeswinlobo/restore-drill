@@ -1,0 +1,79 @@
+{
+  "upstream": "Linkwarden v2.7.1",
+  "recorded": "2026-11-25T09:20:45.844Z",
+  "controller": "evidence/unattended/repair-1-candidate.ts",
+  "candidateSha256": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86",
+  "sourceExporterGitBlob": "73141fd0f3e2f25f360c39bb90de4afe665bc89c",
+  "execution": "Unmodified candidate TypeScript, upstream database module and generated Prisma client, real PostgreSQL source",
+  "original": {
+    "folders": 3,
+    "bookmarks": [
+      {
+        "title": "Signed contract 14aae1",
+        "url": "http://127.0.0.1:45571/robots.txt?record=14aae1",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 14aae1",
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "candidateArchive": {
+    "hash": "2c6bf0eb9590def337a7f54fa94c667e73dd0b649bd4293928e5320eee90dce6",
+    "comparison": "matched",
+    "bookmarks": [
+      {
+        "title": "Signed contract 14aae1",
+        "url": "http://127.0.0.1:45571/robots.txt?record=14aae1",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 14aae1",
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "stockImporterWithCandidateArchive": {
+    "method": "POST /api/v1/migration",
+    "comparison": "different",
+    "bookmarks": [
+      {
+        "title": "Signed contract 14aae1",
+        "url": "http://127.0.0.1:45571/robots.txt?record=14aae1",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "Agreements"
+        ]
+      }
+    ]
+  },
+  "mappedRestoreWithCandidateArchive": {
+    "method": "Restore Drill writes through the target collections and links APIs",
+    "comparison": "matched",
+    "acknowledgedWrites": 4,
+    "bookmarks": [
+      {
+        "title": "Signed contract 14aae1",
+        "url": "http://127.0.0.1:45571/robots.txt?record=14aae1",
+        "tags": [
+          "contracts",
+          "signed"
+        ],
+        "path": [
+          "South 14aae1",
+          "Agreements"
+        ]
+      }
+    ]
+  }
+}

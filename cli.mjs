@@ -3,9 +3,11 @@ import { resolve, join } from 'node:path';
 import { compare, readArchive, inventory } from './lib/archive.mjs';
 import { openStore } from './lib/store.mjs';
 import { capture, connection, importToEmpty, restoreBookmarkArchive } from './lib/linkwarden.mjs';
-import { execute, kaneCommand } from './lib/process.mjs';
+import { codexCommand, execute, kaneCommand, localTools } from './lib/process.mjs';
 import { officialExporter } from './lib/exporter.mjs';
 import { rehearse } from './lib/rehearsal.mjs';
+import { proveAmbiguity } from './lib/ambiguity.mjs';
+import { exportRehearsal } from './lib/export-rehearsal.mjs';
 
 const args = process.argv.slice(2),
   position = [],
@@ -16,7 +18,7 @@ for (let i = 0; i < args.length; i++) {
     continue;
   }
   const key = args[i].slice(2);
-  if (['repair', 'local-only', 'write-to-empty-target'].includes(key)) options[key] = true;
+  if (['repair', 'local-only', 'write-to-empty-target', 'help'].includes(key)) options[key] = true;
   else {
     const v = args[++i];
     if (!v || v.startsWith('--')) throw Error('Missing value for --' + key);
@@ -33,6 +35,7 @@ const usage = [
   'node app.mjs [--port 4317] [--data PATH]',
   'node cli.mjs doctor | fetch-exporter',
   'node cli.mjs inspect ARCHIVE.json',
+  'node cli.mjs ambiguity KNOWN_SOURCE.json [--data PATH]',
   'node cli.mjs compare BASELINE.json CANDIDATE.json',
   'node cli.mjs workspaces | workspace ID',
   'node cli.mjs import ARCHIVE.json --name NAME',
@@ -41,16 +44,19 @@ const usage = [
   'node cli.mjs restore-into ARCHIVE.json --target URL --write-to-empty-target  (LINKWARDEN_TARGET_TOKEN)',
   'node cli.mjs rehearse WORKSPACE_ID --item BOOKMARK_ID [--holdout OTHER_WORKSPACE --holdout-item ID] [--repair | --local-only] [--exporter PATH]',
   'Add --repair --resume PRIOR_RUN [--proposal RESPONSE.json] to continue from recorded Kane evidence.',
+  'node cli.mjs export-rehearsal RUN_ID NEW_DIRECTORY [--data PATH]',
   'Private records default to .restore-drill. Use --data PATH to select a different store.'
 ].join('\n');
 try {
-  if (!command || command === 'help') console.log(usage);
+  if (!command || command === 'help' || options.help) console.log(usage);
   else if (command === 'doctor') {
     const [cmd, ...prefix] = kaneCommand();
     const version = await execute(cmd, [...prefix, '--version'], { timeout: 30000 });
     const identity =
       version.code === 0 ? await execute(cmd, [...prefix, 'whoami'], { timeout: 30000 }) : null;
-    const codex = await execute(process.env.RESTORE_DRILL_CODEX || 'codex', ['--version'], {
+    const local = localTools();
+    const [codexBin, ...codexArgs] = codexCommand(local);
+    const codex = await execute(codexBin, [...codexArgs, '--version'], {
       timeout: 15000
     });
     emit({
@@ -58,6 +64,11 @@ try {
       kaneVersion: version.code === 0 ? version.stdout.trim() : null,
       kaneSignedIn: identity?.code === 0,
       codex: codex.code === 0 ? codex.stdout.trim() : null,
+      repairProvider: process.env.RESTORE_DRILL_AGENT_ENDPOINT
+        ? { type: 'local model endpoint', model: process.env.RESTORE_DRILL_AGENT_MODEL || null }
+        : !process.env.RESTORE_DRILL_CODEX && local.localAgent
+          ? { type: 'local coding model', model: local.localAgent.model }
+          : { type: 'Codex CLI' },
       data: dir
     });
     if (version.code !== 0 || identity?.code !== 0) process.exitCode = 2;
@@ -65,6 +76,8 @@ try {
     console.log((await officialExporter(dir)).path);
   } else if (command === 'inspect') {
     emit(inventory(readArchive(await read(a))));
+  } else if (command === 'ambiguity') {
+    emit(await proveAmbiguity(readArchive(await read(a)), dir));
   } else if (command === 'compare') {
     const r = compare(readArchive(await read(a)), readArchive(await read(b)));
     emit(r);
@@ -117,6 +130,8 @@ try {
       await writeNew(join(folder, name + '.json'), obj);
     emit({ folder, status: report.status, differences: report.differences.length });
     if (report.status !== 'matched') process.exitCode = 1;
+  } else if (command === 'export-rehearsal') {
+    emit(await exportRehearsal({ dir, runId: a, out: b }));
   } else if (command === 'rehearse') {
     if (!a || !options.item) throw Error('Select a workspace and bookmark ID');
     const r = await rehearse({

@@ -12,7 +12,8 @@ const names = {
   passed: 'Passed',
   failed: 'Failed',
   inconclusive: 'Inconclusive',
-  'confirmed-parent-loss': 'Parent loss confirmed'
+  'confirmed-parent-loss': 'Parent loss confirmed',
+  'confirmed-wrong-path': 'Wrong path confirmed'
 };
 const pill = (s) => '<span class="pill ' + h(s) + '">' + h(names[s] || s) + '</span>';
 const act = (id, title, primary = false) =>
@@ -86,6 +87,7 @@ let state,
   epoch = 0,
   poll,
   submitForm;
+let proof;
 async function api(path, data) {
   const res = await fetch(
     '/api/' + path,
@@ -183,7 +185,7 @@ function home() {
       : empty(
           'Create your first workspace',
           'Start with your own folders and bookmarks, or import a portable or Linkwarden JSON archive.',
-          act('new', 'Create workspace', true)
+          act('new', 'Create workspace', true) + ' ' + link('#evidence', 'Explore recorded results')
         )
   );
   if (state.drills.length)
@@ -262,9 +264,18 @@ function workspace() {
     ) +
     (links.length
       ? section(
+          'Can this export identify the parent?',
+          panel(
+            '<div class="pad"><p>Test whether two different folder paths in this workspace can produce exactly the same Linkwarden v2.7.1 archive.</p><div id="ambiguity-result" aria-live="polite"></div></div>'
+          ),
+          act('ambiguity', 'Test archive ambiguity')
+        )
+      : '') +
+    (links.length
+      ? section(
           'Exporter rehearsal',
           panel(
-            '<div class="pad"><p>Test the published Linkwarden export controller on this workspace. A confirmed failure can be sent to Codex and checked again against a fresh restore.</p></div>'
+            '<div class="pad"><p>Test the published Linkwarden export controller on this workspace. A confirmed failure can be sent to your configured coding agent and checked again against a fresh restore.</p></div>'
           ),
           act('rehearse', 'Start rehearsal')
         )
@@ -514,6 +525,198 @@ function drill() {
     '</details>'
   );
 }
+function ambiguityView(record) {
+  if (record.status !== 'proved') return '<p class="note">' + h(record.reason) + '</p>';
+  return (
+    '<h3 class="result-head">Different paths, identical archive</h3><p>' +
+    h(record.bookmark.title) +
+    '</p><div class="meta proof-paths">' +
+    [record.pathA, record.pathB]
+      .map(
+        (parts, i) =>
+          '<div><small>Source ' + (i + 1) + '</small><strong>' + h(parts.join(' / ')) + '</strong></div>'
+      )
+      .join('') +
+    '</div><p class="note">Both historical exports produced ' +
+    h(record.legacy.bytes) +
+    ' identical bytes. The reference-preserving exporter produced distinct archives and restored both paths.</p>' +
+    '<details><summary>Archive fingerprint and scope</summary><code>' +
+    h(record.legacy.sha256) +
+    '</code><p class="note">' +
+    h(record.scope) +
+    '</p></details>' +
+    act('download-proof', 'Download this result')
+  );
+}
+function receiptView(pack) {
+  const prefix = '/api/evidence/' + encodeURIComponent(pack.bundle) + '/';
+  const candidate = pack.files
+    .filter((file) => /^repair-[12]-candidate\.ts$/.test(file))
+    .sort()
+    .at(-1);
+  const title =
+    pack.title ||
+    (pack.proposalDelivery === 'reviewed agent response'
+      ? 'Reviewed coding-agent repair'
+      : 'Recorded browser rehearsal');
+  const rows = pack.runs
+    .map(
+      (r) =>
+        '<details class="receipt-step"><summary>' +
+        h(r.stage.replaceAll('-', ' ')) +
+        ' · ' +
+        h(names[r.recovery] || r.recovery) +
+        '</summary>' +
+        r.checks
+          .map(
+            (c) =>
+              '<div class="entry"><strong>' +
+              h(c.side.replaceAll('-', ' ')) +
+              ' ' +
+              pill(c.status) +
+              '</strong><p class="note">' +
+              h(c.summary) +
+              '</p></div>'
+          )
+          .join('') +
+        '</details>'
+    )
+    .join('');
+  return section(
+    title,
+    panel(
+      '<div class="pad"><p>' +
+        h(pack.description || pack.objective) +
+        '</p><p class="note">' +
+        h(date(pack.finished)) +
+        ' · ' +
+        h(pack.cli) +
+        '</p></div>' +
+        rows +
+        '<div class="pad actions">' +
+        tab(prefix + 'verification.json', 'Open verdicts') +
+        (pack.files.includes('agent-handoff.json')
+          ? tab(prefix + 'agent-handoff.json', 'Open agent handoff')
+          : '') +
+        (candidate ? tab(prefix + candidate, 'View repaired controller') : '') +
+        (pack.status === 'verified-repair'
+          ? '<button data-act="replay-pack" data-pack="' +
+            h(pack.bundle) +
+            '">Reproduce archive comparison</button>'
+          : '') +
+        '</div><div id="replay-' +
+        h(pack.bundle) +
+        '" aria-live="polite"></div>'
+    )
+  );
+}
+function savedAmbiguity(record) {
+  if (record?.status !== 'proved') return '';
+  return section(
+    'Can the old archive identify the owner?',
+    panel(
+      '<div class="pad"><p>In this rehearsal, ' +
+        h(record.bookmark.title) +
+        ' could belong to either of these folders.</p><div class="meta proof-paths">' +
+        [record.pathA, record.pathB]
+          .map(
+            (p, i) =>
+              '<div><small>Library ' +
+              (i + 1) +
+              '</small><strong>' +
+              h(p.join(' / ')) +
+              '</strong></div>'
+          )
+          .join('') +
+        '</div><p>The historical controller produced the same ' +
+        h(record.legacy.bytes) +
+        ' bytes for both libraries. The reference-preserving controller restored each owner correctly.</p><div class="actions">' +
+        tab('/api/evidence/ambiguity/original-workspace.json', 'Inspect the proof') +
+        '<button data-act="import-recorded">Open a copy of this workspace</button></div></div>'
+    )
+  );
+}
+function upstreamView(upstream, browser, nativeRepair) {
+  if (!upstream) return '';
+  const rows = [
+    ['Source', upstream.original, 'original'],
+    ['Stock migration', upstream.nativeMigration, 'legacy'],
+    ['Restore Drill recovery', upstream.portableRecovery, 'recovered']
+  ];
+  return section(
+    'Between two Linkwarden installations',
+    panel(
+      '<div class="pad"><p>' +
+        h(upstream.upstream) +
+        ' exported and imported this library using its own migration endpoint. A second empty account received the portable recovery through the collections and links APIs.</p><div class="scroll-table"><table><thead><tr><th>Account</th><th>Folder count</th><th>Observed paths</th>' +
+        (browser ? '<th>Native Kane check</th>' : '') +
+        '</tr></thead><tbody>' +
+        rows
+          .map(
+            ([label, state, role]) =>
+              '<tr><th scope="row">' +
+              h(label) +
+              '</th><td>' +
+              h(state.folders) +
+              '</td><td>' +
+              state.bookmarks.map((b) => h(b.path.join(' / '))).join('<br>') +
+              '</td>' +
+              (browser
+                ? '<td>' +
+                  pill(browser.checks.find((c) => c.role === role)?.status || 'inconclusive') +
+                  '</td>'
+                : '') +
+              '</tr>'
+          )
+          .join('') +
+        '</tbody></table></div><div class="actions">' +
+        tab('/api/evidence/upstream/pair.json', 'Inspect upstream results') +
+        tab('/api/evidence/upstream/candidate.json', 'Exporter and importer checks') +
+        tab('/api/evidence/upstream/production-branching.json', 'Deeper folder trees') +
+        (browser
+          ? tab('/api/evidence/upstream/native-kane.json', 'Inspect native browser checks')
+          : '') +
+        (nativeRepair
+          ? tab('/api/evidence/upstream/native-repair.json', 'Check the exact repaired archive')
+          : '') +
+        '</div></div>'
+    )
+  );
+}
+function evidenceView(data) {
+  const challenge = data.challenge;
+  const rows = challenge.candidate.outcomes
+    .map(
+      (v, i) =>
+        '<tr><th scope="row">' +
+        h(v.name) +
+        '</th><td>' +
+        pill(v.status) +
+        '</td><td>' +
+        pill(challenge.negativeControl.outcomes[i].status) +
+        '</td></tr>'
+    )
+    .join('');
+  return (
+    heading(
+      'Recovery evidence',
+      'Inspect the recorded Kane checks or rerun the archive comparison locally without credits.'
+    ) +
+    upstreamView(data.upstream, data.nativeBrowser, data.nativeRepair) +
+    data.packs.map(receiptView).join('') +
+    savedAmbiguity(data.ambiguity) +
+    section(
+      'Compare seven archive layouts',
+      panel(
+        '<div class="pad"><p>The control assigns an unidentified parent to the first root folder. The table shows what happens when both exporters see the same inputs.</p>' +
+          '<div class="scroll-table"><table><thead><tr><th>Workspace</th><th>Repaired exporter</th><th>First-root control</th></tr></thead><tbody>' +
+          rows +
+          '</tbody></table></div>' +
+          '<p class="note">These are recorded local archive comparisons. Run <code>node evidence/challenge.mjs --replay evidence/challenge/result.json</code> to reproduce them.</p></div>'
+      )
+    )
+  );
+}
 async function render() {
   clearTimeout(poll);
   const id = ++epoch;
@@ -541,6 +744,11 @@ async function render() {
       const record = state.rehearsals.find((x) => x.id === key);
       html = rehearsalView(record);
       if (!record || !record.finished) poll = setTimeout(render, 2200);
+    } else if (route === 'evidence') {
+      const data = await api('evidence');
+      if (id !== epoch) return;
+      crumb = 'Evidence';
+      html = evidenceView(data);
     } else if (route === 'history') {
       crumb = 'Drill history';
       html =
@@ -579,7 +787,11 @@ async function render() {
         el.classList.toggle(
           'on',
           el.dataset.nav ===
-            (['history', 'drill', 'rehearsal'].includes(route) ? 'history' : 'workspaces')
+            (route === 'evidence'
+              ? 'evidence'
+              : ['history', 'drill', 'rehearsal'].includes(route)
+                ? 'history'
+                : 'workspaces')
         )
       );
   } catch (e) {
@@ -600,6 +812,58 @@ document.addEventListener('click', async (event) => {
   const el = event.target.closest('[data-act]');
   if (!el) return;
   const a = el.dataset.act;
+  if (a === 'import-recorded') {
+    el.disabled = true;
+    try {
+      const archive = await api('evidence/kane/original-workspace.json');
+      const copy = await api('workspaces', { name: 'Recorded recovery workspace', archive });
+      location.hash = 'workspace/' + copy.id;
+    } catch (error) {
+      toast(error.message);
+    } finally {
+      el.disabled = false;
+    }
+    return;
+  }
+  if (a === 'ambiguity' || a === 'replay-pack') {
+    const checking = a === 'ambiguity';
+    const output = checking ? $('#ambiguity-result') : $('#replay-' + el.dataset.pack);
+    el.disabled = true;
+    output.textContent = checking ? 'Running both exporters…' : 'Reproducing archive bytes…';
+    try {
+      if (checking) {
+        const result = await api('workspaces/' + w.id + '/ambiguity', { revision: w.revision });
+        if (output.isConnected) {
+          proof = result;
+          output.innerHTML = ambiguityView(result);
+        }
+      } else {
+        const result = await api('evidence/' + encodeURIComponent(el.dataset.pack) + '/replay', {});
+        output.innerHTML =
+          '<div class="pad"><strong>Archive comparison reproduced</strong><p class="note">' +
+          h(result.cases.length) +
+          ' fresh exports matched their recorded fingerprints. Original archive: ' +
+          h(names[result.originalReplay] || result.originalReplay) +
+          '.</p></div>';
+      }
+    } catch (error) {
+      output.textContent = error.message;
+    } finally {
+      el.disabled = false;
+    }
+    return;
+  }
+  if (a === 'download-proof' && proof) {
+    const u = URL.createObjectURL(
+      new Blob([JSON.stringify(proof, null, 2)], { type: 'application/json' })
+    );
+    const anchor = document.createElement('a');
+    anchor.href = u;
+    anchor.download = 'archive-ambiguity.json';
+    anchor.click();
+    setTimeout(() => URL.revokeObjectURL(u), 1000);
+    return;
+  }
   if (a === 'edit') {
     const kind = el.dataset.kind,
       id = el.dataset.id,
@@ -762,13 +1026,13 @@ document.addEventListener('click', async (event) => {
         select('mode', 'Verification', [
           ['local', 'Local archive comparison'],
           ['kane', 'Verify with Kane'],
-          ['repair', 'Verify, send failure to Codex and rerun']
+          ['repair', 'Verify, send the failure to the coding agent and rerun']
         ]) +
         select('holdout', 'Independent workspace', [
           ['', 'None'],
           ...peers.map((x) => [x.id, x.name])
         ]).replace(' required', '') +
-        '<div id="holdout-item"></div><p class="note">Kane uses TestMu credits. Repair sends the export controller and failed observation to Codex. Candidate changes stay in the local rehearsal folder.</p>',
+        '<div id="holdout-item"></div><p class="note">Kane uses TestMu credits. Repair sends the export controller and failed observation to the configured coding agent. Candidate changes stay in the local rehearsal folder.</p>',
       'Start rehearsal',
       async (v) => {
         const run = await api('workspaces/' + w.id + '/rehearse', {

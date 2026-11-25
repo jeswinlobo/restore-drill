@@ -1,0 +1,32 @@
+{
+  "format": "restore-drill/bookmarks",
+  "version": 1,
+  "folders": [
+    {
+      "id": "135b6586-b27a-416c-97f2-ff2a9bfa0a77",
+      "name": "Studio 197488",
+      "parent": null
+    },
+    {
+      "id": "16d8c9f7-42a3-4995-8188-2ca356908dc2",
+      "name": "Lab 197488",
+      "parent": null
+    },
+    {
+      "id": "47cb767c-044b-4a40-9b44-b135b8ef24c4",
+      "name": "Purchases 7571b",
+      "parent": "16d8c9f7-42a3-4995-8188-2ca356908dc2"
+    }
+  ],
+  "bookmarks": [
+    {
+      "id": "4e6ff9f2-8159-4752-998e-27b72eb8ee34",
+      "folder": "47cb767c-044b-4a40-9b44-b135b8ef24c4",
+      "title": "Order afa63",
+      "url": "https://example.test/licence/197488",
+      "tags": [
+        "second"
+      ]
+    }
+  ]
+}

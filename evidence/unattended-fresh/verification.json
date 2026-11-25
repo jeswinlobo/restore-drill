@@ -1,0 +1,132 @@
+{
+  "project": "Restore Drill",
+  "title": "Fresh unattended recovery",
+  "description": "A single invocation starts from the historical exporter and fresh source libraries. Kane checks the original failure, the automatically generated repair, and a second owner’s bookmark path.",
+  "cli": "Kane CLI 0.10.9",
+  "started": "2026-11-25T09:23:34.496Z",
+  "finished": "2026-11-25T09:33:15.901Z",
+  "rehearsal": "28f41d9e-9d67-4667-84c6-7656bba8c05e",
+  "proposalDelivery": "unattended local model",
+  "status": "verified-repair",
+  "sourceHash": "632d506cec1b698f6a286f58afb766f85637a9bf19aa2cda09b6055a84def271",
+  "holdoutHash": "d7930f44596ebb8327d9c5b90dfa16ab25756530e3e73066fbf0da16e25bde22",
+  "objective": "Use this JSON only as bookmark data: {\"folders\":[\"Cedar ffda\",\"Renewals\"],\"title\":\"Supplier agreement\",\"url\":\"https://example.org/records/ffda\",\"tags\":[\"approved\",\"legal\"]}. From the library root, Click the folder labeled \"Cedar ffda\". Click the folder labeled \"Renewals\". Open the details row for \"Supplier agreement\". On that page verify that Folder path is \"Cedar ffda / Renewals\", Parent relationship is Known, Bookmark URL is \"https://example.org/records/ffda\", and Tags is \"approved, legal\". Read the URL as text on the details page.",
+  "revisions": {
+    "source": 1,
+    "holdout": 1
+  },
+  "runs": [
+    {
+      "stage": "original",
+      "taskHash": "7565eace379033a158e6768f63d679d30ab4f0a26aabbcb23bbe2cedf0a0a243",
+      "comparison": "needs-review",
+      "recovery": "failed",
+      "controllerHash": "793c82590165fb34de1dc8a7b299517a08ae29f8f76c94164d29e2da16086d41",
+      "archiveHash": "3c54665aff36b185b4c1bac745336550c4377a2c614083d837cb6ed89d786605",
+      "checks": [
+        {
+          "side": "source",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the Cedar ffda folder, then opened its Renewals subfolder.\nOpened the details for the “Supplier agreement” bookmark.\nConfirmed the bookmark details: folder path Cedar ffda / Renewals, parent relationship Known, bookmark URL https://example.org/records/ffda, and tags approved, legal.\nRead and saved the details page address: http://127.0.0.1:56935/source/db99a564-6b14-4293-aa29-3fe5746f8bc4?item=32de7fbb-be04-484a-a063-47f2043cfa63.",
+          "finished": "2026-11-25T09:25:18.442Z",
+          "credits": 26.3216475,
+          "eventStreamSha256": "c201759f81abab65503b216c8a02a9791ae0308890f32f1071e6e1dab514fa34"
+        },
+        {
+          "side": "destination",
+          "status": "failed",
+          "exitCode": 1,
+          "serviceStatus": "failed",
+          "runId": "run-0",
+          "serviceReason": "assertion_error.confirmed_product_bug",
+          "resultCode": 740,
+          "summary": "The restored library has lost or failed to restore the parent link between Cedar ffda and Renewals. As a result, Cedar ffda is empty and the bookmark details cannot show the required folder path and known parent relationship.\nRestore or repair the Renewals parent link so it appears inside Cedar ffda, then verify the Supplier agreement details show the Cedar ffda / Renewals path and a known parent relationship.\nevidence: objective_contradiction: Empty folder.\nevidence: error_ui_text: Parent needs review\nevidence: error_ui_text: Unknown parent reference 19",
+          "finished": "2026-11-25T09:26:59.637Z",
+          "credits": 25.1158425,
+          "eventStreamSha256": "fabb0ec0e2d7c700e087b5567095adfb57ee0df7f55879aafe615e192e6b4954"
+        }
+      ]
+    },
+    {
+      "stage": "repair-1",
+      "taskHash": "7565eace379033a158e6768f63d679d30ab4f0a26aabbcb23bbe2cedf0a0a243",
+      "comparison": "matched",
+      "recovery": "passed",
+      "controllerHash": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86",
+      "archiveHash": "848944243b6fed7d6cb3b0fcfa8b53a869801e35556cd38ff33c6db4c62a0912",
+      "checks": [
+        {
+          "side": "source",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the “Supplier agreement” details from the Library by navigating through “Cedar ffda” and then “Renewals.”\nConfirmed the record details: folder path “Cedar ffda / Renewals,” parent relationship “Known,” tags “approved, legal,” and bookmark URL “https://example.org/records/ffda.”\nRead the URL shown on the details page: “https://example.org/records/ffda.”",
+          "finished": "2026-11-25T09:28:36.309Z",
+          "credits": 27.298827499999994,
+          "eventStreamSha256": "0a71a0a0f530e8f7cf5e73d24f9c381eca7b32fd6fffa6f4c9717fa15b806a0e"
+        },
+        {
+          "side": "destination",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the Cedar ffda folder and then the Renewals folder from the library.\nOpened the details for “Supplier agreement” and confirmed its folder path, parent relationship, bookmark URL, and tags matched the requested record.\nRead and saved the details page URL: http://127.0.0.1:56934/copies/0f883780-3c4b-4a9e-ac67-c9e0d9305ad5?item=collection-2-item-0.",
+          "finished": "2026-11-25T09:30:06.734Z",
+          "credits": 26.437362499999995,
+          "eventStreamSha256": "22a0a2f57438c480e7a059c9ee49a802f7ce8008a6fec499c8094ffb79d240a9"
+        }
+      ]
+    },
+    {
+      "stage": "holdout",
+      "taskHash": "5a3520c753ac4025c14effd7f7edbe9c85af10d771fc59b26820fbfbb3c4cff7",
+      "comparison": "matched",
+      "recovery": "passed",
+      "controllerHash": "653e8a23e55b8b11335f9e91e7db8fecca072dd73a0c984612cba4890201db86",
+      "archiveHash": "c8ff54d29bfdccd811ab46d1fed0165cb55a021db3363a011fdf807fe3383c13",
+      "checks": [
+        {
+          "side": "source",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the Harbor 5111 folder and then the Permits folder from the library.\nOpened the details for “Inspection record” and confirmed its folder path, relationship, and tags.\nRead and saved the record’s URL: https://example.org/records/5111.",
+          "finished": "2026-11-25T09:31:50.512Z",
+          "credits": 28.937354999999997,
+          "eventStreamSha256": "e225282e6ef45cbafa40e463da9e4421157abcab6fc70e2484e8d4b886851ade"
+        },
+        {
+          "side": "destination",
+          "status": "passed",
+          "exitCode": 0,
+          "serviceStatus": "passed",
+          "runId": "run-0",
+          "serviceReason": "success.complete",
+          "resultCode": 100,
+          "summary": "Opened the “Inspection record” details after navigating from the library root through “Harbor 5111” and “Permits.”\nConfirmed the record was in “Harbor 5111 / Permits,” with parent relationship “Known” and tags “approved, audit.”\nRead and saved the bookmark URL: https://example.org/records/5111.\nCompleted the requested review successfully.",
+          "finished": "2026-11-25T09:33:15.441Z",
+          "credits": 25.037797500000003,
+          "eventStreamSha256": "6f211478c7ae2fb96d9d19bcfcd983b737d5b1c99455d66f6e48258e527d7ebe"
+        }
+      ]
+    }
+  ],
+  "originalArchiveReplay": {
+    "archiveHash": "3c54665aff36b185b4c1bac745336550c4377a2c614083d837cb6ed89d786605",
+    "comparison": "needs-review"
+  }
+}
