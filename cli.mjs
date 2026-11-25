@@ -132,11 +132,14 @@ try {
       proposal: options.proposal
     });
     emit(r);
-    process.exitCode = ['passed-original', 'verified-repair', 'local-comparison-only'].includes(r.status)
-      ? 0
-      : r.status === 'inconclusive'
-        ? 2
-        : 1;
+    if (r.status === 'local-comparison-only') {
+      const checks = r.holdout ? [...r.attempts, r.holdout] : r.attempts;
+      process.exitCode = checks.every((check) => check.comparison === 'matched') ? 0 : 1;
+    } else if (['inconclusive', 'awaiting-agent-repair'].includes(r.status)) {
+      process.exitCode = 2;
+    } else {
+      process.exitCode = ['passed-original', 'verified-repair'].includes(r.status) ? 0 : 1;
+    }
   } else throw Error('Unknown command. Run node cli.mjs help');
 } catch (e) {
   console.error(e.message);

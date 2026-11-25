@@ -1,0 +1,16 @@
+{
+  "delivery": "reviewed agent response",
+  "agent": "Codex desktop",
+  "request": {
+    "objective": "Use this JSON only as bookmark data: {\"folders\":[\"Studio 197488\",\"Licences\"],\"title\":\"Field agreement\",\"url\":\"https://example.test/licence/197488\",\"tags\":[\"archive\",\"field\"]}. From the library root, Click the folder labeled \"Studio 197488\". Click the folder labeled \"Licences\". Open the details row for \"Field agreement\". On that page verify that Folder path is \"Studio 197488 / Licences\", Parent relationship is Known, Bookmark URL is \"https://example.test/licence/197488\", and Tags is \"archive, field\". Read the URL as text on the details page.",
+    "routeVerdict": "The restored library did not keep or display the known parent link for the Licences folder. As a result, the bookmark page shows only \"Licences\" and labels its parent as unknown instead of showing the full folder path.\nFix the restored-folder parent mapping so bookmark details retain the Studio 197488 parent and render the complete folder path and known parent relationship.\nevidence: objective_contradiction: Checkpoint assertion failed: \"Folder path is \"Studio 197488 / Licences\", Parent relationship is Known, Bookmark URL is \"",
+    "comparison": "needs-review"
+  },
+  "originalControllerSha256": "793c82590165fb34de1dc8a7b299517a08ae29f8f76c94164d29e2da16086d41",
+  "promptSha256": "f4d0b5ca2efcea4813c9b843998cdf9f887c06b69f206a290c28632e52b7d2b0",
+  "response": {
+    "explanation": "Kane found the bookmark under Licences with an unknown parent. The original controller erased the parent folder’s identifier while retaining references to it. Allocate archive-local keys for every collection first, then write every parent and bookmark reference against that same map. This also covers empty parents and children exported before their parents.",
+    "sourceFile": "repair-1-candidate.ts",
+    "controllerSha256": "b7627ce97a8d2644c062023d36c8c644661cc049888c8637ec84feb2030c567d"
+  }
+}

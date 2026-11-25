@@ -2,7 +2,7 @@
 
 Rehearse a bookmark recovery before trusting the backup. Restore Drill compares a known source with a fresh restore, opens both libraries in a browser, and records where each bookmark ended up. A missing folder reference stays visible for human review.
 
-The project grew out of a real [Linkwarden migration report](https://github.com/linkwarden/linkwarden/issues/812). Its [v2.7.1 exporter](https://github.com/linkwarden/linkwarden/blob/v2.7.1/lib/api/controllers/migration/exportData.ts) removes collection IDs while retaining parent references. Two workspaces with different parentage can produce identical archives. Some Linkwarden exports retain usable collection IDs on their links. Restore Drill uses consistent identifiers where available and preserves unresolved references elsewhere.
+The project grew out of a real Linkwarden migration report. The v2.7.1 exporter removes collection IDs while retaining parent references. In a reproducible case, moving a bookmark's ancestor from one owner folder to another produced two identical 840-byte exports. Some archives retain usable collection IDs on their links. Restore Drill uses those identifiers when they agree and flags the references it cannot resolve. [Migration report](https://github.com/linkwarden/linkwarden/issues/812) · [Published exporter](https://github.com/linkwarden/linkwarden/blob/v2.7.1/lib/api/controllers/migration/exportData.ts) · [Reproduction script](evidence/check-linkwarden-export.mjs)
 
 ## Run locally
 
@@ -13,6 +13,8 @@ node app.mjs
 ```
 
 Open **http://127.0.0.1:4317**. Windows users can also open **Start Restore Drill.cmd**. On the original workstation, the local launcher uses the existing Codex-bundled Node runtime. On another computer install Node 24+. No external account is needed for archive inspection or local comparison.
+
+To reproduce the recorded repair offline, run `node evidence/replay.mjs`. It executes the saved coding-agent candidate on two archived source libraries, checks the output fingerprints against the live rehearsal, then checks the original lossy archive. [Kane results](evidence/kane/verification.json) · [Narrated walkthrough](submission/restore-drill-walkthrough.mp4)
 
 ### Your first drill
 
@@ -103,6 +105,6 @@ The workspace and destination writes for a comparison share one SQLite transacti
 
 ## Evidence and submission
 
-Recorded Chrome runs are in [evidence/chromium](evidence/chromium). They show the historical exporter losing a real user-entered folder relationship, a repaired export preserving it on two different workspaces, and the old archive still requiring review. These recordings used Playwright and Chrome. A live Kane–Codex repair needs a signed-in TestMu account; the local evidence is labeled separately. The integration test uses explicit protocol doubles for the paid services.
+On 25 November 2026, signed-in Kane CLI 0.10.9 passed the source path and classified the historical restore as a confirmed product bug. The Codex desktop session received that finding and supplied a changed exporter. Kane passed both the original and restored paths for the repaired workspace, then passed both paths on an independent workspace. Replaying the original bytes still produced an unresolved parent. The machine's nested CLI process encountered a Windows permission error, so the recorded run used the reviewed-agent response option. [Six browser verdicts](evidence/kane/verification.json) · [Agent handoff](evidence/kane/agent-handoff.json) · [Candidate controller](evidence/kane/repair-1-candidate.ts)
 
-The [private submission notes](submission/README.md) include the project description, two draft posts and the screen sequence for the required video. [Event brief](https://www.kaneclihack.sh/) · [Kane agent interface](https://www.testmuai.com/kane-cli/agents/)
+The repository also includes an independent Chrome navigation check and screenshots. The automated test suite uses protocol doubles for the paid services. The six live verdicts above were recorded separately from those tests. [Chrome checks](evidence/chromium) · [Walkthrough, captions and submission notes](submission/README.md) · [Event brief](https://www.kaneclihack.sh/) · [Kane agent interface](https://www.testmuai.com/kane-cli/agents/)

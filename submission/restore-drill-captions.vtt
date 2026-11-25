@@ -1,0 +1,172 @@
+WEBVTT
+
+00:00:00.250 --> 00:00:02.431
+Restore Drill asks a simple question.
+
+00:00:02.431 --> 00:00:08.739
+After restoring a backup, can someone still find the right document by following the path they used before?
+
+00:00:08.739 --> 00:00:09.918
+Watch this bookmark.
+
+00:00:09.918 --> 00:00:16.166
+Its title and address can survive an import even when the collection that identifies its owner disappears.
+
+00:00:18.450 --> 00:00:22.109
+This is a local workspace created through the application.
+
+00:00:22.109 --> 00:00:25.958
+It contains two root folders, a child folder, and a bookmark.
+
+00:00:25.958 --> 00:00:30.437
+You can change any name, move the bookmark, or supply your own archive.
+
+00:00:30.437 --> 00:00:36.305
+Each comparison records the source revision, so later edits do not rewrite an earlier result.
+
+00:00:37.805 --> 00:00:43.713
+For this drill I select the published Linkwarden version two point seven point one export controller.
+
+00:00:43.713 --> 00:00:50.848
+Restore Drill checks the downloaded source against its pinned Git fingerprint and runs it against these workspace records.
+
+00:00:50.848 --> 00:00:54.650
+It imports the result into a separate local destination database.
+
+00:00:54.650 --> 00:00:57.692
+No expected folder name is inserted into the backup.
+
+00:00:59.192 --> 00:01:00.460
+The counts look fine.
+
+00:01:00.460 --> 00:01:03.540
+All three folders and the one bookmark are present.
+
+00:01:03.540 --> 00:01:06.379
+But the report puts the two paths side by side.
+
+00:01:06.379 --> 00:01:08.976
+The source shows the client above Licences.
+
+00:01:08.976 --> 00:01:13.385
+The restored copy can identify Licences, but cannot establish its parent.
+
+00:01:13.385 --> 00:01:16.948
+That difference matters even though no bookmark is missing.
+
+00:01:18.448 --> 00:01:20.283
+Here is the destination itself.
+
+00:01:20.283 --> 00:01:23.835
+Open the client folder and the agreement is no longer there.
+
+00:01:23.835 --> 00:01:25.670
+It still exists under Licences.
+
+00:01:25.670 --> 00:01:31.175
+The details show its original address and tags, together with an unresolved parent reference.
+
+00:01:31.175 --> 00:01:36.503
+The reader preserves what the archive contains and makes the missing relationship visible.
+
+00:01:38.003 --> 00:01:41.988
+Now run the reference-preserving controller on the same workspace.
+
+00:01:41.988 --> 00:01:47.061
+It gives every exported folder its own portable key, including empty parent folders.
+
+00:01:47.061 --> 00:01:49.838
+It writes the child's parent using those keys.
+
+00:01:49.838 --> 00:01:56.601
+The receiver can now rebuild the hierarchy without assuming that two folders with similar names belong together.
+
+00:01:58.101 --> 00:01:59.798
+Open the new restored copy.
+
+00:01:59.798 --> 00:02:04.197
+Choose the same client, open Licences, and inspect the same agreement.
+
+00:02:04.197 --> 00:02:07.716
+Its address, tags and full folder path match the source.
+
+00:02:07.716 --> 00:02:10.230
+The two libraries are served separately.
+
+00:02:10.230 --> 00:02:17.143
+The destination process reads only its own database, so the restored page does not borrow the source's answer.
+
+00:02:18.643 --> 00:02:22.564
+This second workspace puts a different bookmark under the other client.
+
+00:02:22.564 --> 00:02:24.608
+Its folder name and tags also differ.
+
+00:02:24.608 --> 00:02:28.971
+Repeating the repaired export gives the same outcome on these different inputs.
+
+00:02:28.971 --> 00:02:33.665
+A patch that simply memorized the first client's folder would have failed this check.
+
+00:02:36.843 --> 00:02:39.420
+Finally, upload the original archive again.
+
+00:02:39.420 --> 00:02:44.933
+The archive fingerprint matches the earlier failure, and the old parent is still unresolved.
+
+00:02:44.933 --> 00:02:50.806
+If the owner has independent knowledge, they can explicitly confirm that parent in a working copy.
+
+00:02:50.806 --> 00:02:54.222
+The original comparison remains available for inspection.
+
+00:02:55.722 --> 00:02:57.258
+Here is Kane's own result.
+
+00:02:57.258 --> 00:03:02.750
+It clicked through the original library, opened Field agreement, and confirmed the full path.
+
+00:03:02.750 --> 00:03:08.360
+On the restored copy, Kane found the bookmark but reported that Licences had an unknown parent.
+
+00:03:08.360 --> 00:03:10.546
+Its verdict identified a product bug.
+
+00:03:10.546 --> 00:03:13.498
+This is the observation the coding agent receives.
+
+00:03:14.998 --> 00:03:18.143
+I passed Kane's finding to the Codex desktop session.
+
+00:03:18.143 --> 00:03:23.840
+The proposed change assigns every collection a portable key before writing any parent reference.
+
+00:03:23.840 --> 00:03:27.638
+That handles empty parents and a child listed before its parent.
+
+00:03:27.638 --> 00:03:33.573
+Restore Drill saved the candidate separately and submitted its new archive to the same browser test.
+
+00:03:35.073 --> 00:03:40.453
+This time Kane opened the restored client folder, opened Licences, and found Field agreement.
+
+00:03:40.453 --> 00:03:44.908
+It checked the complete path and the parent relationship on the details page.
+
+00:03:44.908 --> 00:03:48.437
+The archive comparison also matched across the whole library.
+
+00:03:48.437 --> 00:03:52.603
+You can download both the comparison and the candidate that produced it.
+
+00:03:54.103 --> 00:04:00.387
+Kane also passed a different purchase order under a different client, on both the source and its fresh restore.
+
+00:04:00.387 --> 00:04:02.595
+Finally we replayed the original bytes.
+
+00:04:02.595 --> 00:04:07.520
+Their fingerprint matched the original failure, and the unknown parent was still there.
+
+00:04:07.520 --> 00:04:13.351
+The repository includes both test libraries and a command to reproduce the archive comparisons offline.
