@@ -1,0 +1,154 @@
+{
+  "reference": {
+    "format": "restore-drill/bookmarks",
+    "version": 1,
+    "folders": [
+      {
+        "id": "434847",
+        "name": "Birch f44c19",
+        "parent": null
+      },
+      {
+        "id": "434848",
+        "name": "Cedar f44c19",
+        "parent": null
+      },
+      {
+        "id": "434849",
+        "name": "Invoices",
+        "parent": "434847"
+      },
+      {
+        "id": "434850",
+        "name": "Invoices",
+        "parent": "434848"
+      },
+      {
+        "id": "434851",
+        "name": "December",
+        "parent": "434850"
+      },
+      {
+        "id": "434852",
+        "name": "Pending",
+        "parent": "434847"
+      }
+    ],
+    "bookmarks": [
+      {
+        "id": "b0",
+        "folder": "434851",
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/cedar",
+        "tags": [
+          "cedar"
+        ]
+      },
+      {
+        "id": "b1",
+        "folder": "434849",
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/birch",
+        "tags": [
+          "birch"
+        ]
+      }
+    ]
+  },
+  "archive": {
+    "name": "Library",
+    "collectionOrder": [],
+    "pinnedLinks": [],
+    "whitelistedUsers": [],
+    "collections": [
+      {
+        "id": 434851,
+        "parentId": 434850,
+        "name": "December",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": [
+          {
+            "name": "Purchase f44c19",
+            "url": "https://example.test/f44c19/cedar",
+            "description": "",
+            "collectionId": 434851,
+            "tags": [
+              {
+                "name": "cedar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 434850,
+        "parentId": 434848,
+        "name": "Invoices",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 434849,
+        "parentId": 434847,
+        "name": "Invoices",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": [
+          {
+            "name": "Purchase f44c19",
+            "url": "https://example.test/f44c19/birch",
+            "description": "",
+            "collectionId": 434849,
+            "tags": [
+              {
+                "name": "birch"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 434852,
+        "parentId": 434847,
+        "name": "Pending",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 434848,
+        "parentId": null,
+        "name": "Cedar f44c19",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 434847,
+        "parentId": null,
+        "name": "Birch f44c19",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      }
+    ]
+  },
+  "witness": {
+    "title": "Purchase f44c19",
+    "url": "https://example.test/f44c19/cedar",
+    "path": [
+      "Cedar f44c19",
+      "Invoices",
+      "December"
+    ]
+  },
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Cedar f44c19\" is visible and the nested collection \"December\" has no top-level card here. Stay on this page and leave all data unchanged."
+}

@@ -1,0 +1,90 @@
+{
+  "reference": {
+    "format": "restore-drill/bookmarks",
+    "version": 1,
+    "folders": [
+      {
+        "id": "480281",
+        "name": "Foundry 8bfc0e",
+        "parent": null
+      },
+      {
+        "id": "480282",
+        "name": "Archive 8bfc0e",
+        "parent": null
+      },
+      {
+        "id": "480283",
+        "name": "Dispatch",
+        "parent": "480282"
+      }
+    ],
+    "bookmarks": [
+      {
+        "id": "b0",
+        "folder": "480283",
+        "title": "Handover 8bfc0e",
+        "url": "https://example.test/8bfc0e/record",
+        "tags": [
+          "record"
+        ]
+      }
+    ]
+  },
+  "archive": {
+    "name": "Library",
+    "collectionOrder": [],
+    "pinnedLinks": [],
+    "whitelistedUsers": [],
+    "collections": [
+      {
+        "id": 480281,
+        "parentId": null,
+        "name": "Foundry 8bfc0e",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 480282,
+        "parentId": null,
+        "name": "Archive 8bfc0e",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 480283,
+        "parentId": 480282,
+        "name": "Dispatch",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": [
+          {
+            "name": "Handover 8bfc0e",
+            "url": "https://example.test/8bfc0e/record",
+            "description": "",
+            "collectionId": 480283,
+            "tags": [
+              {
+                "name": "record"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "witness": {
+    "title": "Handover 8bfc0e",
+    "url": "https://example.test/8bfc0e/record",
+    "path": [
+      "Archive 8bfc0e",
+      "Dispatch"
+    ]
+  },
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Archive 8bfc0e\" is visible and the nested collection \"Dispatch\" has no top-level card here. Stay on this page and leave all data unchanged."
+}
