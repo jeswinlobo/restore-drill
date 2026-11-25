@@ -262,6 +262,16 @@ function workspace() {
           ),
       folders.length ? act('bookmark', '+ Add bookmark') : ''
     ) +
+    section(
+      'Check a backup before restoring',
+      panel(
+        '<div class="pad"><p>Use this workspace as an independently known reference. Choose the backup you intend to restore.</p>' +
+          '<label>Backup JSON <input id="recovery-file" type="file" accept=".json,application/json"></label>' +
+          '<div class="actions">' +
+          act('assess-recovery', 'Check backup') +
+          '</div><div id="recovery-decision" aria-live="polite"></div></div>'
+      )
+    ) +
     (links.length
       ? section(
           'Can this export identify the parent?',
@@ -702,6 +712,14 @@ function evidenceView(data) {
       'Recovery evidence',
       'Inspect the recorded Kane checks or rerun the archive comparison locally without credits.'
     ) +
+    section(
+      'Would you restore this backup?',
+      panel(
+        '<div class="pad"><p>Three exports of the same library each contain three folders and one order. Check which archive keeps the order under the correct owner.</p>' +
+          act('recheck-decisions', 'Check all three backups', true) +
+          '<div id="decisions-replay" aria-live="polite"></div></div>'
+      )
+    ) +
     upstreamView(data.upstream, data.nativeBrowser, data.nativeRepair) +
     data.packs.map(receiptView).join('') +
     savedAmbiguity(data.ambiguity) +
@@ -806,12 +824,46 @@ async function render() {
 const fileInput = input('archive', 'JSON archive', 'type="file" accept=".json,application/json"');
 async function fileText(file) {
   if (file.size > 16 * 1024 * 1024) throw Error('Archive exceeds 16 MiB');
-  return file.text();
+  return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(await file.arrayBuffer());
 }
 document.addEventListener('click', async (event) => {
   const el = event.target.closest('[data-act]');
   if (!el) return;
   const a = el.dataset.act;
+  if (a === 'recheck-decisions') {
+    const output = $('#decisions-replay');
+    el.disabled = true;
+    try {
+      const result = await api('evidence/decisions/check', {});
+      const rows = result.cases
+        .map(
+          (row) =>
+            '<tr><th scope="row">' +
+            h(row.label) +
+            '</th><td>' +
+            h(row.decision) +
+            '</td><td>' +
+            h(row.recordedOutcome) +
+            '</td><td>' +
+            h(row.recordedWrites) +
+            '</td></tr>'
+        )
+        .join('');
+      output.innerHTML =
+        '<h3>Three backups checked</h3><p>Decisions were recomputed here. Outcomes and writes were recorded on ' +
+        h(result.surface) +
+        '.</p><div class="scroll-table"><table><thead><tr><th>Backup</th><th>Decision now</th><th>Recorded outcome</th><th>Recorded writes</th></tr></thead><tbody>' +
+        rows +
+        '</tbody></table></div><details><summary>Inspect paths and archive fingerprints</summary><pre>' +
+        h(JSON.stringify(result, null, 2)) +
+        '</pre></details>';
+    } catch (error) {
+      output.textContent = error.message;
+    } finally {
+      el.disabled = false;
+    }
+    return;
+  }
   if (a === 'import-recorded') {
     el.disabled = true;
     try {
@@ -820,6 +872,54 @@ document.addEventListener('click', async (event) => {
       location.hash = 'workspace/' + copy.id;
     } catch (error) {
       toast(error.message);
+    } finally {
+      el.disabled = false;
+    }
+    return;
+  }
+  if (a === 'assess-recovery') {
+    const output = $('#recovery-decision');
+    const file = $('#recovery-file').files[0];
+    if (!file) {
+      output.textContent = 'Choose the backup to check.';
+      return;
+    }
+    el.disabled = true;
+    try {
+      const result = await api('workspaces/' + w.id + '/assess-recovery', {
+        revision: w.revision,
+        archive: await fileText(file)
+      });
+      const labels = {
+        ready: 'Ready to restore',
+        blocked: 'Restore blocked',
+        'needs-evidence': 'Independent evidence needed'
+      };
+      const paths = result.comparison.changedPaths
+        .slice(0, 5)
+        .map(
+          (p) =>
+            '<li>' +
+            h(p.title) +
+            ': ' +
+            h(p.source.join(' / ')) +
+            ' → ' +
+            h(p.restored.join(' / ')) +
+            '</li>'
+        )
+        .join('');
+      output.innerHTML =
+        '<h3>' +
+        h(labels[result.decision]) +
+        '</h3><p>' +
+        h(result.reason) +
+        '</p>' +
+        (paths ? '<ul>' + paths + '</ul>' : '') +
+        '<details><summary>Comparison and archive fingerprint</summary><pre>' +
+        h(JSON.stringify(result, null, 2)) +
+        '</pre></details>';
+    } catch (error) {
+      output.textContent = error.message;
     } finally {
       el.disabled = false;
     }

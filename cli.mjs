@@ -2,7 +2,14 @@ import { readFile, writeFile, mkdir, appendFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { compare, readArchive, inventory } from './lib/archive.mjs';
 import { openStore } from './lib/store.mjs';
-import { capture, connection, importToEmpty, restoreBookmarkArchive } from './lib/linkwarden.mjs';
+import {
+  capture,
+  connection,
+  importToEmpty,
+  restoreBookmarkArchive,
+  restoreVerifiedArchive
+} from './lib/linkwarden.mjs';
+import { assessRecovery } from './lib/recovery-decision.mjs';
 import { codexCommand, execute, kaneCommand, localTools } from './lib/process.mjs';
 import { officialExporter } from './lib/exporter.mjs';
 import { rehearse } from './lib/rehearsal.mjs';
@@ -37,6 +44,8 @@ const usage = [
   'node cli.mjs inspect ARCHIVE.json',
   'node cli.mjs ambiguity KNOWN_SOURCE.json [--data PATH]',
   'node cli.mjs compare BASELINE.json CANDIDATE.json',
+  'node cli.mjs assess-recovery INDEPENDENT_SOURCE.json ARCHIVE.json',
+  'node cli.mjs restore-verified INDEPENDENT_SOURCE.json ARCHIVE.json --target URL --write-to-empty-target',
   'node cli.mjs workspaces | workspace ID',
   'node cli.mjs import ARCHIVE.json --name NAME',
   'node cli.mjs capture LINKWARDEN_URL OUTPUT.json [--owner-id ID]  (LINKWARDEN_SOURCE_TOKEN)',
@@ -78,6 +87,29 @@ try {
     emit(inventory(readArchive(await read(a))));
   } else if (command === 'ambiguity') {
     emit(await proveAmbiguity(readArchive(await read(a)), dir));
+  } else if (command === 'assess-recovery' || command === 'restore-verified') {
+    const reference = await read(a);
+    const bytes = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(await readFile(b));
+    if (command === 'assess-recovery') {
+      const result = assessRecovery(reference, bytes);
+      emit(result);
+      if (result.decision !== 'ready') process.exitCode = 1;
+    } else {
+      if (!options.target || !options['write-to-empty-target'])
+        throw Error('Provide --target and --write-to-empty-target');
+      const folder = join(dir, 'live', crypto.randomUUID());
+      await mkdir(folder, { recursive: true });
+      console.error('Restore journal: ' + folder);
+      const result = await restoreVerifiedArchive(
+        connection(options.target, process.env.LINKWARDEN_TARGET_TOKEN),
+        reference,
+        bytes,
+        (row) => appendFile(join(folder, 'created.ndjson'), JSON.stringify(row) + '\n')
+      );
+      await writeNew(join(folder, 'decision.json'), result);
+      emit(result);
+      if (result.outcome !== 'verified') process.exitCode = 1;
+    }
   } else if (command === 'compare') {
     const r = compare(readArchive(await read(a)), readArchive(await read(b)));
     emit(r);

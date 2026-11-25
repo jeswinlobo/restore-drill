@@ -2,7 +2,7 @@
 
 Can someone still find the signed contract after restoring a backup? Restore Drill follows a bookmark from its owner's folder to its saved URL, then repeats that journey on a fresh restore. When a parent is lost, Kane checks the failure in Chrome and a coding agent can repair the exporter.
 
-[Watch the 4:48 walkthrough](submission/restore-drill-evidence-walkthrough.mp4) · [Read the captions](submission/restore-drill-evidence-captions.vtt) · [Run locally](#run-locally)
+[Watch the 4:56 walkthrough](submission/restore-drill-evidence-walkthrough.mp4) · [Read the captions](submission/restore-drill-evidence-captions.vtt) · [Run locally](#run-locally)
 
 In two independent Linkwarden v2.7.1 installations, a stock migration preserved all three folders, the bookmark and both tags. It moved the agreement out of its owner's folder. Kane spotted the extra top-level collection on Linkwarden's own screen. Restore Drill recovered the expected path through the public API and Kane passed the same check. [Migration report](https://github.com/linkwarden/linkwarden/issues/812) · [Upstream API measurements](evidence/upstream/pair.json) · [Native browser verdicts](evidence/upstream/native-kane.json)
 
@@ -12,6 +12,31 @@ In two independent Linkwarden v2.7.1 installations, a stock migration preserved 
 | The owner and Agreements appear side by side. | Agreements is back inside South 2cc646. |
 
 The original exporter removes collection IDs that its parent references need. In the recorded library, two different owners produced exactly the same 539 archive bytes. The workbench can test this on your own known source. Some archives retain usable identifiers on their links, and Restore Drill uses those when they agree. [Published exporter](https://github.com/linkwarden/linkwarden/blob/v2.7.1/lib/api/controllers/migration/exportData.ts) · [Identical-archive proof](evidence/ambiguity/original-workspace.json)
+
+## Which backup would you restore?
+
+Three exports of one purchase order contain the same number of folders and bookmarks. Only one preserves its owner. In the workbench, open **Evidence → Check all three backups**, or run this offline with Node 24.
+
+```sh
+node evidence/decisions/replay.mjs
+```
+
+| What the archive says | Decision against the independent source | Writes observed on Linkwarden v2.7.1 |
+| --- | --- | --- |
+| The parent ID points to an unidentified folder | Ask for evidence | 0 |
+| Studio owns the order, but the source says Lab | Block recovery | 0 |
+| Lab owns the order, matching the source | Restore and read back the target | 4 (three folders and one bookmark) |
+
+The replay computes the decisions from the original JSON bytes and checks them against the recorded API observations. It also checks the wrong-owner and repaired fingerprints against earlier Kane holdout runs. To repeat the writes on your own local Linkwarden instance, run `node integrations/upstream/check-recovery-decision.mjs --target http://localhost:3001 --create-disposable-account`. This creates a new account on a loopback instance with registration enabled. [Native run](evidence/decisions/native.json)
+
+For your own backup, capture a known-good source while it is available, or open an independently verified workspace and choose **Check a backup before restoring**. A future recovery can use the saved capture after the source goes offline. These checks cover folder hierarchy and bookmark title, URL and tags.
+
+```sh
+node cli.mjs assess-recovery known-good.json backup.json
+node cli.mjs restore-verified known-good.json backup.json --target http://localhost:3001 --write-to-empty-target
+```
+
+The second command uses `LINKWARDEN_TARGET_TOKEN` and requires an empty account. It records acknowledged writes, reads back the target, and exits unsuccessfully if the target disagrees. A partial write leaves a journal in the printed directory. Use a fresh target for a retry.
 
 ## Run locally
 

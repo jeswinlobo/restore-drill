@@ -1,0 +1,8 @@
+{
+  "objective": "On the Recovery evidence page, click Check all three backups. Verify that the result table shows Owner missing as needs-evidence with zero recorded writes, Wrong owner as blocked with zero recorded writes, and Owner preserved as ready with a verified recorded outcome and four recorded writes.",
+  "status": "passed",
+  "finished": "2026-11-25T11:34:06.423Z",
+  "runId": "run-0",
+  "summary": "You asked to check all three backups on the Recovery evidence page.\nAll three backups were checked, and the results table updated successfully.\nOwner missing is marked needs-evidence with 0 recorded writes; Wrong owner is marked blocked with 0 recorded writes.\nOwner preserved is marked ready with a verified outcome and 4 recorded writes.",
+  "eventStreamSha256": "1b29f7ba59f071407f4006edab9ba88bf5074b6a309d0af913eb4baf948405cc"
+}

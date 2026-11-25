@@ -3,3 +3,6 @@
 *.png binary
 *.mp4 binary
 evidence/*/*-archive.json -text
+evidence/decisions/unknown.json -text
+evidence/decisions/wrong.json -text
+evidence/decisions/recoverable.json -text

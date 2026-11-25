@@ -1,0 +1,1 @@
+{"collections":[{"id":1,"name":"Studio 197488","parentId":null,"links":[]},{"id":2,"name":"Lab 197488","parentId":null,"links":[]},{"id":3,"name":"Purchases 7571b","parentId":1,"links":[{"name":"Order afa63","url":"https://example.test/licence/197488","collectionId":3,"tags":[{"name":"second"}]}]}]}

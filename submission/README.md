@@ -10,6 +10,12 @@ Kane caught a lost parent. A local Qwen coding model received the finding and ge
 
 ## Materials
 
+Open **Evidence → Check all three backups** to replay the missing owner, wrong owner, and recoverable archive. The app recomputes the decisions from disk. The recorded Linkwarden account received zero, zero and four writes respectively. [Live API evidence](../evidence/decisions/native.json) · [Offline command](../evidence/decisions/replay.mjs)
+
+Kane also opened the workbench in Chrome, ran this replay and checked all three rows. The final chapter of the video shows the result. [Kane browser verdict](../evidence/decisions/browser.json)
+
+The successful agent-generated change repaired the exporter. In a separate experiment, the local model received the native importer, archive and incident evidence. Its structured response diagnosed missing parent handling but returned the original importer implementation. The project uses its verified API recovery path for that case. [Importer experiment](../evidence/decisions/importer-attempt.json)
+
 - [Submission walkthrough](restore-drill-evidence-walkthrough.mp4) and [English captions](restore-drill-evidence-captions.vtt)
 - [Unattended repair](../evidence/unattended/verification.json), [model request and output](../evidence/unattended/agent-handoff.json) and [offline reproduction](../evidence/replay.mjs)
 - [Six fresh Kane checks from a single run with two new libraries](../evidence/unattended-fresh/verification.json)

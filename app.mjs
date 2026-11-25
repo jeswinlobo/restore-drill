@@ -18,6 +18,8 @@ import {
   replayRecordedRepair
 } from './lib/recordings.mjs';
 import { proveAmbiguity } from './lib/ambiguity.mjs';
+import { assessRecovery } from './lib/recovery-decision.mjs';
+import { replayDecisions } from './evidence/decisions/replay.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const arg = (name, fallback) => {
@@ -141,6 +143,10 @@ const server = http.createServer(async (req, res) => {
       ]);
       return json(res, { packs, challenge, ambiguity, upstream, nativeBrowser, nativeRepair });
     }
+    if (m === 'POST' && p === '/api/evidence/decisions/check') {
+      await body(req);
+      return json(res, await replayDecisions());
+    }
     const receipt = /^\/api\/evidence\/([a-z][a-z0-9-]*)\/([a-z0-9.-]+)$/.exec(p);
     if (receipt) {
       const [, bundle, action] = receipt;
@@ -214,6 +220,12 @@ const server = http.createServer(async (req, res) => {
         return archiveDownload(res, w.archive, 'portable-workspace.json');
       if (m === 'POST') {
         const b = await body(req);
+        if (action === 'assess-recovery') {
+          const current = store.workspace(id);
+          if (b.revision !== current.revision)
+            throw Object.assign(Error('Workspace changed. Reload and retry.'), { status: 409 });
+          return json(res, assessRecovery(current.archive, b.archive));
+        }
         if (action === 'ambiguity') {
           if (b.revision !== w.revision)
             throw Object.assign(Error('Workspace changed. Reload it before checking the archive.'), {

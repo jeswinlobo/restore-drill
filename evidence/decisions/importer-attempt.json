@@ -1,0 +1,12 @@
+{
+  "model": "Qwen2.5-Coder-1.5B-Instruct-Q4_K_M",
+  "upstream": "Linkwarden v2.7.1 importFromLinkwarden.ts",
+  "inputs": "Native incident evidence, the archived export and the stock importer source",
+  "diagnosis": "The current native grid incorrectly shows a nested collection as top level. The same archive must work when fresh database IDs differ and records arrive in any order.",
+  "comparison": "UTF-8, trim surrounding whitespace, normalize CRLF to LF",
+  "originalSha256": "353fba27a07a8edaaa0fa602eb6e873d883eec126a8d8e4749abf3a48745b7d5",
+  "proposedSha256": "353fba27a07a8edaaa0fa602eb6e873d883eec126a8d8e4749abf3a48745b7d5",
+  "rawResponseSha256": "9d5d126e68aee339b5d771387b767d0815e6af4ff5d11d9dce18e446d6c02852",
+  "result": "unchanged source",
+  "applied": false
+}
