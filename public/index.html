@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#153e33" />
+    <title>Restore Drill</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <div class="shell">
+      <aside>
+        <a class="brand" href="#workspaces"
+          ><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span
+          ><span>Restore Drill</span></a
+        >
+        <nav aria-label="Primary">
+          <a href="#workspaces" data-nav="workspaces"><b aria-hidden="true">▤</b>Workspaces</a
+          ><a href="#history" data-nav="history"><b aria-hidden="true">↻</b>Drill history</a>
+        </nav>
+        <div class="private"><i></i>Local workstation</div>
+      </aside>
+      <div class="content">
+        <header>
+          <a href="#workspaces">Workbench</a><span>/</span><strong id="crumb">Workspaces</strong>
+        </header>
+        <main id="main" tabindex="-1" aria-live="polite"></main>
+      </div>
+    </div>
+    <dialog id="modal">
+      <form id="form">
+        <div class="dialogtop">
+          <h2 id="modal-title"></h2>
+          <button id="close" type="button" aria-label="Close dialog">×</button>
+        </div>
+        <div id="fields"></div>
+        <p id="form-error" role="alert"></p>
+        <div class="form-actions">
+          <button type="button" id="cancel">Cancel</button
+          ><button type="submit" class="primary" id="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status"></div>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "engine": "Playwright controlling installed Chrome",
+  "kaneRun": false,
+  "recorded": "2026-11-25T08:16:10.299Z",
+  "bookmark": "Field agreement",
+  "originalPath": "Studio 197488 / Licences",
+  "portableRestorePath": "Studio 197488 / Licences",
+  "oldRestorePath": "Licences",
+  "oldParentObservation": "Unknown parent 19",
+  "legacyReport": {
+    "status": "needs-review",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Studio 197488",
+            "Licences"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          "19",
+          [
+            "Licences"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Studio 197488",
+            "Licences"
+          ],
+          "Field agreement",
+          "https://example.test/licence/197488",
+          [
+            "archive",
+            "field"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          "19",
+          [
+            "Licences"
+          ],
+          "Field agreement",
+          "https://example.test/licence/197488",
+          [
+            "archive",
+            "field"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      }
+    ],
+    "unknown": [
+      {
+        "name": "Licences",
+        "segments": [
+          "Licences"
+        ],
+        "reference": "19"
+      }
+    ],
+    "sourceHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+    "archiveHash": "26000ba52b9f05b777649dccdd2bdbfb209b52d3d4c26bb8d8d4e3d44dc250a4",
+    "restoredHash": "e844dfb439046d26f3ace7e2b239a1d0f0a375090f1ea65b7087ad358beffe7c",
+    "sourceRevision": 5,
+    "origin": "Linkwarden v2.7.1 controller"
+  },
+  "portableReport": {
+    "status": "matched",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [],
+    "unknown": [],
+    "sourceHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+    "archiveHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+    "restoredHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+    "sourceRevision": 5,
+    "origin": "Portable export"
+  }
+}

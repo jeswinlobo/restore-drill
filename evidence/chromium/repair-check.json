@@ -1,0 +1,49 @@
+{
+  "engine": "Installed Chrome via Playwright",
+  "kaneRun": false,
+  "recorded": "2026-11-25T08:17:40.120Z",
+  "repair": "integrations/linkwarden/bookmark-export.ts",
+  "source": "Studio 197488 / Licences",
+  "repaired": "Studio 197488 / Licences",
+  "holdout": "Lab 197488 / Purchases 7571b",
+  "archiveReplay": {
+    "status": "needs-review",
+    "fingerprint": "26000ba52b9f05b777649dccdd2bdbfb209b52d3d4c26bb8d8d4e3d44dc250a4"
+  },
+  "repairedReport": {
+    "status": "matched",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [],
+    "unknown": [],
+    "sourceHash": "bbb0b937493bfa6212551fe855650380c6ed0dfcba826c664f5a0abaeac2804d",
+    "archiveHash": "e7a9961fca8358617c9ec3f446ae492931d57cfa5993ec07963598cb3404c2c9",
+    "restoredHash": "59c2297164d8b5434ad033e7035edb57732e7d5e6bdb73a89065597a8466eee4",
+    "sourceRevision": 5,
+    "origin": "Reference-preserving bookmark controller"
+  },
+  "holdoutReport": {
+    "status": "matched",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [],
+    "unknown": [],
+    "sourceHash": "0126360b3826bb7ba92bbc708746440c6006099c1d03e089a64bf3db5e1ecb72",
+    "archiveHash": "89a9f52418a3082e934ca9343478c729c10ac699acefcc67737e5dac42865481",
+    "restoredHash": "2cc6ec073fb647453a6b9037bbd047918d92b6843000d6ce3d95f7570d7ee392",
+    "sourceRevision": 1,
+    "origin": "Reference-preserving bookmark controller"
+  }
+}

@@ -1,0 +1,7 @@
+.restore-drill/
+.local-tools.json
+.env
+node_modules/
+*.sqlite*
+*.log
+repair-evidence/
