@@ -1,0 +1,281 @@
+{
+  "recorded": "2026-11-25T12:07:55.413Z",
+  "fixtureHash": "11457a8ba27b4a6a69aee97caa864cc065b787aa9e28ea7dd67e9f89fea6db27",
+  "archiveHash": "24556fae71204f34f41c1fc51c7b0909e8592b1f9d95f5b288fe3893bfdb97cb",
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Cedar f44c19\" is visible and the nested collection \"December\" has no top-level card here. Stay on this page and leave all data unchanged.",
+  "expectedPaths": [
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/cedar",
+      "tags": [
+        "cedar"
+      ],
+      "path": [
+        "Cedar f44c19",
+        "Invoices",
+        "December"
+      ]
+    },
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/birch",
+      "tags": [
+        "birch"
+      ],
+      "path": [
+        "Birch f44c19",
+        "Invoices"
+      ]
+    }
+  ],
+  "observedPaths": [
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/cedar",
+      "tags": [
+        "cedar"
+      ],
+      "path": [
+        "December"
+      ]
+    },
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/birch",
+      "tags": [
+        "birch"
+      ],
+      "path": [
+        "Invoices"
+      ]
+    }
+  ],
+  "comparison": {
+    "status": "different",
+    "folders": [
+      6,
+      6
+    ],
+    "bookmarks": [
+      2,
+      2
+    ],
+    "differences": [
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Birch f44c19",
+            "Invoices"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Cedar f44c19",
+            "Invoices"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Cedar f44c19",
+            "Invoices",
+            "December"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Birch f44c19",
+            "Pending"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "December"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Invoices"
+          ]
+        ],
+        "expected": 0,
+        "actual": 2
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Pending"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Cedar f44c19",
+            "Invoices",
+            "December"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/cedar",
+          [
+            "cedar"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Birch f44c19",
+            "Invoices"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/birch",
+          [
+            "birch"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "December"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/cedar",
+          [
+            "cedar"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Invoices"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/birch",
+          [
+            "birch"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      }
+    ],
+    "unknown": [],
+    "changedPaths": [
+      {
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/cedar",
+        "source": [
+          "Cedar f44c19",
+          "Invoices",
+          "December"
+        ],
+        "restored": [
+          "December"
+        ],
+        "unresolved": null
+      },
+      {
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/birch",
+        "source": [
+          "Birch f44c19",
+          "Invoices"
+        ],
+        "restored": [
+          "Invoices"
+        ],
+        "unresolved": null
+      }
+    ]
+  },
+  "remapped": true,
+  "importPosts": [
+    "migration"
+  ],
+  "observedTargetIds": [
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63"
+  ],
+  "check": {
+    "role": "legacy",
+    "status": "inconclusive",
+    "taskSha256": "7a76366c5b24f6f353367f2821f5f9b7af7aed8a606b53b39fddc65ea84512c9",
+    "stage": "Finished",
+    "bookmarkVisible": "Purchase f44c19",
+    "visibleRootCards": [
+      "Birch f44c19",
+      "Cedar f44c19",
+      "Pending",
+      "Invoices",
+      "Invoices",
+      "December"
+    ],
+    "rootGridMatchesExpectation": true,
+    "gridScreenshot": "legacy-grid.png",
+    "gridScreenshotSha256": "6d0c6ba618fbd1fa126ff420fdd25ce34f3c444af2945e9edcc5033f0181b74c",
+    "runId": "run-0",
+    "reason": "assertion_error.final_verification",
+    "credits": 14.05228,
+    "finished": "2026-11-25T12:07:55.104Z",
+    "eventStreamSha256": "a544eeb51b45c2336c3d66a6bdc8d89cfb370bab039f1632d56af185b33dba5b",
+    "accountUnchanged": true
+  },
+  "browserSummary": "The run started with a collections dataset that showed December in the main grid even though the check expected it to exist only as a nested collection. The evidence does not show a product action that caused this state.\nReset or seed the test account so Cedar f44c19 is a root collection and December is assigned beneath its parent before running this read-only verification.",
+  "confirmed": false
+}

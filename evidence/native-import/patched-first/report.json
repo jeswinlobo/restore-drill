@@ -1,0 +1,110 @@
+{
+  "recorded": "2026-11-25T12:13:35.649Z",
+  "fixtureHash": "d5fd7e973d124fdd303ef995bfdc7582c3df781a8e0c8cffb81f6dfba4a0b353",
+  "archiveHash": "79c0c3df0ce99fac5cb20d1b0d2e484162ee7b5a82d0e88a62f457026099f976",
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Archive 8bfc0e\" is visible and the nested collection \"Dispatch\" has no top-level card here. Stay on this page and leave all data unchanged.",
+  "kind": "frozen-objective",
+  "expectedPaths": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Archive 8bfc0e",
+        "Dispatch"
+      ]
+    }
+  ],
+  "observedPaths": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Archive 8bfc0e",
+        "Dispatch"
+      ]
+    }
+  ],
+  "observedArchive": {
+    "format": "restore-drill/bookmarks",
+    "version": 1,
+    "folders": [
+      {
+        "id": "79",
+        "name": "Foundry 8bfc0e",
+        "parent": null
+      },
+      {
+        "id": "80",
+        "name": "Archive 8bfc0e",
+        "parent": null
+      },
+      {
+        "id": "81",
+        "name": "Dispatch",
+        "parent": "80"
+      }
+    ],
+    "bookmarks": [
+      {
+        "id": "27",
+        "folder": "81",
+        "title": "Handover 8bfc0e",
+        "url": "https://example.test/8bfc0e/record",
+        "tags": [
+          "record"
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "status": "matched",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [],
+    "unknown": [],
+    "changedPaths": []
+  },
+  "remapped": true,
+  "importPosts": [
+    "migration"
+  ],
+  "observedTargetIds": [
+    "79",
+    "80",
+    "81"
+  ],
+  "check": {
+    "role": "recovered",
+    "status": "passed",
+    "taskSha256": "20eb63fe9803f6beed5948441aef6071e3cfdc4bdab73850a3a5279bf0422cc6",
+    "stage": "Finished",
+    "bookmarkVisible": "Handover 8bfc0e",
+    "visibleRootCards": [
+      "Archive 8bfc0e",
+      "Foundry 8bfc0e"
+    ],
+    "rootGridMatchesExpectation": true,
+    "gridScreenshot": "recovered-grid.png",
+    "gridScreenshotSha256": "cd0f134fb1b6e3c39937f8bf57bf9c21a4ef6ca6aa67814604044d58ec9a885e",
+    "runId": "run-0",
+    "reason": "success.complete",
+    "credits": 6.955710000000001,
+    "finished": "2026-11-25T12:13:35.368Z",
+    "eventStreamSha256": "06bb8c53377d1ca70e6cb184b0d90970067d21df99c72495736ebe8b7a12502e",
+    "accountUnchanged": true
+  },
+  "browserSummary": "The requested collection organization was completed.\nA root collection named “Archive 8bfc0e” is visible on the Collections page.\nThe nested collection “Dispatch” is not shown as a separate top-level collection card.",
+  "confirmed": true
+}

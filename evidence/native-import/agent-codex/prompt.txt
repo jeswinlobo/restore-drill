@@ -1,0 +1,80 @@
+You are a fresh coding agent investigating Linkwarden v2.7.1. You have the unmodified source repository and this incident from a disposable account. Find the code responsible and fix the underlying behavior. Use only this source tree and the incident below. Do not access other directories, Git history, the internet or any other test data. Preserve existing valid behavior. Return a JSON object with path, a complete replacement of that source file in source, and a short explanation. Do not change any test, fixture or report.
+
+{
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Archive 8bfc0e\" is visible and the nested collection \"Dispatch\" has no top-level card here. Stay on this page and leave all data unchanged.",
+  "verdict": "inconclusive",
+  "observation": "The test expected Dispatch to be nested under another collection, but the loaded collection data shows it as its own top-level card. Archive 8bfc0e is visibly present, so the failed Archive check also appears inconsistent with the rendered page.\nRepair or reset the test fixture so Dispatch is created as a nested collection before this verification, then review the Archive visibility assertion because the Archive 8bfc0e card is visibly rendered.",
+  "corroboratingObservation": "Inspected the main collection grid on the Collections page, excluding the left sidebar.\nConfirmed that a collection card named “Dispatch” was visible in the grid.\nRead the card immediately beside “New Collection” as “Foundry 8bfc0e.”\nLeft the collection data unchanged.",
+  "expected": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Archive 8bfc0e",
+        "Dispatch"
+      ]
+    }
+  ],
+  "actual": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Dispatch"
+      ]
+    }
+  ],
+  "input": {
+    "name": "Library",
+    "collectionOrder": [],
+    "pinnedLinks": [],
+    "whitelistedUsers": [],
+    "collections": [
+      {
+        "id": 480281,
+        "parentId": null,
+        "name": "Foundry 8bfc0e",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 480282,
+        "parentId": null,
+        "name": "Archive 8bfc0e",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": []
+      },
+      {
+        "id": 480283,
+        "parentId": 480282,
+        "name": "Dispatch",
+        "description": "",
+        "color": "#0ea5e9",
+        "ownerId": 101,
+        "links": [
+          {
+            "name": "Handover 8bfc0e",
+            "url": "https://example.test/8bfc0e/record",
+            "description": "",
+            "collectionId": 480283,
+            "tags": [
+              {
+                "name": "record"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

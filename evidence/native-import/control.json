@@ -1,0 +1,66 @@
+{
+  "recorded": "2026-11-25T12:12:01.511Z",
+  "surface": "Linkwarden v2.7.1 REST API",
+  "cases": [
+    {
+      "file": "unknown.json",
+      "decision": "needs-evidence",
+      "outcome": "withheld",
+      "archiveHash": "46d6d2a8578eee2a54bc0e7288d2073fef13d50280d2f0b3af7537d96b35049f",
+      "targetRequests": 0,
+      "writes": 0,
+      "foldersAfter": 0,
+      "bookmarksAfter": 0,
+      "observedChanges": [
+        {
+          "title": "Order afa63",
+          "url": "https://example.test/licence/197488",
+          "source": [
+            "Lab 197488",
+            "Purchases 7571b"
+          ],
+          "restored": [
+            "Purchases 7571b"
+          ],
+          "unresolved": "26"
+        }
+      ]
+    },
+    {
+      "file": "wrong.json",
+      "decision": "blocked",
+      "outcome": "withheld",
+      "archiveHash": "d9f8ebbac8a012f5886e37e8cfff59f04fcc2633198a4a4e80a78d5365c9fe51",
+      "targetRequests": 0,
+      "writes": 0,
+      "foldersAfter": 0,
+      "bookmarksAfter": 0,
+      "observedChanges": [
+        {
+          "title": "Order afa63",
+          "url": "https://example.test/licence/197488",
+          "source": [
+            "Lab 197488",
+            "Purchases 7571b"
+          ],
+          "restored": [
+            "Studio 197488",
+            "Purchases 7571b"
+          ],
+          "unresolved": null
+        }
+      ]
+    },
+    {
+      "file": "recoverable.json",
+      "decision": "ready",
+      "outcome": "verified",
+      "archiveHash": "4468a6e71fb1f1322dcaa254dd3ab7f646cbe674912c50c413e2f22140b4625d",
+      "targetRequests": 14,
+      "writes": 4,
+      "foldersAfter": 3,
+      "bookmarksAfter": 1,
+      "observedChanges": []
+    }
+  ]
+}

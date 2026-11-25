@@ -12,9 +12,9 @@ Kane caught a lost parent. A local Qwen coding model received the finding and ge
 
 Open **Evidence → Check all three backups** to replay the missing owner, wrong owner, and recoverable archive. The app recomputes the decisions from disk. The recorded Linkwarden account received zero, zero and four writes respectively. [Live API evidence](../evidence/decisions/native.json) · [Offline command](../evidence/decisions/replay.mjs)
 
-Kane also opened the workbench in Chrome, ran this replay and checked all three rows. The final chapter of the video shows the result. [Kane browser verdict](../evidence/decisions/browser.json)
+Kane also opened the workbench in Chrome, ran this replay and checked all three rows. The opening eight seconds of the video show the wrong-client-folder decision and the zero recorded writes. [Kane browser verdict](../evidence/decisions/browser.json)
 
-The successful agent-generated change repaired the exporter. In a separate experiment, the local model received the native importer, archive and incident evidence. Its structured response diagnosed missing parent handling but returned the original importer implementation. The project uses its verified API recovery path for that case. [Importer experiment](../evidence/decisions/importer-attempt.json)
+The successful unattended agent repair targeted the exporter. In a second experiment, blind attempts at the native importer yielded no usable change. I then applied a Codex-authored importer patch with access to the evidence. Both frozen libraries matched independently specified paths after a single native migration request per run. Kane passed both browser objectives. Restore Drill separately withheld the erased-parent backup with zero target requests and zero writes. [Importer patch, trial receipts and failed attempts](../evidence/native-import/README.md)
 
 - [Submission walkthrough](restore-drill-evidence-walkthrough.mp4) and [English captions](restore-drill-evidence-captions.vtt)
 - [Unattended repair](../evidence/unattended/verification.json), [model request and output](../evidence/unattended/agent-handoff.json) and [offline reproduction](../evidence/replay.mjs)

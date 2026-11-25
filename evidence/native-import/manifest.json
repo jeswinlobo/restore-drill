@@ -1,0 +1,33 @@
+{
+  "fixtureCommit": "085d85d",
+  "upstream": "Linkwarden v2.7.1",
+  "controller": "lib/api/controllers/migration/importFromLinkwarden.ts",
+  "stockSourceSha256": "3497e528061630f6a41dc19dfacc8ebe71f0c0f40c6aa467ec94f165bcb42dce",
+  "patchedSourceSha256": "b68f9bc626ab4b428695fe278978e1fd2c2ce962a03cc69255ee8fee35c75725",
+  "patchProvenance": "Codex authored with access to the experiment. Blind attempts yielded no applied change.",
+  "files": {
+    "agent-codex/prompt.txt": "6bec81e1f800fa830a6b374cf2f4f326e485b790a2b095a7b7adfba027c6ab90",
+    "agent-codex/result.json": "293c9421a3a8827b0459ee75a45a1434b9c85dc33bd5b4df99e27a2fad2ace60",
+    "agent-local/edit-request.json": "d79df1ac7be53f0a0c4a11c1aedad4d1aa2219ff885b7ef0f417c4b5411a5549",
+    "agent-local/edit-response.json": "dbee5da1ed0521c9eaa72417c189aa8aeeb24c970057484f7a23f326103e26e1",
+    "agent-local/result.json": "b4b1c9287aef3d7510b9f6c90ce0e7b6d17d31aab577a16e87ae5a42c49eb000",
+    "agent-local/select-request.json": "a19219aa04885244eb2787799ae38f4029494fdb5f98f7944f64cfb1a2744b6a",
+    "agent-local/select-response.json": "c522545137d2be24e3e3eea8537d85ef116e7abe683537a9cb43de53b007ad03",
+    "control.json": "79cf12511ddc6285891f9053867e292959a53c7f4099b96157fe184921eeb38e",
+    "first.json": "d5fd7e973d124fdd303ef995bfdc7582c3df781a8e0c8cffb81f6dfba4a0b353",
+    "holdout.json": "11457a8ba27b4a6a69aee97caa864cc065b787aa9e28ea7dd67e9f89fea6db27",
+    "observed-stock-first/legacy-grid.png": "4cf6aca72ac705b45a02f19cbc8f0ea45ac25709428c472d2e9fc89b326b34c7",
+    "observed-stock-first/report.json": "d526440cb55af85203ee42d8cb0c94dfcbf0cf549711ceacd3af0b7cbdf55c54",
+    "observed-stock-holdout/legacy-grid.png": "6d0c6ba618fbd1fa126ff420fdd25ce34f3c444af2945e9edcc5033f0181b74c",
+    "observed-stock-holdout/report.json": "2652f49758ebeaa935acd9d515b91a5de2f35495266992e212103625d8a1f84b",
+    "patched-first/recovered-grid.png": "cd0f134fb1b6e3c39937f8bf57bf9c21a4ef6ca6aa67814604044d58ec9a885e",
+    "patched-first/report.json": "787ac776c1db57fc4727af067dbdd14095fc534250668ee68d2df8ccd1ddf16e",
+    "patched-holdout/recovered-grid.png": "f141cfabed17d12402fe7afae8b949c9997bdd007a0897b8af5a5b4f58f2dcbb",
+    "patched-holdout/report.json": "c5ecde51818db8d7bb181ba4610ea2dc79b28d1bb8efe05229090d56966227bb",
+    "stock-first/legacy-grid.png": "cd13ef445023d73c0ab3956dd9b2f4a21a3f81e7e41551f3b75da4fb586c5d67",
+    "stock-first/report.json": "29ad18e9e9d185ee891272e6ed788b8dd73b28fdf50ceff01b14d073a2140f5d",
+    "stock-holdout/legacy-grid.png": "6d0c6ba618fbd1fa126ff420fdd25ce34f3c444af2945e9edcc5033f0181b74c",
+    "stock-holdout/report.json": "69e7f7bbee86b8b7583f11342433931830ae8260ac81bf32902519e2bcf21d5f",
+    "../../integrations/upstream/linkwarden-v2.7.1-native-import.patch": "4e68d2019568dd5532bb92cc0fc349ff22c4939ba1418ddf4cbcad051165ef88"
+  }
+}

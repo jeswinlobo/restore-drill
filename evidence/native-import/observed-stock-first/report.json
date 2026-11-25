@@ -1,0 +1,180 @@
+{
+  "recorded": "2026-11-25T12:10:01.276Z",
+  "fixtureHash": "d5fd7e973d124fdd303ef995bfdc7582c3df781a8e0c8cffb81f6dfba4a0b353",
+  "archiveHash": "79c0c3df0ce99fac5cb20d1b0d2e484162ee7b5a82d0e88a62f457026099f976",
+  "objective": "On the native Collections page, inspect the main collection cards beside New Collection, ignoring the left sidebar. Verify there is a visible card named \"Dispatch\" in the main grid and report its name. Leave the data unchanged.",
+  "kind": "positive-stock-observation",
+  "expectedPaths": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Archive 8bfc0e",
+        "Dispatch"
+      ]
+    }
+  ],
+  "observedPaths": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Dispatch"
+      ]
+    }
+  ],
+  "observedArchive": {
+    "format": "restore-drill/bookmarks",
+    "version": 1,
+    "folders": [
+      {
+        "id": "67",
+        "name": "Foundry 8bfc0e",
+        "parent": null
+      },
+      {
+        "id": "69",
+        "name": "Archive 8bfc0e",
+        "parent": null
+      },
+      {
+        "id": "70",
+        "name": "Dispatch",
+        "parent": null
+      }
+    ],
+    "bookmarks": [
+      {
+        "id": "24",
+        "folder": "70",
+        "title": "Handover 8bfc0e",
+        "url": "https://example.test/8bfc0e/record",
+        "tags": [
+          "record"
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "status": "different",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Archive 8bfc0e",
+            "Dispatch"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Dispatch"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Archive 8bfc0e",
+            "Dispatch"
+          ],
+          "Handover 8bfc0e",
+          "https://example.test/8bfc0e/record",
+          [
+            "record"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Dispatch"
+          ],
+          "Handover 8bfc0e",
+          "https://example.test/8bfc0e/record",
+          [
+            "record"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      }
+    ],
+    "unknown": [],
+    "changedPaths": [
+      {
+        "title": "Handover 8bfc0e",
+        "url": "https://example.test/8bfc0e/record",
+        "source": [
+          "Archive 8bfc0e",
+          "Dispatch"
+        ],
+        "restored": [
+          "Dispatch"
+        ],
+        "unresolved": null
+      }
+    ]
+  },
+  "remapped": true,
+  "importPosts": [
+    "migration"
+  ],
+  "observedTargetIds": [
+    "67",
+    "69",
+    "70"
+  ],
+  "check": {
+    "role": "legacy",
+    "status": "passed",
+    "taskSha256": "16ef240dca680d15b0cf18818f81a348fc88fe4026e44ff589204c55cec42d78",
+    "stage": "Finished",
+    "bookmarkVisible": "Handover 8bfc0e",
+    "visibleRootCards": [
+      "Dispatch",
+      "Archive 8bfc0e",
+      "Foundry 8bfc0e"
+    ],
+    "rootGridMatchesExpectation": true,
+    "gridScreenshot": "legacy-grid.png",
+    "gridScreenshotSha256": "4cf6aca72ac705b45a02f19cbc8f0ea45ac25709428c472d2e9fc89b326b34c7",
+    "runId": "run-0",
+    "reason": "success.complete",
+    "credits": 12.000010000000001,
+    "finished": "2026-11-25T12:10:00.948Z",
+    "eventStreamSha256": "f2a0f768e28e4f8e9bc74c20cbe1293b9c02b31aa58d3579e342c76510a3ba4d",
+    "accountUnchanged": true
+  },
+  "browserSummary": "Inspected the main collection grid on the Collections page, excluding the left sidebar.\nConfirmed that a collection card named “Dispatch” was visible in the grid.\nRead the card immediately beside “New Collection” as “Foundry 8bfc0e.”\nLeft the collection data unchanged.",
+  "confirmed": true
+}

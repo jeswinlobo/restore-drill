@@ -6,3 +6,5 @@ evidence/*/*-archive.json -text
 evidence/decisions/unknown.json -text
 evidence/decisions/wrong.json -text
 evidence/decisions/recoverable.json -text
+evidence/native-import/agent-*/*.json -text whitespace=cr-at-eol
+integrations/upstream/linkwarden-v2.7.1-native-import.patch whitespace=-blank-at-eol

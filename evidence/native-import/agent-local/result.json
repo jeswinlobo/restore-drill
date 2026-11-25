@@ -1,0 +1,5 @@
+{
+  "status": "rejected",
+  "reason": "An edit did not uniquely match the selected source.",
+  "path": "components/CollectionCard.tsx"
+}

@@ -1,0 +1,104 @@
+--- a/lib/api/controllers/migration/importFromLinkwarden.ts
++++ b/lib/api/controllers/migration/importFromLinkwarden.ts
+@@ -4,11 +4,47 @@
+ 
+ const MAX_LINKS_PER_USER = Number(process.env.MAX_LINKS_PER_USER) || 30000;
+ 
++
++// A legacy export can omit a collection id while its links still carry it.
++// Reject an ambiguous hierarchy before creating any destination records.
++function archiveHierarchy(collections: Backup["collections"]) {
++  const parentById = new Map<number, number | null>();
++  const ids = collections.map((collection) => {
++    const hints = new Set([collection.id, ...collection.links.map(link => link.collectionId)]
++      .filter(id => id != null));
++    const id: number | undefined = Array.from(hints)[0];
++    if (hints.size > 1 || (id != null && (!Number.isSafeInteger(id) || parentById.has(id)))) {
++      throw new Error("Conflicting collection identifiers.");
++    }
++    if (id != null) parentById.set(id, collection.parentId ?? null);
++    return id;
++  });
++  const resolved = new Set<number>();
++  for (const collection of collections) {
++    const visited = new Set<number>();
++    let id = collection.parentId;
++    while (id != null && !resolved.has(id)) {
++      if (!parentById.has(id) || visited.has(id)) throw new Error("Unknown or cyclic collection parent.");
++      visited.add(id);
++      id = parentById.get(id) ?? null;
++    }
++    visited.forEach(key => resolved.add(key));
++  }
++  return ids;
++}
++
+ export default async function importFromLinkwarden(
+   userId: number,
+   rawData: string
+ ) {
+   const data: Backup = JSON.parse(rawData);
++
++  let archiveIds: (number | undefined)[];
++  try {
++    archiveIds = archiveHierarchy(data.collections);
++  } catch {
++    return { response: "The backup contains ambiguous or invalid collection relationships.", status: 400 };
++  }
+ 
+   let totalImports = 0;
+ 
+@@ -32,12 +68,14 @@
+ 
+   await prisma
+     .$transaction(
+-      async () => {
++      async (tx) => {
++        const createdIds: number[] = [];
++        const targetByArchive = new Map<number, number>();
+         // Import collections
+-        for (const e of data.collections) {
++        for (const [i, e] of Array.from(data.collections.entries())) {
+           e.name = e.name.trim();
+ 
+-          const newCollection = await prisma.collection.create({
++          const newCollection = await tx.collection.create({
+             data: {
+               owner: {
+                 connect: {
+@@ -50,11 +88,13 @@
+             },
+           });
+ 
+-          createFolder({ filePath: `archives/${newCollection.id}` });
++          createdIds.push(newCollection.id);
++          const archiveId = archiveIds[i];
++          if (archiveId != null) targetByArchive.set(archiveId, newCollection.id);
+ 
+           // Import Links
+           for (const link of e.links) {
+-            await prisma.link.create({
++            await tx.link.create({
+               data: {
+                 url: link.url,
+                 name: link.name,
+@@ -87,10 +127,17 @@
+             });
+           }
+         }
++        for (const [i, collection] of Array.from(data.collections.entries())) {
++          if (collection.parentId != null) {
++            const parentId = targetByArchive.get(collection.parentId);
++            if (parentId == null) throw new Error("Missing destination parent.");
++            await tx.collection.update({ where: { id: createdIds[i] }, data: { parentId } });
++          }
++        }
++        for (const id of createdIds) createFolder({ filePath: `archives/${id}` });
+       },
+       { timeout: 30000 }
+-    )
+-    .catch((err) => console.log(err));
++    );
+ 
+   return { response: "Success.", status: 200 };
+ }

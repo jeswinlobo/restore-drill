@@ -1,0 +1,338 @@
+{
+  "recorded": "2026-11-25T12:09:58.985Z",
+  "fixtureHash": "11457a8ba27b4a6a69aee97caa864cc065b787aa9e28ea7dd67e9f89fea6db27",
+  "archiveHash": "24556fae71204f34f41c1fc51c7b0909e8592b1f9d95f5b288fe3893bfdb97cb",
+  "objective": "On the native Collections page, inspect the main collection cards beside New Collection, ignoring the left sidebar. Verify there is a visible card named \"December\" in the main grid and report its name. Leave the data unchanged.",
+  "kind": "positive-stock-observation",
+  "expectedPaths": [
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/cedar",
+      "tags": [
+        "cedar"
+      ],
+      "path": [
+        "Cedar f44c19",
+        "Invoices",
+        "December"
+      ]
+    },
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/birch",
+      "tags": [
+        "birch"
+      ],
+      "path": [
+        "Birch f44c19",
+        "Invoices"
+      ]
+    }
+  ],
+  "observedPaths": [
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/cedar",
+      "tags": [
+        "cedar"
+      ],
+      "path": [
+        "December"
+      ]
+    },
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/birch",
+      "tags": [
+        "birch"
+      ],
+      "path": [
+        "Invoices"
+      ]
+    }
+  ],
+  "observedArchive": {
+    "format": "restore-drill/bookmarks",
+    "version": 1,
+    "folders": [
+      {
+        "id": "68",
+        "name": "December",
+        "parent": null
+      },
+      {
+        "id": "71",
+        "name": "Invoices",
+        "parent": null
+      },
+      {
+        "id": "72",
+        "name": "Invoices",
+        "parent": null
+      },
+      {
+        "id": "73",
+        "name": "Pending",
+        "parent": null
+      },
+      {
+        "id": "74",
+        "name": "Cedar f44c19",
+        "parent": null
+      },
+      {
+        "id": "75",
+        "name": "Birch f44c19",
+        "parent": null
+      }
+    ],
+    "bookmarks": [
+      {
+        "id": "23",
+        "folder": "68",
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/cedar",
+        "tags": [
+          "cedar"
+        ]
+      },
+      {
+        "id": "25",
+        "folder": "72",
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/birch",
+        "tags": [
+          "birch"
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "status": "different",
+    "folders": [
+      6,
+      6
+    ],
+    "bookmarks": [
+      2,
+      2
+    ],
+    "differences": [
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Birch f44c19",
+            "Invoices"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Cedar f44c19",
+            "Invoices"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Cedar f44c19",
+            "Invoices",
+            "December"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Birch f44c19",
+            "Pending"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "December"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Invoices"
+          ]
+        ],
+        "expected": 0,
+        "actual": 2
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Pending"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Cedar f44c19",
+            "Invoices",
+            "December"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/cedar",
+          [
+            "cedar"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Birch f44c19",
+            "Invoices"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/birch",
+          [
+            "birch"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "December"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/cedar",
+          [
+            "cedar"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Invoices"
+          ],
+          "Purchase f44c19",
+          "https://example.test/f44c19/birch",
+          [
+            "birch"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      }
+    ],
+    "unknown": [],
+    "changedPaths": [
+      {
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/cedar",
+        "source": [
+          "Cedar f44c19",
+          "Invoices",
+          "December"
+        ],
+        "restored": [
+          "December"
+        ],
+        "unresolved": null
+      },
+      {
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/birch",
+        "source": [
+          "Birch f44c19",
+          "Invoices"
+        ],
+        "restored": [
+          "Invoices"
+        ],
+        "unresolved": null
+      }
+    ]
+  },
+  "remapped": true,
+  "importPosts": [
+    "migration"
+  ],
+  "observedTargetIds": [
+    "68",
+    "71",
+    "72",
+    "73",
+    "74",
+    "75"
+  ],
+  "check": {
+    "role": "legacy",
+    "status": "passed",
+    "taskSha256": "f8f9d63761aa8514993a0f11040c379b250a19ad4288eb819d32e676f7319817",
+    "stage": "Finished",
+    "bookmarkVisible": "Purchase f44c19",
+    "visibleRootCards": [
+      "Birch f44c19",
+      "Cedar f44c19",
+      "Pending",
+      "Invoices",
+      "Invoices",
+      "December"
+    ],
+    "rootGridMatchesExpectation": true,
+    "gridScreenshot": "legacy-grid.png",
+    "gridScreenshotSha256": "6d0c6ba618fbd1fa126ff420fdd25ce34f3c444af2945e9edcc5033f0181b74c",
+    "runId": "run-0",
+    "reason": "success.complete",
+    "credits": 17.891999999999996,
+    "finished": "2026-11-25T12:09:58.588Z",
+    "eventStreamSha256": "13196e4da18a6099eee11af22f68a4f454de1b1352c577226a7c9d831dd1982a",
+    "accountUnchanged": true
+  },
+  "browserSummary": "Inspected the main collection grid on the Collections page, without using the left sidebar.\nFound the visible collection card named “December.”\nThe collection name was recorded as “December,” and no data was changed.",
+  "confirmed": true
+}

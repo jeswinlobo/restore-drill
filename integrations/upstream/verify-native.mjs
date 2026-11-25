@@ -68,7 +68,7 @@ export function nativeOutcome(checks, pair) {
   return 'verified';
 }
 
-async function checkRole({ role, account, chromium, chrome, witness, objective, out, temp }) {
+export async function checkRole({ role, account, chromium, chrome, witness, objective, out, temp }) {
   const profile = join(temp, role + '-chrome');
   let ctx;
   const check = {

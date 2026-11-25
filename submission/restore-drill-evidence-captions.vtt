@@ -1,293 +1,291 @@
 WEBVTT
 
-00:00:00.250 --> 00:00:05.088
+00:00:00.250 --> 00:00:05.057
+The order belongs under Lab. This backup
+puts it under Studio. Restore Drill
+
+00:00:05.057 --> 00:00:07.270
+blocked it before writing anything.
+
+00:00:08.290 --> 00:00:13.128
 Here is a client's field agreement. The
 team finds it by opening Studio, then
 
-00:00:05.088 --> 00:00:05.654
+00:00:13.128 --> 00:00:13.694
 Licences.
 
-00:00:05.804 --> 00:00:10.546
+00:00:13.844 --> 00:00:18.586
 After restoring a backup, the title,
 address and tags can all survive while the
 
-00:00:10.546 --> 00:00:12.587
+00:00:18.586 --> 00:00:20.627
 route to the agreement disappears.
 
-00:00:12.737 --> 00:00:17.051
+00:00:20.777 --> 00:00:25.091
 Restore Drill tests that route in a
 browser before anyone relies on the
 
-00:00:17.051 --> 00:00:17.476
+00:00:25.091 --> 00:00:25.516
 backup.
 
-00:00:18.490 --> 00:00:23.286
+00:00:26.530 --> 00:00:31.326
 For this run we used an editable workspace
 and the published Linkwarden version two
 
-00:00:23.286 --> 00:00:25.598
+00:00:31.326 --> 00:00:33.638
 point seven point one export controller.
 
-00:00:25.748 --> 00:00:30.679
+00:00:33.788 --> 00:00:38.719
 The controller ran against the workspace
 records. A separate database received the
 
-00:00:30.679 --> 00:00:31.581
+00:00:38.719 --> 00:00:39.621
 exported bytes.
 
-00:00:31.731 --> 00:00:37.188
+00:00:39.771 --> 00:00:45.228
 The restored copy still has three folders
 and one bookmark. Look at Licences. Its
 
-00:00:37.188 --> 00:00:38.670
+00:00:45.228 --> 00:00:46.710
 parent is now unknown.
 
-00:00:39.690 --> 00:00:44.896
+00:00:47.730 --> 00:00:52.936
 Kane CLI gets one plain language task.
 Starting at the root, open the client
 
-00:00:44.896 --> 00:00:50.307
+00:00:52.936 --> 00:00:58.347
 folder, open Licences, then verify the
 agreement's full path, address, tags and
 
-00:00:50.307 --> 00:00:51.677
+00:00:58.347 --> 00:00:59.717
 parent relationship.
 
-00:00:51.827 --> 00:00:56.281
+00:00:59.867 --> 00:01:04.321
 The saved browser run passes on the
 source. On the restored copy, Kane
 
-00:00:56.281 --> 00:01:00.481
+00:01:04.321 --> 00:01:08.521
 identifies the missing parent and returns
 a confirmed product bug.
 
-00:01:01.490 --> 00:01:06.234
+00:01:09.530 --> 00:01:14.274
 Could a smarter importer recover the
 owner? Open the source workspace and run
 
-00:01:06.234 --> 00:01:07.405
+00:01:14.274 --> 00:01:15.445
 its ambiguity test.
 
-00:01:07.555 --> 00:01:12.625
+00:01:15.595 --> 00:01:20.665
 The tool builds two valid sets of
 collection records. In one, the agreement
 
-00:01:12.625 --> 00:01:16.073
+00:01:20.665 --> 00:01:24.113
 belongs to Studio. In the other, it
 belongs to Lab.
 
-00:01:16.223 --> 00:01:20.690
+00:01:24.263 --> 00:01:28.730
 The historical exporter produces exactly
 the same five hundred and thirty nine
 
-00:01:20.690 --> 00:01:24.929
+00:01:28.730 --> 00:01:32.969
 bytes for both. The portable exporter
 distinguishes them and restores both
 
-00:01:24.929 --> 00:01:25.272
+00:01:32.969 --> 00:01:33.312
 paths.
 
-00:01:26.290 --> 00:01:31.446
+00:01:34.330 --> 00:01:39.486
 Kane's finding and its frozen browser task
 went to Codex. Here is the candidate from
 
-00:01:31.446 --> 00:01:32.797
+00:01:39.486 --> 00:01:40.837
 the reviewed response.
 
-00:01:32.947 --> 00:01:37.852
+00:01:40.987 --> 00:01:45.892
 The highlighted line builds its map from
 every collection, including folders with
 
-00:01:37.852 --> 00:01:39.184
+00:01:45.892 --> 00:01:47.224
 zero direct bookmarks.
 
-00:01:39.334 --> 00:01:43.915
+00:01:47.374 --> 00:01:51.955
 The next lines resolve the child's parent
 from that same map. A child can even
 
-00:01:43.915 --> 00:01:46.851
+00:01:51.955 --> 00:01:54.891
 appear before its parent in the database
 response.
 
-00:01:47.890 --> 00:01:52.618
+00:01:55.930 --> 00:02:00.658
 We ran that candidate, imported its bytes
 into a fresh database, and asked Kane to
 
-00:01:52.618 --> 00:01:54.406
+00:02:00.658 --> 00:02:02.446
 repeat the frozen browser task.
 
-00:01:54.556 --> 00:01:59.410
+00:02:02.596 --> 00:02:07.450
 On a fresh restore, Kane can now open the
 agreement under Studio. On a second
 
-00:01:59.410 --> 00:02:02.688
+00:02:07.450 --> 00:02:10.728
 workspace, it retrieves a different order
 under Lab.
 
-00:02:02.838 --> 00:02:05.987
+00:02:10.878 --> 00:02:14.027
 The independent archive comparisons also
 match.
 
-00:02:07.010 --> 00:02:11.328
+00:02:15.050 --> 00:02:19.368
 What if the exporter simply picks the
 first root when it cannot identify the
 
-00:02:11.328 --> 00:02:14.794
+00:02:19.368 --> 00:02:22.834
 parent? That patch happens to recover the
 original agreement.
 
-00:02:14.944 --> 00:02:20.242
+00:02:22.984 --> 00:02:28.282
 Here are seven actual archive comparisons,
 including reordered folders, empty
 
-00:02:20.242 --> 00:02:23.132
+00:02:28.282 --> 00:02:31.172
 ancestors, and identically named branches.
 
-00:02:23.282 --> 00:02:28.263
+00:02:31.322 --> 00:02:36.303
 The reviewed repair passes all seven. The
 shortcut matches three and puts the second
 
-00:02:28.263 --> 00:02:31.228
+00:02:36.303 --> 00:02:39.268
 workspace's purchase order under the wrong
 client.
 
-00:02:32.250 --> 00:02:37.491
+00:02:40.290 --> 00:02:45.531
 We also handed that wrong repair to Kane.
 Both browser checks pass on the original
 
-00:02:37.491 --> 00:02:38.130
+00:02:45.531 --> 00:02:46.170
 workspace.
 
-00:02:38.280 --> 00:02:43.813
+00:02:46.320 --> 00:02:51.853
 On the independent source, Kane opens Lab,
 then Purchases, then the order. On the
 
-00:02:43.813 --> 00:02:47.980
+00:02:51.853 --> 00:02:56.020
 independent restore, it opens Lab and
 finds the folder empty.
 
-00:02:48.130 --> 00:02:52.972
+00:02:56.170 --> 00:03:01.012
 Kane returns a confirmed product bug. The
 first green result would have certified
 
-00:02:52.972 --> 00:02:53.928
+00:03:01.012 --> 00:03:01.968
 the wrong owner.
 
-00:02:54.930 --> 00:02:59.551
+00:03:02.970 --> 00:03:07.591
 We also ran two installations of
 Linkwarden itself. The original contract
 
-00:02:59.551 --> 00:03:01.576
+00:03:07.591 --> 00:03:09.616
 is under South, then Agreements.
 
-00:03:01.726 --> 00:03:06.799
+00:03:09.766 --> 00:03:14.839
 After the stock migration, Agreements
 appears at the root. Both tags and all
 
-00:03:06.799 --> 00:03:08.268
+00:03:14.839 --> 00:03:16.308
 three folders survive.
 
-00:03:08.418 --> 00:03:12.820
+00:03:16.458 --> 00:03:20.860
 We captured the known source and wrote its
 folder relationships into a separate empty
 
-00:03:12.820 --> 00:03:17.223
+00:03:20.860 --> 00:03:25.263
 account through Linkwarden's own APIs. The
 recovered contract is back under South and
 
-00:03:17.223 --> 00:03:17.792
+00:03:25.263 --> 00:03:25.832
 Agreements.
 
-00:03:17.942 --> 00:03:22.734
+00:03:25.982 --> 00:03:30.774
 Kane checked the same native collections
 grid in all three accounts. Source passed,
 
-00:03:22.734 --> 00:03:25.274
+00:03:30.774 --> 00:03:33.314
 stock migration failed, and recovery
 passed.
 
-00:03:26.290 --> 00:03:30.118
+00:03:34.330 --> 00:03:38.158
 We ran the same reviewed candidate
 directly against a real Linkwarden
 
-00:03:30.118 --> 00:03:32.504
+00:03:38.158 --> 00:03:40.544
 database using its generated Prisma
 client.
 
-00:03:32.654 --> 00:03:37.663
+00:03:40.694 --> 00:03:45.703
 The candidate archive preserves the path.
 But the stock importer still flattens it.
 
-00:03:37.813 --> 00:03:41.975
+00:03:45.853 --> 00:03:50.015
 Restoring those same candidate bytes
 through the mapped writer preserves the
 
-00:03:41.975 --> 00:03:45.260
+00:03:50.015 --> 00:03:53.300
 path. Export and import both have to carry
 the relationship.
 
-00:03:46.290 --> 00:03:50.954
+00:03:54.330 --> 00:03:58.994
 In another production run, two clients had
 identically titled contracts, and six
 
-00:03:50.954 --> 00:03:52.179
+00:03:58.994 --> 00:04:00.219
 folders between them.
 
-00:03:52.329 --> 00:03:57.441
+00:04:00.369 --> 00:04:05.481
 After stock migration, only Agreements or
 Renewals remained in the paths. The mapped
 
-00:03:57.441 --> 00:04:02.250
+00:04:05.481 --> 00:04:10.290
 restore recovered both complete paths,
 including the extra parent level for the
 
-00:04:02.250 --> 00:04:02.737
+00:04:10.290 --> 00:04:10.777
 renewal.
 
-00:04:03.770 --> 00:04:08.934
+00:04:11.810 --> 00:04:16.974
 A separate unattended run resumed Kane's
 saved failure. A local coding model called
 
-00:04:08.934 --> 00:04:13.725
+00:04:16.974 --> 00:04:21.765
 Qwen generated the condition that keeps
 collection identifiers in the export.
 
-00:04:13.875 --> 00:04:18.254
+00:04:21.915 --> 00:04:26.294
 Kane verified the repair on the original
 agreement and the independent purchase
 
-00:04:18.254 --> 00:04:19.973
+00:04:26.294 --> 00:04:28.013
 order, each in a fresh restore.
 
-00:04:20.123 --> 00:04:22.691
+00:04:28.163 --> 00:04:30.731
 The original archive still needs review.
 
-00:04:23.730 --> 00:04:28.835
-From the Evidence page, rerun the reviewed
-repair against both saved workspaces. The
+00:04:31.770 --> 00:04:36.713
+Here is the holdout library after stock
+Linkwarden imports it. December appears at
 
-00:04:28.835 --> 00:04:31.630
-new exports match their recorded
-fingerprints.
+00:04:36.713 --> 00:04:37.557
+the top level.
 
-00:04:31.780 --> 00:04:36.180
-Replay the old file and its parent is
-still unknown. That archive needs
+00:04:37.707 --> 00:04:42.621
+With the importer patch, both libraries
+preserved every path. Kane passed both
 
-00:04:36.180 --> 00:04:38.287
-independent evidence of ownership.
+00:04:42.621 --> 00:04:43.691
+checks in Chrome.
 
-00:04:38.437 --> 00:04:43.194
-The repository includes the controller,
-both workspaces, and the browser verdicts.
+00:04:43.841 --> 00:04:48.324
+The blind attempts produced no usable
+patch. The repository includes their
 
-00:04:43.194 --> 00:04:47.660
-You can repeat the archive comparisons
-locally without spending Kane credits.
-
-00:04:48.690 --> 00:04:53.148
-Two backups were withheld before any
-writes. The third restored three folders
-
-00:04:53.148 --> 00:04:55.522
-and one bookmark under the correct owner.
+00:04:48.324 --> 00:04:50.383
+records and the tested Codex diff.

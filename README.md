@@ -2,7 +2,7 @@
 
 Can someone still find the signed contract after restoring a backup? Restore Drill follows a bookmark from its owner's folder to its saved URL, then repeats that journey on a fresh restore. When a parent is lost, Kane checks the failure in Chrome and a coding agent can repair the exporter.
 
-[Watch the 4:56 walkthrough](submission/restore-drill-evidence-walkthrough.mp4) · [Read the captions](submission/restore-drill-evidence-captions.vtt) · [Run locally](#run-locally)
+[Watch the walkthrough](submission/restore-drill-evidence-walkthrough.mp4) · [Read the captions](submission/restore-drill-evidence-captions.vtt) · [Run locally](#run-locally)
 
 In two independent Linkwarden v2.7.1 installations, a stock migration preserved all three folders, the bookmark and both tags. It moved the agreement out of its owner's folder. Kane spotted the extra top-level collection on Linkwarden's own screen. Restore Drill recovered the expected path through the public API and Kane passed the same check. [Migration report](https://github.com/linkwarden/linkwarden/issues/812) · [Upstream API measurements](evidence/upstream/pair.json) · [Native browser verdicts](evidence/upstream/native-kane.json)
 
@@ -12,6 +12,10 @@ In two independent Linkwarden v2.7.1 installations, a stock migration preserved 
 | The owner and Agreements appear side by side. | Agreements is back inside South 2cc646. |
 
 The original exporter removes collection IDs that its parent references need. In the recorded library, two different owners produced exactly the same 539 archive bytes. The workbench can test this on your own known source. Some archives retain usable identifiers on their links, and Restore Drill uses those when they agree. [Published exporter](https://github.com/linkwarden/linkwarden/blob/v2.7.1/lib/api/controllers/migration/exportData.ts) · [Identical-archive proof](evidence/ambiguity/original-workspace.json)
+
+## Repairing Linkwarden's native migration
+
+Two frozen libraries flattened under stock Linkwarden v2.7.1. After applying a local importer patch, Linkwarden's native migration preserved all nine folders and three bookmarks across the two libraries. Kane passed the original browser objective on both. An independent API readback also checked the full hierarchy, including duplicate collection names, duplicate bookmark titles and an empty nested folder. [Experiment, exact diff and replay](evidence/native-import/README.md)
 
 ## Which backup would you restore?
 

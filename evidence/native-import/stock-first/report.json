@@ -1,0 +1,147 @@
+{
+  "recorded": "2026-11-25T12:07:55.615Z",
+  "fixtureHash": "d5fd7e973d124fdd303ef995bfdc7582c3df781a8e0c8cffb81f6dfba4a0b353",
+  "archiveHash": "79c0c3df0ce99fac5cb20d1b0d2e484162ee7b5a82d0e88a62f457026099f976",
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Archive 8bfc0e\" is visible and the nested collection \"Dispatch\" has no top-level card here. Stay on this page and leave all data unchanged.",
+  "expectedPaths": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Archive 8bfc0e",
+        "Dispatch"
+      ]
+    }
+  ],
+  "observedPaths": [
+    {
+      "title": "Handover 8bfc0e",
+      "url": "https://example.test/8bfc0e/record",
+      "tags": [
+        "record"
+      ],
+      "path": [
+        "Dispatch"
+      ]
+    }
+  ],
+  "comparison": {
+    "status": "different",
+    "folders": [
+      3,
+      3
+    ],
+    "bookmarks": [
+      1,
+      1
+    ],
+    "differences": [
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Archive 8bfc0e",
+            "Dispatch"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "folder",
+        "value": [
+          null,
+          [
+            "Dispatch"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Archive 8bfc0e",
+            "Dispatch"
+          ],
+          "Handover 8bfc0e",
+          "https://example.test/8bfc0e/record",
+          [
+            "record"
+          ]
+        ],
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "kind": "bookmark",
+        "value": [
+          null,
+          [
+            "Dispatch"
+          ],
+          "Handover 8bfc0e",
+          "https://example.test/8bfc0e/record",
+          [
+            "record"
+          ]
+        ],
+        "expected": 0,
+        "actual": 1
+      }
+    ],
+    "unknown": [],
+    "changedPaths": [
+      {
+        "title": "Handover 8bfc0e",
+        "url": "https://example.test/8bfc0e/record",
+        "source": [
+          "Archive 8bfc0e",
+          "Dispatch"
+        ],
+        "restored": [
+          "Dispatch"
+        ],
+        "unresolved": null
+      }
+    ]
+  },
+  "remapped": true,
+  "importPosts": [
+    "migration"
+  ],
+  "observedTargetIds": [
+    "64",
+    "65",
+    "66"
+  ],
+  "check": {
+    "role": "legacy",
+    "status": "inconclusive",
+    "taskSha256": "20eb63fe9803f6beed5948441aef6071e3cfdc4bdab73850a3a5279bf0422cc6",
+    "stage": "Finished",
+    "bookmarkVisible": "Handover 8bfc0e",
+    "visibleRootCards": [
+      "Dispatch",
+      "Archive 8bfc0e",
+      "Foundry 8bfc0e"
+    ],
+    "rootGridMatchesExpectation": true,
+    "gridScreenshot": "legacy-grid.png",
+    "gridScreenshotSha256": "cd13ef445023d73c0ab3956dd9b2f4a21a3f81e7e41551f3b75da4fb586c5d67",
+    "runId": "run-0",
+    "reason": "assertion_error.final_verification",
+    "credits": 14.49774,
+    "finished": "2026-11-25T12:07:55.307Z",
+    "eventStreamSha256": "b1c77ddc5af2f854f448b773a04615ca53ddd53249efe0c056c1ba51c8c2b312",
+    "accountUnchanged": true
+  },
+  "browserSummary": "The test expected Dispatch to be nested under another collection, but the loaded collection data shows it as its own top-level card. Archive 8bfc0e is visibly present, so the failed Archive check also appears inconsistent with the rendered page.\nRepair or reset the test fixture so Dispatch is created as a nested collection before this verification, then review the Archive visibility assertion because the Archive 8bfc0e card is visibly rendered.",
+  "confirmed": false
+}

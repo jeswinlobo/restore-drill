@@ -1,0 +1,161 @@
+{
+  "recorded": "2026-11-25T12:13:28.177Z",
+  "fixtureHash": "11457a8ba27b4a6a69aee97caa864cc065b787aa9e28ea7dd67e9f89fea6db27",
+  "archiveHash": "24556fae71204f34f41c1fc51c7b0909e8592b1f9d95f5b288fe3893bfdb97cb",
+  "objective": "Inspect only the collection cards in the main Collections grid, the area containing New Collection. Ignore the navigation sidebar. Verify a root card named \"Cedar f44c19\" is visible and the nested collection \"December\" has no top-level card here. Stay on this page and leave all data unchanged.",
+  "kind": "frozen-objective",
+  "expectedPaths": [
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/cedar",
+      "tags": [
+        "cedar"
+      ],
+      "path": [
+        "Cedar f44c19",
+        "Invoices",
+        "December"
+      ]
+    },
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/birch",
+      "tags": [
+        "birch"
+      ],
+      "path": [
+        "Birch f44c19",
+        "Invoices"
+      ]
+    }
+  ],
+  "observedPaths": [
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/cedar",
+      "tags": [
+        "cedar"
+      ],
+      "path": [
+        "Cedar f44c19",
+        "Invoices",
+        "December"
+      ]
+    },
+    {
+      "title": "Purchase f44c19",
+      "url": "https://example.test/f44c19/birch",
+      "tags": [
+        "birch"
+      ],
+      "path": [
+        "Birch f44c19",
+        "Invoices"
+      ]
+    }
+  ],
+  "observedArchive": {
+    "format": "restore-drill/bookmarks",
+    "version": 1,
+    "folders": [
+      {
+        "id": "82",
+        "name": "December",
+        "parent": "83"
+      },
+      {
+        "id": "83",
+        "name": "Invoices",
+        "parent": "86"
+      },
+      {
+        "id": "84",
+        "name": "Invoices",
+        "parent": "87"
+      },
+      {
+        "id": "85",
+        "name": "Pending",
+        "parent": "87"
+      },
+      {
+        "id": "86",
+        "name": "Cedar f44c19",
+        "parent": null
+      },
+      {
+        "id": "87",
+        "name": "Birch f44c19",
+        "parent": null
+      }
+    ],
+    "bookmarks": [
+      {
+        "id": "28",
+        "folder": "82",
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/cedar",
+        "tags": [
+          "cedar"
+        ]
+      },
+      {
+        "id": "29",
+        "folder": "84",
+        "title": "Purchase f44c19",
+        "url": "https://example.test/f44c19/birch",
+        "tags": [
+          "birch"
+        ]
+      }
+    ]
+  },
+  "comparison": {
+    "status": "matched",
+    "folders": [
+      6,
+      6
+    ],
+    "bookmarks": [
+      2,
+      2
+    ],
+    "differences": [],
+    "unknown": [],
+    "changedPaths": []
+  },
+  "remapped": true,
+  "importPosts": [
+    "migration"
+  ],
+  "observedTargetIds": [
+    "82",
+    "83",
+    "84",
+    "85",
+    "86",
+    "87"
+  ],
+  "check": {
+    "role": "recovered",
+    "status": "passed",
+    "taskSha256": "7a76366c5b24f6f353367f2821f5f9b7af7aed8a606b53b39fddc65ea84512c9",
+    "stage": "Finished",
+    "bookmarkVisible": "Purchase f44c19",
+    "visibleRootCards": [
+      "Cedar f44c19",
+      "Birch f44c19"
+    ],
+    "rootGridMatchesExpectation": true,
+    "gridScreenshot": "recovered-grid.png",
+    "gridScreenshotSha256": "f141cfabed17d12402fe7afae8b949c9997bdd007a0897b8af5a5b4f58f2dcbb",
+    "runId": "run-0",
+    "reason": "success.complete",
+    "credits": 6.02915,
+    "finished": "2026-11-25T12:13:27.881Z",
+    "eventStreamSha256": "f407fd59bca1c8f4e68124dd239ef00a4722d802099e20c09f954f63ed30d592",
+    "accountUnchanged": true
+  },
+  "browserSummary": "Confirmed that the root collection card named “Cedar f44c19” is visible in the collections list.\nConfirmed that the nested collection “December” is not shown as a separate top-level card.\nThe requested collection organization was successfully reflected on the Collections page.",
+  "confirmed": true
+}
