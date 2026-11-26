@@ -738,13 +738,16 @@ function evidenceView(data) {
 async function render() {
   clearTimeout(poll);
   const id = ++epoch;
-  const [route, key] = (location.hash.slice(1) || 'demo').split('/');
+  const [route, key] = (location.hash.slice(1) || 'check').split('/');
   try {
-    const st = route === 'demo' ? null : await api('state');
+    const st = ['check', 'demo'].includes(route) ? null : await api('state');
     if (id !== epoch) return;
     state = st;
     let html, crumb;
-    if (route === 'demo') {
+    if (route === 'check') {
+      html = window.restoreDrillDemo.controlPanel();
+      crumb = 'Backup check';
+    } else if (route === 'demo') {
       const data = await api('demo');
       if (id !== epoch) return;
       html = window.restoreDrillDemo.render(data, key);
@@ -804,7 +807,7 @@ async function render() {
     $('#crumb').textContent = crumb;
     document.title = crumb + ' · Restore Drill';
     $('#main').innerHTML = html;
-    const currentNav = ['demo', 'evidence'].includes(route)
+    const currentNav = ['check', 'demo', 'evidence'].includes(route)
       ? route
       : ['history', 'drill', 'rehearsal'].includes(route) ? 'history' : 'workspaces';
     document.querySelectorAll('nav a[data-nav]').forEach((el) => {

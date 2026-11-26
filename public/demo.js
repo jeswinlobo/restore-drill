@@ -52,6 +52,41 @@ window.restoreDrillDemo = (() => {
       '</span></summary><p>' + escape(check.summary) + '</p></details>';
   }
 
+  function assessmentForm() {
+    return '<form id="demo-assessment"><div class="demo-file-grid">' +
+        '<div><label for="demo-reference">Known-good reference</label><input id="demo-reference" name="reference" type="file" accept=".json,application/json" required></div>' +
+        '<div><label for="demo-archive">Backup to check</label><input id="demo-archive" name="archive" type="file" accept=".json,application/json" required></div></div>' +
+        '<button type="submit" class="primary">Compare files</button><a href="#workspaces">Open workspaces →</a>' +
+        '<div data-assessment-result aria-live="polite"></div></form>';
+  }
+  function controlPanel() {
+    return '<div class="guided-demo operator"><div class="operator-head"><span>Linkwarden / Recovery</span><h1>Check a backup</h1><p>Before switching servers, compare the backup with a trusted copy of your library.</p></div>' +
+      '<section class="operator-panel"><div class="section-head"><h2>Compare two exports</h2><button type="button" data-load-example>Load example files</button></div>' +
+      '<p>Choose the reference first, then the backup intended for the new server. This check reads both files locally.</p>' + assessmentForm() + '</section>' +
+      '<section class="operator-foot"><div><h3>Verification scope</h3><p>Folder structure, bookmark titles, URLs and tags. Documents, attachments and permissions require separate checks.</p></div>' +
+      '<div><h3>Investigate a failed restore</h3><p>Inspect the folder that moved, the exporter repair and the recorded Kane browser checks.</p><a href="#demo/failure">Open repair walkthrough →</a></div></section></div>';
+  }
+  document.addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-load-example]');
+    if (!button) return;
+    const form = document.querySelector('#demo-assessment');
+    const output = form.querySelector('[data-assessment-result]');
+    button.disabled = true;
+    try {
+      const files = await Promise.all(['original-workspace.json', 'original-archive.json'].map(async name => {
+        const response = await fetch('/api/evidence/unattended-fresh/' + name);
+        if (!response.ok) throw Error('Could not load the example files.');
+        return new File([await response.blob()], name, { type: 'application/json' });
+      }));
+      files.forEach((file, i) => {
+        const transfer = new DataTransfer();
+        transfer.items.add(file);
+        form.elements[i ? 'archive' : 'reference'].files = transfer.files;
+      });
+      output.textContent = 'Example loaded. Compare files to check the original export.';
+    } catch (error) { output.textContent = error.message; }
+    finally { button.disabled = false; }
+  });
   function render(data, step) {
     const receipt = (file) => '/api/evidence/' + encodeURIComponent(data.bundle) + '/' + file;
     const index = Math.max(0, steps.findIndex(([key]) => key === step));
@@ -122,11 +157,7 @@ window.restoreDrillDemo = (() => {
         '<button type="button" class="primary" data-demo-check>Check all three backups</button>' +
         '<div data-demo-output aria-live="polite"></div></div>' +
         '<details class="demo-note"><summary>Check your own backup</summary><p>Export a known-good workspace while the original is available and keep that reference separately. Compare it with a candidate backup here. This check makes no writes to your library.</p>' +
-        '<form id="demo-assessment"><div class="demo-file-grid">' +
-        '<div><label for="demo-reference">Known-good reference</label><input id="demo-reference" name="reference" type="file" accept=".json,application/json" required></div>' +
-        '<div><label for="demo-archive">Backup to check</label><input id="demo-archive" name="archive" type="file" accept=".json,application/json" required></div></div>' +
-        '<button type="submit" class="primary">Compare files</button><a href="#workspaces">Open workspaces →</a>' +
-        '<div data-assessment-result aria-live="polite"></div></form></details>'
+        assessmentForm() + '</details>'
     ];
 
     return '<div class="guided-demo"><div class="demo-hero"><div><h1>Restore comparison</h1>' +
@@ -181,5 +212,5 @@ window.restoreDrillDemo = (() => {
     }
   });
 
-  return { render };
+  return { render, controlPanel };
 })();

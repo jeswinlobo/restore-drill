@@ -1,11 +1,12 @@
 :root {
+  color-scheme: dark;
   font-family: 'Segoe UI', Inter, Arial, sans-serif;
-  color: #1d3028;
-  background: #f7f7f2;
-  --green: #174f3c;
-  --muted: #5e6c62;
-  --line: #d9dfd5;
-  --paper: #fffefa;
+  color: #e4ebef;
+  background: #10151b;
+  --green: #73dac4;
+  --muted: #a4b3c0;
+  --line: #35414c;
+  --paper: #192129;
 }
 * {
   box-sizing: border-box;
@@ -28,7 +29,7 @@ body {
   z-index: 10;
 }
 aside {
-  background: #143a30;
+  background: #10171d;
   color: #e8f1e9;
   padding: 33px 18px;
   display: flex;
@@ -87,7 +88,7 @@ nav a b {
 }
 nav a.on,
 nav a:hover {
-  background: #295242;
+  background: #233933;
   color: white;
 }
 .private {
@@ -191,9 +192,9 @@ textarea {
 }
 button,
 .button {
-  color: #28483a;
+  color: #e3eaf1;
   background: var(--paper);
-  border: 1px solid #bfcbbe;
+  border: 1px solid #45535e;
   border-radius: 7px;
   padding: 10px 14px;
   cursor: pointer;
@@ -206,7 +207,7 @@ button,
 }
 button:hover,
 .button:hover {
-  background: #eef3e9;
+  background: #25313c;
 }
 button:disabled {
   opacity: 0.6;
@@ -215,7 +216,7 @@ button:disabled {
 .primary {
   background: var(--green);
   border-color: var(--green);
-  color: #fff;
+  color: #10251f;
 }
 .primary:hover {
   background: #246247;
@@ -270,7 +271,7 @@ button:disabled {
   width: 66px;
   height: 43px;
   margin: 15px auto 23px;
-  background: #dceacb;
+  background: #314838;
   border: 2px solid #567a55;
   border-radius: 4px;
   box-shadow: 5px 5px #e2e8db;
@@ -301,7 +302,7 @@ button:disabled {
   border-bottom: 0;
 }
 .row.link:hover {
-  background: #f0f5ea;
+  background: #24303a;
 }
 .row strong,
 .info {
@@ -312,7 +313,7 @@ button:disabled {
   color: var(--muted);
 }
 .row.head {
-  background: #f1f3ec;
+  background: #202a33;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
@@ -326,23 +327,23 @@ button:disabled {
   padding: 4px 10px;
   font-weight: 600;
   font-size: 12px;
-  background: #e8eee7;
-  color: #375449 !important;
+  background: #28343d;
+  color: #d5e2e8 !important;
 }
 .pill.matched,
 .pill.passed {
-  background: #e0efdd;
-  color: #266142 !important;
+  background: #1c3932;
+  color: #8de4c8 !important;
 }
 .pill.needs-review,
 .pill.inconclusive {
-  color: #79551e !important;
-  background: #f7ecd2;
+  color: #f8ce82 !important;
+  background: #40341f;
 }
 .pill.different,
 .pill.failed {
-  color: #903c32 !important;
-  background: #f8e2dc;
+  color: #ffb8ab !important;
+  background: #422b2c;
 }
 .section {
   margin: 30px 0;
@@ -393,7 +394,7 @@ code {
 }
 .error,
 #form-error {
-  color: #913a2a;
+  color: #ffaca0;
 }
 .inline-field,
 label {
@@ -408,11 +409,11 @@ select {
   display: block;
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #b7c6b7;
+  border: 1px solid #495966;
   border-radius: 6px;
-  background: white;
+  background: #121a21;
   min-height: 42px;
-  color: #213b2e;
+  color: #def0e9;
 }
 .form-actions {
   justify-content: flex-end;
