@@ -1,5 +1,9 @@
 # Restore Drill
 
+**[▶ Watch Kane CLI test a server migration (2:41, narrated and captioned)](https://cdn.jsdelivr.net/gh/jeswinlobo/restore-drill@main/submission/restore-drill-demo.mp4)** · [Video file on GitHub](submission/restore-drill-demo.mp4)
+
+Watch the original bookmark check pass, the same check fail after import, and Kane find the supplier agreement again after the exporter fix.
+
 Check a backup before switching servers. Restore Drill compares an application export with a known-good reference and shows which records changed. Its first supported application is **Linkwarden**. It checks folder structure and bookmark titles, URLs and tags. Attachments, permissions and archived pages require separate verification.
 
 <a id="run-locally"></a>
