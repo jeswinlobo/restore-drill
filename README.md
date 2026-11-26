@@ -4,6 +4,8 @@ Can someone still find the signed contract after restoring a backup? Restore Dri
 
 [Watch the walkthrough](submission/restore-drill-evidence-walkthrough.mp4) · [Read the captions](submission/restore-drill-evidence-captions.vtt) · [Run locally](#run-locally)
 
+The [guided demo plan](submission/guided-demo.md) covers the app walkthrough, verification checklist, and separate recording. In the current workbench, open **Evidence → Check all three backups** to replay the recovery decisions without a Kane account.
+
 In two independent Linkwarden v2.7.1 installations, a stock migration preserved all three folders, the bookmark and both tags. It moved the agreement out of its owner's folder. Kane spotted the extra top-level collection on Linkwarden's own screen. Restore Drill recovered the expected path through the public API and Kane passed the same check. [Migration report](https://github.com/linkwarden/linkwarden/issues/812) · [Upstream API measurements](evidence/upstream/pair.json) · [Native browser verdicts](evidence/upstream/native-kane.json)
 
 | Stock migration | Restore Drill recovery |
