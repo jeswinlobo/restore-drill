@@ -20,6 +20,7 @@ import {
 import { proveAmbiguity } from './lib/ambiguity.mjs';
 import { assessRecovery } from './lib/recovery-decision.mjs';
 import { replayDecisions } from './evidence/decisions/replay.mjs';
+import { guidedDemo } from './lib/demo.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const arg = (name, fallback) => {
@@ -47,7 +48,14 @@ const destination = await new Promise((yes, no) => {
     no(Error('Destination stopped during startup'));
   });
 });
-const assets = { '/': 'index.html', '/app.js': 'app.js', '/style.css': 'style.css' };
+const assets = {
+  '/': 'index.html', '/app.js': 'app.js', '/style.css': 'style.css',
+  '/demo.js': 'demo.js', '/demo.css': 'demo.css'
+};
+const demoScreenshots = {
+  '/demo-evidence/legacy.png': 'legacy-grid.png',
+  '/demo-evidence/recovered.png': 'recovered-grid.png'
+};
 function json(res, data, status = 200) {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
   res.end(JSON.stringify(data));
@@ -131,6 +139,20 @@ const server = http.createServer(async (req, res) => {
       const asset = await readFile(join(root, 'public', assets[p]));
       res.writeHead(200, { 'content-type': type + '; charset=utf-8' });
       return res.end(asset);
+    }
+    if (m === 'GET' && Object.hasOwn(demoScreenshots, p)) {
+      const screenshot = await readFile(
+        join(root, 'evidence', 'upstream', 'native-repair-grids', demoScreenshots[p])
+      );
+      res.writeHead(200, { 'content-type': 'image/png' });
+      return res.end(screenshot);
+    }
+    if (m === 'GET' && p === '/api/demo') return json(res, await guidedDemo());
+    if (m === 'POST' && p === '/api/recovery/assessment') {
+      const { reference, archive } = await body(req);
+      if (typeof reference !== 'string' || typeof archive !== 'string')
+        throw Object.assign(Error('Choose both a known-good reference and a backup.'), { status: 400 });
+      return json(res, assessRecovery(reference, archive));
     }
     if (m === 'GET' && p === '/api/evidence') {
       const challenge = JSON.parse(await readFile(join(root, 'evidence/challenge/result.json'), 'utf8'));

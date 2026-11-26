@@ -738,13 +738,18 @@ function evidenceView(data) {
 async function render() {
   clearTimeout(poll);
   const id = ++epoch;
-  const [route = 'workspaces', key] = location.hash.slice(1).split('/');
+  const [route, key] = (location.hash.slice(1) || 'demo').split('/');
   try {
-    const st = await api('state');
+    const st = route === 'demo' ? null : await api('state');
     if (id !== epoch) return;
     state = st;
     let html, crumb;
-    if (route === 'workspace' && key) {
+    if (route === 'demo') {
+      const data = await api('demo');
+      if (id !== epoch) return;
+      html = window.restoreDrillDemo.render(data, key);
+      crumb = 'Guided demo';
+    } else if (route === 'workspace' && key) {
       const value = await api('workspaces/' + key);
       if (id !== epoch) return;
       w = value;
@@ -799,19 +804,16 @@ async function render() {
     $('#crumb').textContent = crumb;
     document.title = crumb + ' · Restore Drill';
     $('#main').innerHTML = html;
-    document
-      .querySelectorAll('nav a')
-      .forEach((el) =>
-        el.classList.toggle(
-          'on',
-          el.dataset.nav ===
-            (route === 'evidence'
-              ? 'evidence'
-              : ['history', 'drill', 'rehearsal'].includes(route)
-                ? 'history'
-                : 'workspaces')
-        )
-      );
+    const currentNav = ['demo', 'evidence'].includes(route)
+      ? route
+      : ['history', 'drill', 'rehearsal'].includes(route) ? 'history' : 'workspaces';
+    document.querySelectorAll('nav a[data-nav]').forEach((el) => {
+      const current = el.dataset.nav === currentNav;
+      el.classList.toggle('on', current);
+      if (current) el.setAttribute('aria-current', 'page');
+      else el.removeAttribute('aria-current');
+    });
+    if (route === 'demo' && key) $('#demo-stage-title').focus({ preventScroll: true });
   } catch (e) {
     if (id === epoch)
       $('#main').innerHTML = empty(
@@ -826,6 +828,57 @@ async function fileText(file) {
   if (file.size > 16 * 1024 * 1024) throw Error('Archive exceeds 16 MiB');
   return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(await file.arrayBuffer());
 }
+function recoveryAssessmentView(result) {
+  const labels = {
+    ready: 'Ready to restore',
+    blocked: 'Restore blocked',
+    'needs-evidence': 'Independent evidence needed'
+  };
+  const paths = result.comparison.changedPaths
+    .slice(0, 5)
+    .map(
+      (p) =>
+        '<li>' +
+        h(p.title) +
+        ': ' +
+        h(p.source.join(' / ')) +
+        ' → ' +
+        h(p.restored.join(' / ')) +
+        '</li>'
+    )
+    .join('');
+  return '<h3>' +
+    h(labels[result.decision]) +
+    '</h3><p>' +
+    h(result.reason) +
+    '</p>' +
+    (paths ? '<ul>' + paths + '</ul>' : '') +
+    '<details><summary>Comparison and archive fingerprint</summary><pre>' +
+    h(JSON.stringify(result, null, 2)) +
+    '</pre></details>';
+}
+document.addEventListener('submit', async (event) => {
+  const form = event.target;
+  if (form.id !== 'demo-assessment') return;
+  event.preventDefault();
+  const button = form.querySelector('button');
+  const output = form.querySelector('[data-assessment-result]');
+  button.disabled = true;
+  output.textContent = 'Comparing files…';
+  try {
+    const [reference, archive] = await Promise.all([
+      fileText(form.elements.reference.files[0]),
+      fileText(form.elements.archive.files[0])
+    ]);
+    if (new Blob([JSON.stringify({ reference, archive })]).size > 16 * 1024 * 1024)
+      throw Error('The combined comparison request exceeds 16 MiB.');
+    output.innerHTML = recoveryAssessmentView(await api('recovery/assessment', { reference, archive }));
+  } catch (error) {
+    output.textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
 document.addEventListener('click', async (event) => {
   const el = event.target.closest('[data-act]');
   if (!el) return;
@@ -890,34 +943,7 @@ document.addEventListener('click', async (event) => {
         revision: w.revision,
         archive: await fileText(file)
       });
-      const labels = {
-        ready: 'Ready to restore',
-        blocked: 'Restore blocked',
-        'needs-evidence': 'Independent evidence needed'
-      };
-      const paths = result.comparison.changedPaths
-        .slice(0, 5)
-        .map(
-          (p) =>
-            '<li>' +
-            h(p.title) +
-            ': ' +
-            h(p.source.join(' / ')) +
-            ' → ' +
-            h(p.restored.join(' / ')) +
-            '</li>'
-        )
-        .join('');
-      output.innerHTML =
-        '<h3>' +
-        h(labels[result.decision]) +
-        '</h3><p>' +
-        h(result.reason) +
-        '</p>' +
-        (paths ? '<ul>' + paths + '</ul>' : '') +
-        '<details><summary>Comparison and archive fingerprint</summary><pre>' +
-        h(JSON.stringify(result, null, 2)) +
-        '</pre></details>';
+      output.innerHTML = recoveryAssessmentView(result);
     } catch (error) {
       output.textContent = error.message;
     } finally {
